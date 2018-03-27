@@ -410,7 +410,9 @@ typedef unsigned long long int uint64;
  */
 #if defined(PG_INT128_TYPE)
 #if defined(pg_attribute_aligned) || ALIGNOF_PG_INT128_TYPE <= MAXIMUM_ALIGNOF
-#define HAVE_INT128 1
+    #ifndef HAVE_INT128
+        #define HAVE_INT128 1
+    #endif
 
 typedef PG_INT128_TYPE int128
 #if defined(pg_attribute_aligned)

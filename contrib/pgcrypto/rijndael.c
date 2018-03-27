@@ -649,7 +649,7 @@ main()
 
 	gen_tabs();
 
-	printf(hdr);
+	printf("%s", hdr);
 	show256u8("pow_tab", pow_tab);
 	show256u8("log_tab", log_tab);
 	show256u8("sbx_tab", sbx_tab);
