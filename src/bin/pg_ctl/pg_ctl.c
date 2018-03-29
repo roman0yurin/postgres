@@ -66,7 +66,9 @@ typedef enum
 	KILL_COMMAND,
 	REGISTER_COMMAND,
 	UNREGISTER_COMMAND,
-	RUN_AS_SERVICE_COMMAND
+	RUN_AS_SERVICE_COMMAND,
+	/**Работа БД проивзводится в том же процессе, fork не выполняется. Это удобно для тестовых запусков из-под IDE**/
+	DIRECT_RUN_COMMAND
 } CtlCommand;
 
 #define DEFAULT_WAIT	60
@@ -156,7 +158,13 @@ static PTOKEN_PRIVILEGES GetPrivilegesToDelete(HANDLE hToken);
 static pgpid_t get_pgpid(bool is_status_request);
 static char **readfile(const char *path, int *numlines);
 static void free_readfile(char **optlines);
-static pgpid_t start_postmaster(void);
+
+/**
+ * Запуск рабочего процесса базы
+ * @param doFork если установлен, то рабочий процесс запустится отдельно от текущего процесса (который обычно запускает службу)
+ * @return идентификатор рабочего процесса.
+ */
+static pgpid_t start_postmaster(bool doFork);
 static void read_post_opts(void);
 
 static WaitPMResult wait_for_postmaster(pgpid_t pm_pid, bool do_checkpoint);
@@ -446,7 +454,7 @@ free_readfile(char **optlines)
  * "postmasterProcess", which the caller should close when done with it.
  */
 static pgpid_t
-start_postmaster(void)
+start_postmaster(bool doFork)
 {
 	char		cmd[MAXPGPATH];
 
@@ -457,7 +465,7 @@ start_postmaster(void)
 	fflush(stdout);
 	fflush(stderr);
 
-	pm_pid = fork();
+	pm_pid = doFork ? fork() : getpid();
 	if (pm_pid < 0)
 	{
 		/* fork failed */
@@ -465,7 +473,7 @@ start_postmaster(void)
 					 progname, strerror(errno));
 		exit(1);
 	}
-	if (pm_pid > 0)
+	if (pm_pid > 0 && doFork)
 	{
 		/* fork succeeded, in parent */
 		return pm_pid;
@@ -863,7 +871,7 @@ do_start(void)
 	}
 #endif
 
-	pm_pid = start_postmaster();
+	pm_pid = start_postmaster(ctl_command != DIRECT_RUN_COMMAND);
 
 	if (do_wait)
 	{
@@ -2436,6 +2444,8 @@ main(int argc, char **argv)
 				ctl_command = INIT_COMMAND;
 			else if (strcmp(argv[optind], "start") == 0)
 				ctl_command = START_COMMAND;
+			else if (strcmp(argv[optind], "run") == 0)
+				ctl_command = DIRECT_RUN_COMMAND;
 			else if (strcmp(argv[optind], "stop") == 0)
 				ctl_command = STOP_COMMAND;
 			else if (strcmp(argv[optind], "restart") == 0)
@@ -2540,6 +2550,7 @@ main(int argc, char **argv)
 			do_status();
 			break;
 		case START_COMMAND:
+		case DIRECT_RUN_COMMAND:
 			do_start();
 			break;
 		case STOP_COMMAND:
