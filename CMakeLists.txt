@@ -7,6 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_C_FLAGS -std=c11)
+#Папка для временного развертывания дистрибутива БД
+#set(TMP_DISTRIB_DIR ${CMAKE_BINARY_DIR}/distribution)
+#Папка для временного разветывания файлов базыва данных
+#set(TMP_DATA_DIR ${CMAKE_BINARY_DIR}/temp_data)
+#set(CMAKE_INSTALL_PREFIX ${TMP_DISTRIB_DIR})
 
 include(CheckTypeSize)
 include(CheckSymbolExists)
@@ -1433,3 +1438,9 @@ message(STATUS "PAM: ${PAM_LIB}")
 message(STATUS "PROVE (TAP tests): ${PROVE}")
 message(STATUS "Strong random source: ${STRONG_RANDOM_SOURCE}")
 message(STATUS "------------------")
+
+#add_custom_target(initPostgresDb
+#	COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
+#	COMMAND ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
+#)
+
