@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 
 project(PostgresС60 C CXX)
 
@@ -6,12 +6,11 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-set(CMAKE_C_FLAGS -std=c11)
+set(CMAKE_C_STANDARD 11)
 #Папка для временного развертывания дистрибутива БД
-#set(TMP_DISTRIB_DIR ${CMAKE_BINARY_DIR}/distribution)
+set(TMP_DISTRIB_DIR ${CMAKE_BINARY_DIR}/distribution)
 #Папка для временного разветывания файлов базыва данных
-#set(TMP_DATA_DIR ${CMAKE_BINARY_DIR}/temp_data)
-#set(CMAKE_INSTALL_PREFIX ${TMP_DISTRIB_DIR})
+set(TMP_DATA_DIR ${CMAKE_BINARY_DIR}/temp_data)
 
 include(CheckTypeSize)
 include(CheckSymbolExists)
@@ -1439,8 +1438,11 @@ message(STATUS "PROVE (TAP tests): ${PROVE}")
 message(STATUS "Strong random source: ${STRONG_RANDOM_SOURCE}")
 message(STATUS "------------------")
 
-#add_custom_target(initPostgresDb
-#	COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
-#	COMMAND ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
-#)
+add_custom_target(initPostgresDb
+	COMMAND DESTDIR=${TMP_DISTRIB_DIR} ${check_make_command} install -j 8
+	COMMAND ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
+	COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/pg.log
+	COMMAND ${TMP_DISTRIB_DIR}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
+	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
 

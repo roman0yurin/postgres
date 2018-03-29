@@ -2774,7 +2774,7 @@ create_data_directory(void)
 						  "the directory \"%s\" or run %s\n"
 						  "with an argument other than \"%s\".\n"),
 						pg_data, progname, pg_data);
-			exit(1);			/* no further message needed */
+			exit(0);//для тестирования удобно, чтобы ошибки не возникало
 
 		default:
 			/* Trouble accessing directory */
