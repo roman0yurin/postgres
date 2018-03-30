@@ -43,14 +43,14 @@ if(CMAKE_GENERATOR STREQUAL "Ninja")
 		COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/tmp_install
 		COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
 		COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} isolation_installcheck_tmp
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 else()
 	add_custom_target(isolation_check
 		COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/tmp_install
 		COMMAND ${check_make_command} install DESTDIR=${tmp_check_folder}
 		COMMAND ${check_make_command} isolation_installcheck_tmp DESTDIR=${tmp_check_folder}
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 endif()
 

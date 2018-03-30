@@ -42,7 +42,7 @@ set(regerss_checks
 )
 
 set(regress_options
-	--temp-config ${CMAKE_SOURCE_DIR}/contrib/test_decoding/logical.conf
+	--temp-config ${CMAKE_POSTGRES_SOURCE_DIR}/contrib/test_decoding/logical.conf
 )
 
 set(isolation_checks

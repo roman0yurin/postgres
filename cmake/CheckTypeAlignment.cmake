@@ -10,7 +10,7 @@ macro(CHECK_TYPE_ALIGNMENT TYPE NAME)
 			set(INCLUDE_HEADERS "${INCLUDE_HEADERS}\n#include <stdint.h>\n")
 		endif(HAVE_STDINT_H)
 
-		file(WRITE "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/check_${NAME}_alignment.c"
+		file(WRITE "${CMAKE_POSTGRES_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/check_${NAME}_alignment.c"
 			"${INCLUDE_HEADERS}
 			int main(){
 				char diff;
@@ -20,8 +20,8 @@ macro(CHECK_TYPE_ALIGNMENT TYPE NAME)
 				return diff;}
 		")
 
-		try_run(${NAME} COMPILE_RESULT "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/"
-			"${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/check_${NAME}_alignment.c")
+		try_run(${NAME} COMPILE_RESULT "${CMAKE_POSTGRES_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/"
+			"${CMAKE_POSTGRES_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/CMakeTmp/check_${NAME}_alignment.c")
 
 		message(STATUS "Check alignment of ${TYPE} - ${${NAME}}")
 

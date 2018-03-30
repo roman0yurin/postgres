@@ -4,8 +4,8 @@
     <generated>
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_dec_test" />
       <config projectName="PostgresС60" targetName="installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="amcheck" />
       <config projectName="PostgresС60" targetName="seg_installcheck" />
+      <config projectName="PostgresС60" targetName="amcheck" />
       <config projectName="PostgresС60" targetName="hstore" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_sqlda" />
       <config projectName="PostgresС60" targetName="oid2name" />
@@ -14,8 +14,8 @@
       <config projectName="PostgresС60" targetName="utf8_and_big5" />
       <config projectName="PostgresС60" targetName="test_decoding_check" />
       <config projectName="PostgresС60" targetName="earthdistance_installcheck" />
-      <config projectName="PostgresС60" targetName="commit_ts_installcheck" />
       <config projectName="PostgresС60" targetName="check" />
+      <config projectName="PostgresС60" targetName="commit_ts_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_dt_test" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_whenever" />
       <config projectName="PostgresС60" targetName="utf8_and_win" />
@@ -27,39 +27,39 @@
       <config projectName="PostgresС60" targetName="vacuumlo" />
       <config projectName="PostgresС60" targetName="seg_check" />
       <config projectName="PostgresС60" targetName="gen-rtab" />
-      <config projectName="PostgresС60" targetName="utf8_and_sjis2004" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_test_informix2" />
+      <config projectName="PostgresС60" targetName="utf8_and_sjis2004" />
       <config projectName="PostgresС60" targetName="test_ddl_deparse_installcheck" />
       <config projectName="PostgresС60" targetName="bloom_installcheck" />
       <config projectName="PostgresС60" targetName="citext" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_num_test2" />
       <config projectName="PostgresС60" targetName="isolation_check" />
-      <config projectName="PostgresС60" targetName="pg_standby" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_strings" />
+      <config projectName="PostgresС60" targetName="pg_standby" />
       <config projectName="PostgresС60" targetName="lo" />
       <config projectName="PostgresС60" targetName="pgstattuple" />
       <config projectName="PostgresС60" targetName="isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_trgm" />
-      <config projectName="PostgresС60" targetName="tsm_system_time_installcheck" />
       <config projectName="PostgresС60" targetName="utf8_and_uhc" />
+      <config projectName="PostgresС60" targetName="tsm_system_time_installcheck" />
       <config projectName="PostgresС60" targetName="test_pg_dump_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rfmtlong" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_thread" />
       <config projectName="PostgresС60" targetName="pg_visibility_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="tsm_system_rows" />
       <config projectName="PostgresС60" targetName="brin_isolation_installcheck_tmp" />
+      <config projectName="PostgresС60" targetName="tsm_system_rows" />
       <config projectName="PostgresС60" targetName="pgstattuple_check" />
       <config projectName="PostgresС60" targetName="bloom_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="dummy_seclabel_installcheck" />
       <config projectName="PostgresС60" targetName="test_parser_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="bloom_check" />
+      <config projectName="PostgresС60" targetName="dummy_seclabel_installcheck" />
       <config projectName="PostgresС60" targetName="test_ddl_deparse_check" />
+      <config projectName="PostgresС60" targetName="bloom_check" />
       <config projectName="PostgresС60" targetName="dblink_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="intarray_installcheck" />
-      <config projectName="PostgresС60" targetName="pgstattuple_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="test_pg_dump_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="pg_dump" />
+      <config projectName="PostgresС60" targetName="pgstattuple_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="regress" />
+      <config projectName="PostgresС60" targetName="pg_dump" />
       <config projectName="PostgresС60" targetName="euc_kr_and_mic" />
       <config projectName="PostgresС60" targetName="chkpass" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_dt_test2" />
@@ -72,8 +72,8 @@
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_array" />
       <config projectName="PostgresС60" targetName="btree_gin_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="tablefunc_installcheck" />
-      <config projectName="PostgresС60" targetName="btree_gist_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="commit_ts_installcheck_tmp" />
+      <config projectName="PostgresС60" targetName="btree_gist_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ltree_check" />
       <config projectName="PostgresС60" targetName="test_rls_hooks_check" />
       <config projectName="PostgresС60" targetName="common_basebackup" />
@@ -81,25 +81,25 @@
       <config projectName="PostgresС60" targetName="dict_int_check" />
       <config projectName="PostgresС60" targetName="pgport_srv" />
       <config projectName="PostgresС60" targetName="pg_upgrade" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_preproc_init" />
       <config projectName="PostgresС60" targetName="test_pg_dump_check" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_preproc_init" />
       <config projectName="PostgresС60" targetName="pq" />
-      <config projectName="PostgresС60" targetName="_int" />
       <config projectName="PostgresС60" targetName="pgcrypto_installcheck" />
+      <config projectName="PostgresС60" targetName="_int" />
       <config projectName="PostgresС60" targetName="tsm_system_time_check" />
       <config projectName="PostgresС60" targetName="pgport" />
       <config projectName="PostgresС60" targetName="utf8_and_euc_jp" />
       <config projectName="PostgresС60" targetName="ecpg_check" />
       <config projectName="PostgresС60" targetName="test_shm_mq_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_copystdout" />
-      <config projectName="PostgresС60" targetName="contrib_check" />
       <config projectName="PostgresС60" targetName="pg_archivecleanup" />
+      <config projectName="PostgresС60" targetName="contrib_check" />
       <config projectName="PostgresС60" targetName="test_parser" />
       <config projectName="PostgresС60" targetName="initPostgresDb" />
       <config projectName="PostgresС60" targetName="earthdistance_check" />
       <config projectName="PostgresС60" targetName="test_decoding_installcheck" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_nan_test" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_binary" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_nan_test" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_indicators" />
       <config projectName="PostgresС60" targetName="reindexdb" />
       <config projectName="PostgresС60" targetName="hstore_installcheck" />
@@ -107,8 +107,8 @@
       <config projectName="PostgresС60" targetName="pgcrypto" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_describe" />
       <config projectName="PostgresС60" targetName="postgres_fdw" />
-      <config projectName="PostgresС60" targetName="cube_installcheck" />
       <config projectName="PostgresС60" targetName="psql" />
+      <config projectName="PostgresС60" targetName="cube_installcheck" />
       <config projectName="PostgresС60" targetName="hstore_check" />
       <config projectName="PostgresС60" targetName="pgtypes" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_outofscope" />
@@ -116,19 +116,19 @@
       <config projectName="PostgresС60" targetName="euc_cn_and_mic" />
       <config projectName="PostgresС60" targetName="intarray_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="latin2_and_win1250" />
-      <config projectName="PostgresС60" targetName="tsm_system_rows_installcheck" />
       <config projectName="PostgresС60" targetName="dropuser" />
+      <config projectName="PostgresС60" targetName="tsm_system_rows_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_cursor" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_preproc_variable" />
       <config projectName="PostgresС60" targetName="brin_isolation_check" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_preproc_variable" />
       <config projectName="PostgresС60" targetName="pg_stat_statements_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_visibility_installcheck" />
       <config projectName="PostgresС60" targetName="tablefunc_check" />
       <config projectName="PostgresС60" targetName="pg_receivewal" />
       <config projectName="PostgresС60" targetName="euc2004_sjis2004" />
+      <config projectName="PostgresС60" targetName="installcheck" />
       <config projectName="PostgresС60" targetName="pg_stat_statements_check" />
       <config projectName="PostgresС60" targetName="latin_and_mic" />
-      <config projectName="PostgresС60" targetName="installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_fetch" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_dyntest" />
       <config projectName="PostgresС60" targetName="dblink" />
@@ -141,16 +141,16 @@
       <config projectName="PostgresС60" targetName="timetravel" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_type" />
       <config projectName="PostgresС60" targetName="pageinspect_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="tcn" />
       <config projectName="PostgresС60" targetName="dummy_seclabel_check" />
       <config projectName="PostgresС60" targetName="test_shm_mq" />
+      <config projectName="PostgresС60" targetName="tcn" />
       <config projectName="PostgresС60" targetName="earthdistance_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="test_decoding_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="postgres_fdw_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgstattuple_installcheck" />
+      <config projectName="PostgresС60" targetName="pqwalreceiver" />
       <config projectName="PostgresС60" targetName="intarray_check" />
       <config projectName="PostgresС60" targetName="pg_trgm_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="pqwalreceiver" />
       <config projectName="PostgresС60" targetName="libdump" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_autoprep" />
       <config projectName="PostgresС60" targetName="pg_test_timing" />
@@ -159,39 +159,39 @@
       <config projectName="PostgresС60" targetName="dict_int_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_freespacemap" />
       <config projectName="PostgresС60" targetName="pgcrypto_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="isn_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="dict_snowball" />
-      <config projectName="PostgresС60" targetName="pg_isready" />
+      <config projectName="PostgresС60" targetName="isn_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgfeutils" />
+      <config projectName="PostgresС60" targetName="pg_isready" />
       <config projectName="PostgresС60" targetName="citext_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_thread_implicit" />
       <config projectName="PostgresС60" targetName="dict_int" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_oldexec" />
       <config projectName="PostgresС60" targetName="pg_trgm_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_code100" />
+      <config projectName="PostgresС60" targetName="utf8_and_gbk" />
       <config projectName="PostgresС60" targetName="seg_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="test_decoding_isolation_installcheck" />
-      <config projectName="PostgresС60" targetName="utf8_and_gbk" />
       <config projectName="PostgresС60" targetName="pgoutput" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_comment" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_execute" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_charfuncs" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_show" />
       <config projectName="PostgresС60" targetName="btree_gist_installcheck" />
-      <config projectName="PostgresС60" targetName="clusterdb" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rfmtdate" />
+      <config projectName="PostgresС60" targetName="clusterdb" />
       <config projectName="PostgresС60" targetName="ecpg_preproc" />
       <config projectName="PostgresС60" targetName="pgcommon_srv" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_sql_sqlda" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_descriptor" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_sql_sqlda" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_prep" />
       <config projectName="PostgresС60" targetName="bloom" />
       <config projectName="PostgresС60" targetName="citext_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgbench" />
       <config projectName="PostgresС60" targetName="pageinspect_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test5" />
-      <config projectName="PostgresС60" targetName="utf8_and_cyrillic" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test4" />
+      <config projectName="PostgresС60" targetName="utf8_and_cyrillic" />
       <config projectName="PostgresС60" targetName="pg_resetwal" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test3" />
       <config projectName="PostgresС60" targetName="pg_restore" />
@@ -199,32 +199,32 @@
       <config projectName="PostgresС60" targetName="test_decoding" />
       <config projectName="PostgresС60" targetName="test_decoding_isolation_check" />
       <config projectName="PostgresС60" targetName="postgres_fdw_check" />
-      <config projectName="PostgresС60" targetName="vacuumdb" />
       <config projectName="PostgresС60" targetName="test_rls_hooks_installcheck_tmp" />
+      <config projectName="PostgresС60" targetName="vacuumdb" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test2" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test1" />
       <config projectName="PostgresС60" targetName="pg_waldump" />
       <config projectName="PostgresС60" targetName="ecpg_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_dynalloc2" />
-      <config projectName="PostgresС60" targetName="isn_installcheck" />
       <config projectName="PostgresС60" targetName="pg_basebackup" />
+      <config projectName="PostgresС60" targetName="isn_installcheck" />
       <config projectName="PostgresС60" targetName="test_ddl_deparse" />
+      <config projectName="PostgresС60" targetName="hstore_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="cube_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="dict_xsyn_check" />
-      <config projectName="PostgresС60" targetName="hstore_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ltree_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_define" />
-      <config projectName="PostgresС60" targetName="pg_trgm_check" />
       <config projectName="PostgresС60" targetName="euc_jp_and_sjis" />
+      <config projectName="PostgresС60" targetName="pg_trgm_check" />
       <config projectName="PostgresС60" targetName="insert_username" />
       <config projectName="PostgresС60" targetName="common_dump" />
       <config projectName="PostgresС60" targetName="isn" />
-      <config projectName="PostgresС60" targetName="citext_installcheck" />
-      <config projectName="PostgresС60" targetName="pgcommon" />
       <config projectName="PostgresС60" targetName="modules_installcheck" />
+      <config projectName="PostgresС60" targetName="pgcommon" />
+      <config projectName="PostgresС60" targetName="citext_installcheck" />
       <config projectName="PostgresС60" targetName="pg_rewind" />
-      <config projectName="PostgresС60" targetName="dblink_check" />
       <config projectName="PostgresС60" targetName="ltree_installcheck" />
+      <config projectName="PostgresС60" targetName="dblink_check" />
       <config projectName="PostgresС60" targetName="unaccent_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_parser" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_insupd" />
@@ -241,16 +241,16 @@
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_array_of_struct" />
       <config projectName="PostgresС60" targetName="test_rls_hooks_installcheck" />
       <config projectName="PostgresС60" targetName="earthdistance" />
+      <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_func" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_quote" />
-      <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="duplicate_oids" />
       <config projectName="PostgresС60" targetName="seg" />
       <config projectName="PostgresС60" targetName="ascii_and_mic" />
       <config projectName="PostgresС60" targetName="adminpack" />
       <config projectName="PostgresС60" targetName="test_decoding_isolation_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="gen_errorcodes" />
       <config projectName="PostgresС60" targetName="utf8_and_euc2004" />
+      <config projectName="PostgresС60" targetName="gen_errorcodes" />
       <config projectName="PostgresС60" targetName="pg_visibility_check" />
       <config projectName="PostgresС60" targetName="euc_tw_and_big5" />
       <config projectName="PostgresС60" targetName="ecpg" />
@@ -266,9 +266,9 @@
       <config projectName="PostgresС60" targetName="test_parser_installcheck" />
       <config projectName="PostgresС60" targetName="cube" />
       <config projectName="PostgresС60" targetName="tablespace-setup" />
-      <config projectName="PostgresС60" targetName="utf8_and_iso8859" />
       <config projectName="PostgresС60" targetName="common_print" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_twophase" />
+      <config projectName="PostgresС60" targetName="utf8_and_iso8859" />
       <config projectName="PostgresС60" targetName="test_extensions_check" />
       <config projectName="PostgresС60" targetName="file_fdw" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_pointer_to_struct" />
@@ -284,8 +284,8 @@
       <config projectName="PostgresС60" targetName="pg_stat_statements" />
       <config projectName="PostgresС60" targetName="tablefunc" />
       <config projectName="PostgresС60" targetName="tsm_system_rows_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck" />
       <config projectName="PostgresС60" targetName="zic" />
+      <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck" />
       <config projectName="PostgresС60" targetName="utf8_and_sjis" />
       <config projectName="PostgresС60" targetName="pgrowlocks" />
       <config projectName="PostgresС60" targetName="pgcrypto_check" />
@@ -294,8 +294,8 @@
       <config projectName="PostgresС60" targetName="unaccent_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="btree_gin_installcheck" />
       <config projectName="PostgresС60" targetName="generate_parser_gram_h" />
-      <config projectName="PostgresС60" targetName="utf8_and_euc_tw" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rnull" />
+      <config projectName="PostgresС60" targetName="utf8_and_euc_tw" />
       <config projectName="PostgresС60" targetName="pageinspect" />
       <config projectName="PostgresС60" targetName="dblink_installcheck" />
       <config projectName="PostgresС60" targetName="amcheck_installcheck" />
@@ -305,9 +305,9 @@
       <config projectName="PostgresС60" targetName="postgres" />
       <config projectName="PostgresС60" targetName="ecpg_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="btree_gin" />
-      <config projectName="PostgresС60" targetName="btree_gist" />
-      <config projectName="PostgresС60" targetName="unaccent" />
       <config projectName="PostgresС60" targetName="modules_check" />
+      <config projectName="PostgresС60" targetName="unaccent" />
+      <config projectName="PostgresС60" targetName="btree_gist" />
       <config projectName="PostgresС60" targetName="auth_delay" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_num_test" />
       <config projectName="PostgresС60" targetName="test_extensions_installcheck_tmp" />
@@ -316,8 +316,8 @@
       <config projectName="PostgresС60" targetName="btree_gist_check" />
       <config projectName="PostgresС60" targetName="auto_explain" />
       <config projectName="PostgresС60" targetName="cyrillic_and_mic" />
-      <config projectName="PostgresС60" targetName="dropdb" />
       <config projectName="PostgresС60" targetName="test_rls_hooks" />
+      <config projectName="PostgresС60" targetName="dropdb" />
       <config projectName="PostgresС60" targetName="pageinspect_installcheck" />
       <config projectName="PostgresС60" targetName="dict_xsyn" />
       <config projectName="PostgresС60" targetName="pg_buffercache" />
@@ -337,7 +337,18 @@
     <list id="1599cf62-f18e-4824-94eb-7c226e86b281" name="exclude" comment="" />
     <list default="true" id="31b0d418-23dd-42e8-a4c8-97acbc2620b1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/bin/pg_ctl/pg_ctl.c" afterPath="$PROJECT_DIR$/src/bin/pg_ctl/pg_ctl.c" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake" afterPath="$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake" />
+      <change beforePath="$PROJECT_DIR$/cmake/RegressCheck.cmake" afterPath="$PROJECT_DIR$/cmake/RegressCheck.cmake" />
+      <change beforePath="$PROJECT_DIR$/contrib/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/isolation/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/isolation/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/regress/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/regress/CMakeLists.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -350,104 +361,101 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="1444" column="90" lean-forward="false" selection-start-line="1444" selection-start-column="90" selection-end-line="1444" selection-end-column="90" />
+            <state relative-caret-position="493">
+              <caret line="1452" column="22" lean-forward="false" selection-start-line="1452" selection-start-column="22" selection-end-line="1452" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pg.log" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/cmake-build-debug/pg.log">
+      <file leaf-file-name="CheckTypeAlignment.cmake" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-331">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dblink.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contrib/dblink/sql/dblink.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="78" column="31" lean-forward="false" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/backend/bootstrap/bootstrap.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="203" column="16" lean-forward="false" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pg_ctl.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bin/pg_ctl/pg_ctl.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="489" column="0" lean-forward="false" selection-start-line="489" selection-start-column="0" selection-end-line="489" selection-end-column="0" />
-              <folding>
-                <element signature="e#4821#5352#0" expanded="true" />
-                <element signature="e#12044#12946#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="exec.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/exec.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="316" column="0" lean-forward="false" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="path.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/port/path.c">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="unistd.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/unistd.h">
+      <file leaf-file-name="RegressCheck.cmake" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cmake/RegressCheck.cmake">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
-              <caret line="758" column="15" lean-forward="false" selection-start-line="758" selection-start-column="15" selection-end-line="758" selection-end-column="15" />
+              <caret line="238" column="30" lean-forward="false" selection-start-line="238" selection-start-column="30" selection-end-line="238" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootparse.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/backend/bootstrap/bootparse.c">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/contrib/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
-              <caret line="1411" column="20" lean-forward="false" selection-start-line="1411" selection-start-column="20" selection-end-line="1411" selection-end-column="20" />
+              <caret line="162" column="26" lean-forward="false" selection-start-line="162" selection-start-column="26" selection-end-line="162" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="initdb.c" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bin/initdb/initdb.c">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/isolation/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="2710" column="46" lean-forward="false" selection-start-line="2710" selection-start-column="46" selection-end-line="2710" selection-end-column="46" />
+            <state relative-caret-position="175">
+              <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/modules/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="58" lean-forward="false" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="29" column="55" lean-forward="false" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/regress/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="394">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -457,11 +465,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isolation_check</find>
-      <find>tmp_check_folder</find>
-      <find>pg_isolation_regress_check_tmp</find>
-      <find>isolation_installcheck_tmp</find>
-      <find>tmp_env_cmd</find>
       <find>pg_regress_check_tmp</find>
       <find>pg_ecpg_regress_check_tmp</find>
       <find>check</find>
@@ -472,7 +475,6 @@
       <find>install(</find>
       <find>DCMAKE_INSTALL_PREFIX</find>
       <find>Ninja</find>
-      <find>check_make_command</find>
       <find>TMP_DATA_DIR</find>
       <find>CMAKE_INSTALL_PREFIX</find>
       <find>unse</find>
@@ -487,11 +489,19 @@
       <find>postmaster</find>
       <find>HAVE_UNSETENV</find>
       <find>another server might be running</find>
+      <find>set(check_make_command</find>
+      <find>check_make_command</find>
+      <find>${CMAKE_CURRENT_BINARY_DIR}</find>
+      <find>CMAKE_BINARY_DIR</find>
+      <find>${CMAKE_SOURCE_DIR}</find>
+      <find>${CMAKE_BINARY_DIR}</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>cmake_minimum_required(VERSION 3.10)</replace>
       <replace>cmake_minimum_required(VERSION 3.9)</replace>
+      <replace>${CMAKE_POSTGRES_SOURCE_DIR}</replace>
+      <replace>${CMAKE_POSTGRES_BINARY_DIR}</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -508,13 +518,23 @@
         <option value="$PROJECT_DIR$/src/backend/parser/gram.y" />
         <option value="$PROJECT_DIR$/src/interfaces/ecpg/preproc/preproc.y" />
         <option value="$PROJECT_DIR$/src/timezone/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/cmake/RegressCheck.cmake" />
         <option value="$PROJECT_DIR$/src/test/regress/pg_regress.c" />
         <option value="$PROJECT_DIR$/src/include/port.h" />
         <option value="$PROJECT_DIR$/src/bin/initdb/initdb.c" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cmake-build-debug/pg.log" />
         <option value="$PROJECT_DIR$/src/bin/pg_ctl/pg_ctl.c" />
+        <option value="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake" />
+        <option value="$PROJECT_DIR$/cmake/RegressCheck.cmake" />
+        <option value="$PROJECT_DIR$/contrib/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/test/isolation/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/test/modules/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/test/regress/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -554,23 +574,28 @@
             <path>
               <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="postgres" type="462c0819:PsiDirectoryNode" />
-              <item name="cmake-build-debug" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="postgres" type="462c0819:PsiDirectoryNode" />
-              <item name="contrib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="postgres" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="postgres" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="postgres" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+              <item name="ecpg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="postgres" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+              <item name="ecpg" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1947,7 +1972,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53872000" />
+    <option name="totallyTimeSpent" value="55469000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1050" extended-state="6" />
@@ -1955,22 +1980,34 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16288877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.4949921" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.49815497" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273743" sideWeight="0.4949921" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.49815497" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37765363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24469274" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49832404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24469274" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.4949921" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.49815497" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24469274" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49832404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16288877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37765363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2026,69 +2063,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cmake/CheckCpuID.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/c-library.m4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1343">
-          <caret line="79" column="14" lean-forward="false" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contrib/cube/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="11" lean-forward="false" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/doc/src/sgml/dfunc.sgml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="65" column="15" lean-forward="false" selection-start-line="65" selection-start-column="15" selection-end-line="65" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/makefiles/Makefile.freebsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/timezone/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/ecpg/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2151,7 +2125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2159,7 +2132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2167,7 +2139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2175,7 +2146,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2184,7 +2154,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="1938">
             <caret line="114" column="192" lean-forward="false" selection-start-line="114" selection-start-column="192" selection-end-line="114" selection-end-column="192" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -2194,15 +2163,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
           <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/RegressCheck.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2771">
-          <caret line="163" column="49" lean-forward="false" selection-start-line="163" selection-start-column="12" selection-end-line="163" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2218,7 +2178,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="612" column="10" lean-forward="false" selection-start-line="612" selection-start-column="10" selection-end-line="612" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2226,7 +2185,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="475" column="10" lean-forward="false" selection-start-line="475" selection-start-column="10" selection-end-line="475" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2234,7 +2192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
           <caret line="632" column="7" lean-forward="false" selection-start-line="632" selection-start-column="7" selection-end-line="632" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2242,7 +2199,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="757">
           <caret line="1564" column="10" lean-forward="false" selection-start-line="1564" selection-start-column="10" selection-end-line="1564" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2250,7 +2206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="566" column="7" lean-forward="false" selection-start-line="566" selection-start-column="7" selection-end-line="566" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2258,14 +2213,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="97" column="7" lean-forward="false" selection-start-line="97" selection-start-column="7" selection-end-line="97" selection-end-column="7" />
-          <folding>
-            <marker date="1522331678999" expanded="true" signature="2557:2734" ph="{...}" />
-            <marker date="1522331678999" expanded="false" signature="2742:3090" ph="..." />
-            <marker date="1522331678999" expanded="false" signature="3232:3250" ph="..." />
-            <marker date="1522331678999" expanded="false" signature="3314:3333" ph="..." />
-            <marker date="1522331678999" expanded="false" signature="3399:3418" ph="..." />
-            <marker date="1522331678999" expanded="false" signature="3483:3501" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2273,7 +2220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2281,11 +2227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
           <caret line="587" column="11" lean-forward="false" selection-start-line="587" selection-start-column="11" selection-end-line="587" selection-end-column="11" />
-          <folding>
-            <marker date="1515984540000" expanded="false" signature="8877:9339" ph="..." />
-            <marker date="1515984540000" expanded="false" signature="26076:26109" ph="..." />
-            <marker date="1515984540000" expanded="false" signature="33477:33502" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2293,7 +2234,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2301,23 +2241,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
           <caret line="414" column="6" lean-forward="false" selection-start-line="414" selection-start-column="6" selection-end-line="414" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="152" column="18" lean-forward="false" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/isolation/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="43" column="43" lean-forward="false" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2325,7 +2248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="893" column="28" lean-forward="false" selection-start-line="893" selection-start-column="28" selection-end-line="893" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2333,7 +2255,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
           <caret line="649" column="31" lean-forward="false" selection-start-line="649" selection-start-column="31" selection-end-line="649" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2357,13 +2278,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="1411" column="20" lean-forward="false" selection-start-line="1411" selection-start-column="20" selection-end-line="1411" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/include/unistd.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
+        <state relative-caret-position="12886">
           <caret line="758" column="15" lean-forward="false" selection-start-line="758" selection-start-column="15" selection-end-line="758" selection-end-column="15" />
           <folding />
         </state>
@@ -2371,23 +2291,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bin/initdb/initdb.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
+        <state relative-caret-position="46070">
           <caret line="2710" column="46" lean-forward="false" selection-start-line="2710" selection-start-column="46" selection-end-line="2710" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="1444" column="90" lean-forward="false" selection-start-line="1444" selection-start-column="90" selection-end-line="1444" selection-end-column="90" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/port/path.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="4301">
           <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
           <folding />
         </state>
@@ -2395,7 +2307,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/common/exec.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="5372">
           <caret line="316" column="0" lean-forward="false" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
           <folding />
         </state>
@@ -2403,19 +2315,120 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bin/pg_ctl/pg_ctl.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="489" column="0" lean-forward="false" selection-start-line="489" selection-start-column="0" selection-end-line="489" selection-end-column="0" />
+        <state relative-caret-position="188">
+          <caret line="809" column="36" lean-forward="false" selection-start-line="809" selection-start-column="36" selection-end-line="809" selection-end-column="36" />
           <folding>
-            <element signature="e#4821#5352#0" expanded="true" />
-            <element signature="e#12044#12946#0" expanded="true" />
+            <element signature="e#514#538#0" expanded="false" />
+            <element signature="e#689#710#0" expanded="false" />
+            <element signature="e#745#776#0" expanded="false" />
+            <element signature="e#4821#5352#0" expanded="false" />
+            <element signature="e#12044#12946#0" expanded="false" />
+            <element signature="e#49577#49649#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/pg.log">
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/pg.log" />
+    <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="697">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="49" lean-forward="false" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="58" lean-forward="false" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="55" lean-forward="false" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/RegressCheck.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="238" column="30" lean-forward="false" selection-start-line="238" selection-start-column="30" selection-end-line="238" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="162" column="26" lean-forward="false" selection-start-line="162" selection-start-column="26" selection-end-line="162" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/isolation/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/modules/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/regress/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="1452" column="22" lean-forward="false" selection-start-line="1452" selection-start-column="22" selection-end-line="1452" selection-end-column="22" />
           <folding />
         </state>
       </provider>

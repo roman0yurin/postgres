@@ -48,7 +48,7 @@ if(CMAKE_GENERATOR STREQUAL "Ninja")
 		COMMAND DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/tmp_install ${check_make_command} install
 		COMMAND DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/ ${check_make_command} installcheck_tmp
 		DEPENDS tablespace-setup
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 else()
 	add_custom_target(check
@@ -56,7 +56,7 @@ else()
 		COMMAND ${check_make_command} install DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/tmp_install
 		COMMAND ${check_make_command} installcheck_tmp DESTDIR=${CMAKE_CURRENT_BINARY_DIR}/
 		DEPENDS tablespace-setup
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 endif()
 
