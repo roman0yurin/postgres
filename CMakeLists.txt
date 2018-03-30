@@ -7,10 +7,17 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_C_STANDARD 11)
+#Папка, в которую собирается модуль Postgres
+set(CMAKE_POSTGRES_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
+#Корневая папка исходников Postgres
+set(CMAKE_POSTGRES_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 #Папка для временного развертывания дистрибутива БД
-set(TMP_DISTRIB_DIR ${CMAKE_BINARY_DIR}/distribution)
+set(TMP_DISTRIB_DIR ${CMAKE_POSTGRES_BINARY_DIR}/distribution)
 #Папка для временного разветывания файлов базыва данных
-set(TMP_DATA_DIR ${CMAKE_BINARY_DIR}/temp_data)
+set(TMP_DATA_DIR ${CMAKE_POSTGRES_BINARY_DIR}/temp_data)
+message("BUILD POSTGRES CMAKE_CURRENT_SOURCE_DIR        =${CMAKE_POSTGRES_SOURCE_DIR}")
+message("BUILD POSTGRES CMAKE_BINARY_DIR        =${CMAKE_BINARY_DIR}")
+message("BUILD POSTGRES CMAKE_CURRENT_BINARY_DIR=${CMAKE_POSTGRES_BINARY_DIR}")
 
 include(CheckTypeSize)
 include(CheckSymbolExists)
@@ -22,7 +29,7 @@ include(TestBigEndian)
 include(CheckStructHasMember)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR)
-	message(STATUS "${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR}")
+	message(STATUS "${CMAKE_POSTGRES_SOURCE_DIR} ${CMAKE_POSTGRES_BINARY_DIR}")
 	message(FATAL_ERROR "You must use another folder for build PostgreSQL")
 endif()
 
@@ -1441,8 +1448,8 @@ message(STATUS "------------------")
 add_custom_target(initPostgresDb
 	COMMAND DESTDIR=${TMP_DISTRIB_DIR} ${check_make_command} install -j 8
 	COMMAND ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
-	COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_BINARY_DIR}/pg.log
+	COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_POSTGRES_BINARY_DIR}/pg.log
 	COMMAND ${TMP_DISTRIB_DIR}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
-	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 )
 

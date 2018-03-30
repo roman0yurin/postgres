@@ -93,7 +93,7 @@ if(CMAKE_GENERATOR STREQUAL "Ninja")
 		COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
 		COMMAND DESTDIR=${tmp_check_folder} -j1 ${check_make_command} ${contrib_check_targets}
 		DEPENDS tablespace-setup
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 else()
 	add_custom_target(contrib_check
@@ -101,7 +101,7 @@ else()
 		COMMAND ${check_make_command} install DESTDIR=${tmp_check_folder}
 		COMMAND ${check_make_command} ${contrib_check_targets} DESTDIR=${tmp_check_folder}
 		DEPENDS tablespace-setup
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 endif()
 # Make chain for run tests in strict order
@@ -111,7 +111,7 @@ list(GET contrib_installcheck_targets 0 first_element)
 add_custom_target(contrib_installcheck
 	COMMAND ${CMAKE_COMMAND} -E remove_directory ${tmp_check_folder}
 	DEPENDS tablespace-setup ${first_element}
-	WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+	WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 )
 
 set(last_element OFF)

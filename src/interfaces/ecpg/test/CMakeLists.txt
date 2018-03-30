@@ -98,7 +98,7 @@ set(thread_tests
 	alloc
 )
 
-set(ecpg_preproc_bin ${CMAKE_BINARY_DIR}/src/interfaces/ecpg/preproc/ecpg${CMAKE_EXECUTABLE_SUFFIX})
+set(ecpg_preproc_bin ${CMAKE_POSTGRES_BINARY_DIR}/src/interfaces/ecpg/preproc/ecpg${CMAKE_EXECUTABLE_SUFFIX})
 
 macro(ECPG_CHECK TARGET_LIST FOLDER PREPROC_OPTS)
 	foreach(test ${TARGET_LIST})
@@ -153,14 +153,14 @@ if(CMAKE_GENERATOR STREQUAL "Ninja")
 		COMMAND ${CMAKE_COMMAND} -E remove_directory ${tmp_check_folder}
 		COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
 		COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} ecpg_installcheck_tmp
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 else()
 	add_custom_target(ecpg_check
 		COMMAND ${CMAKE_COMMAND} -E remove_directory ${tmp_check_folder}
 		COMMAND ${check_make_command} install DESTDIR=${tmp_check_folder}
 		COMMAND ${check_make_command} ecpg_installcheck_tmp DESTDIR=${tmp_check_folder}
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 endif()
 
