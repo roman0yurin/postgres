@@ -27,4 +27,4 @@ install(TARGETS ${extension_name}
 install(FILES ${extension_name}.control
 	DESTINATION ${PGSHAREDIR}/extension)
 
-MODULES_REGRESS_CHECK(${extension_name} "--temp-config=${CMAKE_SOURCE_DIR}/src/test/modules/test_rls_hooks/rls_hooks.conf" "${extension_name}")
+MODULES_REGRESS_CHECK(${extension_name} "--temp-config=${CMAKE_POSTGRES_SOURCE_DIR}/src/test/modules/test_rls_hooks/rls_hooks.conf" "${extension_name}")

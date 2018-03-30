@@ -1,4 +1,4 @@
-set(tmp_check_folder ${CMAKE_BINARY_DIR}/src/test/regress/tmp_install)
+set(tmp_check_folder ${CMAKE_POSTGRES_BINARY_DIR}/src/test/regress/tmp_install)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 	set(env_cmd
@@ -53,36 +53,36 @@ if(MSVC OR MSYS OR MINGW OR CMAKE_GENERATOR STREQUAL Xcode)
 	#Need rewrite
 	set(pre_pg_regress_check
 		${PGBINDIR}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}
-		--inputdir="${CMAKE_SOURCE_DIR}/src/test/regress"
+		--inputdir="${CMAKE_POSTGRES_SOURCE_DIR}/src/test/regress"
 		--temp-instance="tmp_check"
 		--encoding=UTF8
 		--no-locale
 	)
 	set(pre_pg_isolation_regress_check
 		${PGBINDIR}/pg_isolation_regress${CMAKE_EXECUTABLE_SUFFIX}
-		--inputdir="${CMAKE_SOURCE_DIR}/src/test/isolation"
+		--inputdir="${CMAKE_POSTGRES_SOURCE_DIR}/src/test/isolation"
 		--temp-instance="tmp_check"
 		--encoding=UTF8
 		--no-locale
 	)
 else()
 	set(pre_pg_regress_check
-		${CMAKE_BINARY_DIR}/src/test/regress/${CMAKE_INSTALL_CONFIG_NAME}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}
-		--inputdir="${CMAKE_SOURCE_DIR}/src/test/regress"
+		${CMAKE_POSTGRES_BINARY_DIR}/src/test/regress/${CMAKE_INSTALL_CONFIG_NAME}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}
+		--inputdir="${CMAKE_POSTGRES_SOURCE_DIR}/src/test/regress"
 		--temp-instance="tmp_check"
 		--encoding=UTF8
 		--no-locale
 	)
 	set(pre_pg_isolation_regress_check
-		${CMAKE_BINARY_DIR}/src/test/isolation/${CMAKE_INSTALL_CONFIG_NAME}/pg_isolation_regress${CMAKE_EXECUTABLE_SUFFIX}
-		--inputdir="${CMAKE_SOURCE_DIR}/src/test/isolation"
+		${CMAKE_POSTGRES_BINARY_DIR}/src/test/isolation/${CMAKE_INSTALL_CONFIG_NAME}/pg_isolation_regress${CMAKE_EXECUTABLE_SUFFIX}
+		--inputdir="${CMAKE_POSTGRES_SOURCE_DIR}/src/test/isolation"
 		--temp-instance="tmp_check"
 		--encoding=UTF8
 		--no-locale
 	)
 	set(pre_pg_ecpg_regress_check
-		${CMAKE_BINARY_DIR}/src/interfaces/ecpg/test/${CMAKE_INSTALL_CONFIG_NAME}/pg_ecpg_regress${CMAKE_EXECUTABLE_SUFFIX}
-		--inputdir="${CMAKE_BINARY_DIR}/src/interfaces/ecpg/test"
+		${CMAKE_POSTGRES_BINARY_DIR}/src/interfaces/ecpg/test/${CMAKE_INSTALL_CONFIG_NAME}/pg_ecpg_regress${CMAKE_EXECUTABLE_SUFFIX}
+		--inputdir="${CMAKE_POSTGRES_BINARY_DIR}/src/interfaces/ecpg/test"
 		--temp-instance="tmp_check"
 		--encoding=UTF8
 		--no-locale
@@ -134,7 +134,7 @@ if(TEMP_CONFIG)
 endif()
 
 
-set(TAP_FLAGS "-I;${CMAKE_SOURCE_DIR}/src/test/perl/;--verbose")
+set(TAP_FLAGS "-I;${CMAKE_POSTGRES_SOURCE_DIR}/src/test/perl/;--verbose")
 
 if(CMAKE_GENERATOR STREQUAL "Ninja")
 	set(check_make_command "ninja")
@@ -161,7 +161,7 @@ macro(REGRESS_CHECK TARGET_NAME REGRESS_OPTS REGRESS_FILES)
 			COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
 			COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} ${TARGET_NAME}_installcheck_tmp
 			DEPENDS tablespace-setup
-			WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+			WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 		)
 	else()
 		add_custom_target(${TARGET_NAME}_check
@@ -169,7 +169,7 @@ macro(REGRESS_CHECK TARGET_NAME REGRESS_OPTS REGRESS_FILES)
 			COMMAND ${check_make_command} install DESTDIR=${tmp_check_folder}
 			COMMAND ${check_make_command} ${TARGET_NAME}_installcheck_tmp DESTDIR=${tmp_check_folder}
 			DEPENDS tablespace-setup
-			WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+			WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 		)
 	endif()
 	
@@ -195,7 +195,7 @@ macro(ISOLATION_CHECK TARGET_NAME REGRESS_OPTS REGRESS_FILES)
 		COMMAND ${CMAKE_COMMAND} -E remove_directory ${tmp_check_folder}
 		COMMAND ${check_make_command} install DESTDIR=${tmp_check_folder}
 		COMMAND ${check_make_command} ${TARGET_NAME}_isolation_installcheck_tmp DESTDIR=${tmp_check_folder}
-		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 	)
 	CMAKE_SET_TARGET_FOLDER(${TARGET_NAME}_isolation_installcheck_tmp tests/tmp)
 	CMAKE_SET_TARGET_FOLDER(${TARGET_NAME}_check tests)
@@ -204,12 +204,12 @@ endmacro(ISOLATION_CHECK TARGET_NAME REGRESS_OPTS REGRESS_FILES)
 macro(TAP_CHECK TARGET_NAME OPTS REGRESS_FILES)
 	set(TAP_TMP_CMD
 		${CMAKE_COMMAND} -E env
-		TESTDIR="${CMAKE_CURRENT_SOURCE_DIR}" PGPORT="65432" PG_REGRESS="${CMAKE_BINARY_DIR}/src/test/regress/${CMAKE_INSTALL_CONFIG_NAME}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}"
+		TESTDIR="${CMAKE_CURRENT_SOURCE_DIR}" PGPORT="65432" PG_REGRESS="${CMAKE_POSTGRES_BINARY_DIR}/src/test/regress/${CMAKE_INSTALL_CONFIG_NAME}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}"
 		${PROVE}
 	)
 	set(TAP_CMD
 		${CMAKE_COMMAND} -E env
-		PATH="$ENV{DESTDIR}${BINDIR}:$$PATH" TESTDIR="${CMAKE_CURRENT_SOURCE_DIR}" PGPORT="65432" PG_REGRESS="${CMAKE_BINARY_DIR}/src/test/regress/${CMAKE_INSTALL_CONFIG_NAME}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}"
+		PATH="$ENV{DESTDIR}${BINDIR}:$$PATH" TESTDIR="${CMAKE_CURRENT_SOURCE_DIR}" PGPORT="65432" PG_REGRESS="${CMAKE_POSTGRES_BINARY_DIR}/src/test/regress/${CMAKE_INSTALL_CONFIG_NAME}/pg_regress${CMAKE_EXECUTABLE_SUFFIX}"
 		${PROVE}
 	)
 	add_custom_target(${TARGET_NAME}_installcheck_tmp
@@ -228,7 +228,7 @@ macro(TAP_CHECK TARGET_NAME OPTS REGRESS_FILES)
 			COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} install
 			COMMAND DESTDIR=${tmp_check_folder} ${check_make_command} ${TARGET_NAME}_installcheck_tmp
 			DEPENDS tablespace-setup
-			WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+			WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 		)
 	else()
 		add_custom_target(${TARGET_NAME}_check
@@ -236,7 +236,7 @@ macro(TAP_CHECK TARGET_NAME OPTS REGRESS_FILES)
 			COMMAND ${check_make_command} install DESTDIR=${tmp_check_folder}
 			COMMAND ${check_make_command} ${TARGET_NAME}_installcheck_tmp DESTDIR=${tmp_check_folder}
 			DEPENDS tablespace-setup
-			WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+			WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 		)
 	endif()
 
