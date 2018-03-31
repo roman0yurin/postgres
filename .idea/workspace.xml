@@ -337,18 +337,6 @@
     <list id="1599cf62-f18e-4824-94eb-7c226e86b281" name="exclude" comment="" />
     <list default="true" id="31b0d418-23dd-42e8-a4c8-97acbc2620b1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake" afterPath="$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake" />
-      <change beforePath="$PROJECT_DIR$/cmake/RegressCheck.cmake" afterPath="$PROJECT_DIR$/cmake/RegressCheck.cmake" />
-      <change beforePath="$PROJECT_DIR$/contrib/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/test/isolation/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/isolation/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/test/modules/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/test/regress/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/regress/CMakeLists.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1968,11 +1956,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522345149701</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Настройка сборки сборки Postgres под модульность (когда Postgres это модуль системы).">
+      <created>1522405989986</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1522405989986</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55469000" />
+    <option name="totallyTimeSpent" value="56160000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1050" extended-state="6" />
@@ -2031,7 +2026,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Merge remote-tracking branch 'cmake/cmake' into 10.3_fork&#10;1) Сборка Postgres на основе CMake (основа CMake взята из другого репозитория)&#10;2) Добавление проектных файлов CLion" />
     <MESSAGE value="Настройка задачи для запуска (с предварительной инициализацией) тестовой базы." />
-    <option name="LAST_COMMIT_MESSAGE" value="Настройка задачи для запуска (с предварительной инициализацией) тестовой базы." />
+    <MESSAGE value="Настройка сборки сборки Postgres под модульность (когда Postgres это модуль системы)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Настройка сборки сборки Postgres под модульность (когда Postgres это модуль системы)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
