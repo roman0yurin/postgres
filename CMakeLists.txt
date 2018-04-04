@@ -1445,11 +1445,18 @@ message(STATUS "PROVE (TAP tests): ${PROVE}")
 message(STATUS "Strong random source: ${STRONG_RANDOM_SOURCE}")
 message(STATUS "------------------")
 
+set(debug_env_cmd
+	${CMAKE_COMMAND} -E env
+	"LD_LIBRARY_PATH=${TMP_DISTRIB_DIR}${LIBDIR}:$$LD_LIBRARY_PATH"
+	"PATH=${TMP_DISTRIB_DIR}${PGBINDIR}:$$PATH"
+)
+
 add_custom_target(initPostgresDb
 	COMMAND DESTDIR=${TMP_DISTRIB_DIR} ${check_make_command} install -j 8
-	COMMAND ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
-	COMMAND ${CMAKE_COMMAND} -E touch ${CMAKE_POSTGRES_BINARY_DIR}/pg.log
-	COMMAND ${TMP_DISTRIB_DIR}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
+	COMMAND ${debug_env_cmd} ldd ${TMP_DISTRIB_DIR}${PGBINDIR}/initdb
+	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
+	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E touch ${CMAKE_POSTGRES_BINARY_DIR}/pg.log
+	COMMAND ${debug_env_cmd} ${TMP_DISTRIB_DIR}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
 	WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 )
 
