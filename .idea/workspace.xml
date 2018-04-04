@@ -4,8 +4,8 @@
     <generated>
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_dec_test" />
       <config projectName="PostgresС60" targetName="installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="seg_installcheck" />
       <config projectName="PostgresС60" targetName="amcheck" />
+      <config projectName="PostgresС60" targetName="seg_installcheck" />
       <config projectName="PostgresС60" targetName="hstore" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_sqlda" />
       <config projectName="PostgresС60" targetName="oid2name" />
@@ -14,8 +14,8 @@
       <config projectName="PostgresС60" targetName="utf8_and_big5" />
       <config projectName="PostgresС60" targetName="test_decoding_check" />
       <config projectName="PostgresС60" targetName="earthdistance_installcheck" />
-      <config projectName="PostgresС60" targetName="check" />
       <config projectName="PostgresС60" targetName="commit_ts_installcheck" />
+      <config projectName="PostgresС60" targetName="check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_dt_test" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_whenever" />
       <config projectName="PostgresС60" targetName="utf8_and_win" />
@@ -27,39 +27,39 @@
       <config projectName="PostgresС60" targetName="vacuumlo" />
       <config projectName="PostgresС60" targetName="seg_check" />
       <config projectName="PostgresС60" targetName="gen-rtab" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_test_informix2" />
       <config projectName="PostgresС60" targetName="utf8_and_sjis2004" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_test_informix2" />
       <config projectName="PostgresС60" targetName="test_ddl_deparse_installcheck" />
       <config projectName="PostgresС60" targetName="bloom_installcheck" />
       <config projectName="PostgresС60" targetName="citext" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_num_test2" />
       <config projectName="PostgresС60" targetName="isolation_check" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_preproc_strings" />
       <config projectName="PostgresС60" targetName="pg_standby" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_preproc_strings" />
       <config projectName="PostgresС60" targetName="lo" />
       <config projectName="PostgresС60" targetName="pgstattuple" />
       <config projectName="PostgresС60" targetName="isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_trgm" />
-      <config projectName="PostgresС60" targetName="utf8_and_uhc" />
       <config projectName="PostgresС60" targetName="tsm_system_time_installcheck" />
+      <config projectName="PostgresС60" targetName="utf8_and_uhc" />
       <config projectName="PostgresС60" targetName="test_pg_dump_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rfmtlong" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_thread" />
       <config projectName="PostgresС60" targetName="pg_visibility_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="brin_isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="tsm_system_rows" />
+      <config projectName="PostgresС60" targetName="brin_isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgstattuple_check" />
       <config projectName="PostgresС60" targetName="bloom_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="test_parser_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="dummy_seclabel_installcheck" />
-      <config projectName="PostgresС60" targetName="test_ddl_deparse_check" />
+      <config projectName="PostgresС60" targetName="test_parser_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="bloom_check" />
+      <config projectName="PostgresС60" targetName="test_ddl_deparse_check" />
       <config projectName="PostgresС60" targetName="dblink_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="intarray_installcheck" />
-      <config projectName="PostgresС60" targetName="test_pg_dump_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgstattuple_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="regress" />
+      <config projectName="PostgresС60" targetName="test_pg_dump_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_dump" />
+      <config projectName="PostgresС60" targetName="regress" />
       <config projectName="PostgresС60" targetName="euc_kr_and_mic" />
       <config projectName="PostgresС60" targetName="chkpass" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_dt_test2" />
@@ -72,8 +72,8 @@
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_array" />
       <config projectName="PostgresС60" targetName="btree_gin_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="tablefunc_installcheck" />
-      <config projectName="PostgresС60" targetName="commit_ts_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="btree_gist_installcheck_tmp" />
+      <config projectName="PostgresС60" targetName="commit_ts_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ltree_check" />
       <config projectName="PostgresС60" targetName="test_rls_hooks_check" />
       <config projectName="PostgresС60" targetName="common_basebackup" />
@@ -81,25 +81,25 @@
       <config projectName="PostgresС60" targetName="dict_int_check" />
       <config projectName="PostgresС60" targetName="pgport_srv" />
       <config projectName="PostgresС60" targetName="pg_upgrade" />
-      <config projectName="PostgresС60" targetName="test_pg_dump_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_init" />
+      <config projectName="PostgresС60" targetName="test_pg_dump_check" />
       <config projectName="PostgresС60" targetName="pq" />
-      <config projectName="PostgresС60" targetName="pgcrypto_installcheck" />
       <config projectName="PostgresС60" targetName="_int" />
+      <config projectName="PostgresС60" targetName="pgcrypto_installcheck" />
       <config projectName="PostgresС60" targetName="tsm_system_time_check" />
       <config projectName="PostgresС60" targetName="pgport" />
       <config projectName="PostgresС60" targetName="utf8_and_euc_jp" />
       <config projectName="PostgresС60" targetName="ecpg_check" />
       <config projectName="PostgresС60" targetName="test_shm_mq_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_copystdout" />
-      <config projectName="PostgresС60" targetName="pg_archivecleanup" />
       <config projectName="PostgresС60" targetName="contrib_check" />
+      <config projectName="PostgresС60" targetName="pg_archivecleanup" />
       <config projectName="PostgresС60" targetName="test_parser" />
       <config projectName="PostgresС60" targetName="initPostgresDb" />
       <config projectName="PostgresС60" targetName="earthdistance_check" />
       <config projectName="PostgresС60" targetName="test_decoding_installcheck" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_sql_binary" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_nan_test" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_sql_binary" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_indicators" />
       <config projectName="PostgresС60" targetName="reindexdb" />
       <config projectName="PostgresС60" targetName="hstore_installcheck" />
@@ -107,8 +107,8 @@
       <config projectName="PostgresС60" targetName="pgcrypto" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_describe" />
       <config projectName="PostgresС60" targetName="postgres_fdw" />
-      <config projectName="PostgresС60" targetName="psql" />
       <config projectName="PostgresС60" targetName="cube_installcheck" />
+      <config projectName="PostgresС60" targetName="psql" />
       <config projectName="PostgresС60" targetName="hstore_check" />
       <config projectName="PostgresС60" targetName="pgtypes" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_outofscope" />
@@ -116,19 +116,19 @@
       <config projectName="PostgresС60" targetName="euc_cn_and_mic" />
       <config projectName="PostgresС60" targetName="intarray_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="latin2_and_win1250" />
-      <config projectName="PostgresС60" targetName="dropuser" />
       <config projectName="PostgresС60" targetName="tsm_system_rows_installcheck" />
+      <config projectName="PostgresС60" targetName="dropuser" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_cursor" />
-      <config projectName="PostgresС60" targetName="brin_isolation_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_variable" />
+      <config projectName="PostgresС60" targetName="brin_isolation_check" />
       <config projectName="PostgresС60" targetName="pg_stat_statements_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_visibility_installcheck" />
       <config projectName="PostgresС60" targetName="tablefunc_check" />
       <config projectName="PostgresС60" targetName="pg_receivewal" />
       <config projectName="PostgresС60" targetName="euc2004_sjis2004" />
-      <config projectName="PostgresС60" targetName="installcheck" />
       <config projectName="PostgresС60" targetName="pg_stat_statements_check" />
       <config projectName="PostgresС60" targetName="latin_and_mic" />
+      <config projectName="PostgresС60" targetName="installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_fetch" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_dyntest" />
       <config projectName="PostgresС60" targetName="dblink" />
@@ -141,16 +141,16 @@
       <config projectName="PostgresС60" targetName="timetravel" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_type" />
       <config projectName="PostgresС60" targetName="pageinspect_installcheck_tmp" />
+      <config projectName="PostgresС60" targetName="tcn" />
       <config projectName="PostgresС60" targetName="dummy_seclabel_check" />
       <config projectName="PostgresС60" targetName="test_shm_mq" />
-      <config projectName="PostgresС60" targetName="tcn" />
       <config projectName="PostgresС60" targetName="earthdistance_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="test_decoding_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="postgres_fdw_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgstattuple_installcheck" />
-      <config projectName="PostgresС60" targetName="pqwalreceiver" />
       <config projectName="PostgresС60" targetName="intarray_check" />
       <config projectName="PostgresС60" targetName="pg_trgm_installcheck_tmp" />
+      <config projectName="PostgresС60" targetName="pqwalreceiver" />
       <config projectName="PostgresС60" targetName="libdump" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_autoprep" />
       <config projectName="PostgresС60" targetName="pg_test_timing" />
@@ -159,39 +159,39 @@
       <config projectName="PostgresС60" targetName="dict_int_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pg_freespacemap" />
       <config projectName="PostgresС60" targetName="pgcrypto_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="dict_snowball" />
       <config projectName="PostgresС60" targetName="isn_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="pgfeutils" />
+      <config projectName="PostgresС60" targetName="dict_snowball" />
       <config projectName="PostgresС60" targetName="pg_isready" />
+      <config projectName="PostgresС60" targetName="pgfeutils" />
       <config projectName="PostgresС60" targetName="citext_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_thread_implicit" />
       <config projectName="PostgresС60" targetName="dict_int" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_oldexec" />
       <config projectName="PostgresС60" targetName="pg_trgm_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_code100" />
-      <config projectName="PostgresС60" targetName="utf8_and_gbk" />
       <config projectName="PostgresС60" targetName="seg_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="test_decoding_isolation_installcheck" />
+      <config projectName="PostgresС60" targetName="utf8_and_gbk" />
       <config projectName="PostgresС60" targetName="pgoutput" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_comment" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_execute" />
       <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_charfuncs" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_show" />
       <config projectName="PostgresС60" targetName="btree_gist_installcheck" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rfmtdate" />
       <config projectName="PostgresС60" targetName="clusterdb" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rfmtdate" />
       <config projectName="PostgresС60" targetName="ecpg_preproc" />
       <config projectName="PostgresС60" targetName="pgcommon_srv" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_thread_descriptor" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_sqlda" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_thread_descriptor" />
       <config projectName="PostgresС60" targetName="ecpg_regress_thread_prep" />
       <config projectName="PostgresС60" targetName="bloom" />
       <config projectName="PostgresС60" targetName="citext_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="pgbench" />
       <config projectName="PostgresС60" targetName="pageinspect_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test5" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_connect_test4" />
       <config projectName="PostgresС60" targetName="utf8_and_cyrillic" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_connect_test4" />
       <config projectName="PostgresС60" targetName="pg_resetwal" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test3" />
       <config projectName="PostgresС60" targetName="pg_restore" />
@@ -199,32 +199,32 @@
       <config projectName="PostgresС60" targetName="test_decoding" />
       <config projectName="PostgresС60" targetName="test_decoding_isolation_check" />
       <config projectName="PostgresС60" targetName="postgres_fdw_check" />
-      <config projectName="PostgresС60" targetName="test_rls_hooks_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="vacuumdb" />
+      <config projectName="PostgresС60" targetName="test_rls_hooks_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test2" />
       <config projectName="PostgresС60" targetName="ecpg_regress_connect_test1" />
       <config projectName="PostgresС60" targetName="pg_waldump" />
       <config projectName="PostgresС60" targetName="ecpg_installcheck" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_dynalloc2" />
-      <config projectName="PostgresС60" targetName="pg_basebackup" />
       <config projectName="PostgresС60" targetName="isn_installcheck" />
+      <config projectName="PostgresС60" targetName="pg_basebackup" />
       <config projectName="PostgresС60" targetName="test_ddl_deparse" />
-      <config projectName="PostgresС60" targetName="hstore_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="cube_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="dict_xsyn_check" />
+      <config projectName="PostgresС60" targetName="hstore_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ltree_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_define" />
-      <config projectName="PostgresС60" targetName="euc_jp_and_sjis" />
       <config projectName="PostgresС60" targetName="pg_trgm_check" />
+      <config projectName="PostgresС60" targetName="euc_jp_and_sjis" />
       <config projectName="PostgresС60" targetName="insert_username" />
       <config projectName="PostgresС60" targetName="common_dump" />
       <config projectName="PostgresС60" targetName="isn" />
-      <config projectName="PostgresС60" targetName="modules_installcheck" />
-      <config projectName="PostgresС60" targetName="pgcommon" />
       <config projectName="PostgresС60" targetName="citext_installcheck" />
+      <config projectName="PostgresС60" targetName="pgcommon" />
+      <config projectName="PostgresС60" targetName="modules_installcheck" />
       <config projectName="PostgresС60" targetName="pg_rewind" />
-      <config projectName="PostgresС60" targetName="ltree_installcheck" />
       <config projectName="PostgresС60" targetName="dblink_check" />
+      <config projectName="PostgresС60" targetName="ltree_installcheck" />
       <config projectName="PostgresС60" targetName="unaccent_check" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_parser" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_insupd" />
@@ -241,16 +241,16 @@
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_array_of_struct" />
       <config projectName="PostgresС60" targetName="test_rls_hooks_installcheck" />
       <config projectName="PostgresС60" targetName="earthdistance" />
-      <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_func" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_quote" />
+      <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="duplicate_oids" />
       <config projectName="PostgresС60" targetName="seg" />
       <config projectName="PostgresС60" targetName="ascii_and_mic" />
       <config projectName="PostgresС60" targetName="adminpack" />
       <config projectName="PostgresС60" targetName="test_decoding_isolation_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="utf8_and_euc2004" />
       <config projectName="PostgresС60" targetName="gen_errorcodes" />
+      <config projectName="PostgresС60" targetName="utf8_and_euc2004" />
       <config projectName="PostgresС60" targetName="pg_visibility_check" />
       <config projectName="PostgresС60" targetName="euc_tw_and_big5" />
       <config projectName="PostgresС60" targetName="ecpg" />
@@ -266,9 +266,9 @@
       <config projectName="PostgresС60" targetName="test_parser_installcheck" />
       <config projectName="PostgresС60" targetName="cube" />
       <config projectName="PostgresС60" targetName="tablespace-setup" />
+      <config projectName="PostgresС60" targetName="utf8_and_iso8859" />
       <config projectName="PostgresС60" targetName="common_print" />
       <config projectName="PostgresС60" targetName="ecpg_regress_sql_twophase" />
-      <config projectName="PostgresС60" targetName="utf8_and_iso8859" />
       <config projectName="PostgresС60" targetName="test_extensions_check" />
       <config projectName="PostgresС60" targetName="file_fdw" />
       <config projectName="PostgresС60" targetName="ecpg_regress_preproc_pointer_to_struct" />
@@ -284,8 +284,8 @@
       <config projectName="PostgresС60" targetName="pg_stat_statements" />
       <config projectName="PostgresС60" targetName="tablefunc" />
       <config projectName="PostgresС60" targetName="tsm_system_rows_installcheck_tmp" />
-      <config projectName="PostgresС60" targetName="zic" />
       <config projectName="PostgresС60" targetName="snapshot_too_old_isolation_installcheck" />
+      <config projectName="PostgresС60" targetName="zic" />
       <config projectName="PostgresС60" targetName="utf8_and_sjis" />
       <config projectName="PostgresС60" targetName="pgrowlocks" />
       <config projectName="PostgresС60" targetName="pgcrypto_check" />
@@ -294,8 +294,8 @@
       <config projectName="PostgresС60" targetName="unaccent_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="btree_gin_installcheck" />
       <config projectName="PostgresС60" targetName="generate_parser_gram_h" />
-      <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rnull" />
       <config projectName="PostgresС60" targetName="utf8_and_euc_tw" />
+      <config projectName="PostgresС60" targetName="ecpg_regress_compat_informix_rnull" />
       <config projectName="PostgresС60" targetName="pageinspect" />
       <config projectName="PostgresС60" targetName="dblink_installcheck" />
       <config projectName="PostgresС60" targetName="amcheck_installcheck" />
@@ -305,9 +305,9 @@
       <config projectName="PostgresС60" targetName="postgres" />
       <config projectName="PostgresС60" targetName="ecpg_installcheck_tmp" />
       <config projectName="PostgresС60" targetName="btree_gin" />
-      <config projectName="PostgresС60" targetName="modules_check" />
-      <config projectName="PostgresС60" targetName="unaccent" />
       <config projectName="PostgresС60" targetName="btree_gist" />
+      <config projectName="PostgresС60" targetName="unaccent" />
+      <config projectName="PostgresС60" targetName="modules_check" />
       <config projectName="PostgresС60" targetName="auth_delay" />
       <config projectName="PostgresС60" targetName="ecpg_regress_pgtypeslib_num_test" />
       <config projectName="PostgresС60" targetName="test_extensions_installcheck_tmp" />
@@ -316,8 +316,8 @@
       <config projectName="PostgresС60" targetName="btree_gist_check" />
       <config projectName="PostgresС60" targetName="auto_explain" />
       <config projectName="PostgresС60" targetName="cyrillic_and_mic" />
-      <config projectName="PostgresС60" targetName="test_rls_hooks" />
       <config projectName="PostgresС60" targetName="dropdb" />
+      <config projectName="PostgresС60" targetName="test_rls_hooks" />
       <config projectName="PostgresС60" targetName="pageinspect_installcheck" />
       <config projectName="PostgresС60" targetName="dict_xsyn" />
       <config projectName="PostgresС60" targetName="pg_buffercache" />
@@ -337,6 +337,21 @@
     <list id="1599cf62-f18e-4824-94eb-7c226e86b281" name="exclude" comment="" />
     <list default="true" id="31b0d418-23dd-42e8-a4c8-97acbc2620b1" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/PGXS.cmake.in" afterPath="$PROJECT_DIR$/PGXS.cmake.in" />
+      <change beforePath="$PROJECT_DIR$/contrib/adminpack/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/adminpack/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/contrib/amcheck/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/amcheck/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/contrib/auth_delay/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/auth_delay/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/contrib/bloom/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/bloom/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" afterPath="$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/backend/access/transam/xlogfuncs.c" afterPath="$PROJECT_DIR$/src/backend/access/transam/xlogfuncs.c" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/dummy_seclabel/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/dummy_seclabel/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_ddl_deparse/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_ddl_deparse/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_extensions/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_extensions/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_parser/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_parser/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_pg_dump/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_pg_dump/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/src/test/modules/test_shm_mq/CMakeLists.txt" afterPath="$PROJECT_DIR$/src/test/modules/test_shm_mq/CMakeLists.txt" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -349,101 +364,101 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="1452" column="22" lean-forward="false" selection-start-line="1452" selection-start-column="22" selection-end-line="1452" selection-end-column="22" />
+            <state relative-caret-position="170">
+              <caret line="10" column="52" lean-forward="false" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckTypeAlignment.cmake" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake">
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/modules/dummy_seclabel/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            <state relative-caret-position="238">
+              <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegressCheck.cmake" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cmake/RegressCheck.cmake">
+      <file leaf-file-name="func.sgml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/src/sgml/func.sgml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="238" column="30" lean-forward="false" selection-start-line="238" selection-start-column="30" selection-end-line="238" selection-end-column="30" />
+            <state relative-caret-position="431">
+              <caret line="18455" column="15" lean-forward="false" selection-start-line="18455" selection-start-column="15" selection-end-line="18455" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/contrib/CMakeLists.txt">
+      <file leaf-file-name="postgres.bki" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/backend/catalog/postgres.bki">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
+            <state relative-caret-position="29189">
+              <caret line="1717" column="20" lean-forward="false" selection-start-line="1717" selection-start-column="20" selection-end-line="1717" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interfaces/ecpg/test/CMakeLists.txt">
+      <file leaf-file-name="xlogfuncs.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/backend/access/transam/xlogfuncs.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="162" column="26" lean-forward="false" selection-start-line="162" selection-start-column="26" selection-end-line="162" selection-end-column="26" />
+            <state relative-caret-position="6290">
+              <caret line="370" column="24" lean-forward="false" selection-start-line="370" selection-start-column="24" selection-end-line="370" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/isolation/CMakeLists.txt">
+      <file leaf-file-name="pg_lsn.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/include/utils/pg_lsn.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+            <state relative-caret-position="408">
+              <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/modules/CMakeLists.txt">
+      <file leaf-file-name="fmgrprotos.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/include/utils/fmgrprotos.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="58" lean-forward="false" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
+            <state relative-caret-position="27251">
+              <caret line="1603" column="13" lean-forward="false" selection-start-line="1603" selection-start-column="13" selection-end-line="1603" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt">
+        <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="55" lean-forward="false" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/regress/CMakeLists.txt">
+        <entry file="file://$PROJECT_DIR$/src/pl/plpgsql/src/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dfunc.sgml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/doc/src/sgml/dfunc.sgml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -453,16 +468,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pg_regress_check_tmp</find>
-      <find>pg_ecpg_regress_check_tmp</find>
-      <find>check</find>
-      <find>ecpg_installcheck_tmp</find>
-      <find>ecpg_check</find>
-      <find>creating temporary instance</find>
-      <find>add_custom_target</find>
-      <find>install(</find>
-      <find>DCMAKE_INSTALL_PREFIX</find>
-      <find>Ninja</find>
       <find>TMP_DATA_DIR</find>
       <find>CMAKE_INSTALL_PREFIX</find>
       <find>unse</find>
@@ -483,6 +488,16 @@
       <find>CMAKE_BINARY_DIR</find>
       <find>${CMAKE_SOURCE_DIR}</find>
       <find>${CMAKE_BINARY_DIR}</find>
+      <find>pg_regress_check</find>
+      <find>LIBDIR</find>
+      <find>LD_LIBRARY_PATH</find>
+      <find>env_cmd</find>
+      <find>TAP_TMP_CMD</find>
+      <find>pg_last_xlog_receive_location</find>
+      <find>func.sgml</find>
+      <find>pg_current_wal_lsn</find>
+      <find>cmake_minimum_required(VERSION 3.5)</find>
+      <find>cmake_minimum_required(VERSION 2.8)</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -490,7 +505,12 @@
       <replace>cmake_minimum_required(VERSION 3.9)</replace>
       <replace>${CMAKE_POSTGRES_SOURCE_DIR}</replace>
       <replace>${CMAKE_POSTGRES_BINARY_DIR}</replace>
+      <replace>cmake_minimum_required(VERSION 3.5</replace>
+      <replace>cmake_minimum_required(VERSION 3.5)</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -515,7 +535,6 @@
         <option value="$PROJECT_DIR$/src/test/modules/commit_ts/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/test/modules/snapshot_too_old/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/test/modules/test_rls_hooks/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/cmake/CheckTypeAlignment.cmake" />
         <option value="$PROJECT_DIR$/cmake/RegressCheck.cmake" />
         <option value="$PROJECT_DIR$/contrib/CMakeLists.txt" />
@@ -523,6 +542,11 @@
         <option value="$PROJECT_DIR$/src/test/isolation/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/test/modules/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/test/regress/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/include/utils/fmgrprotos.h" />
+        <option value="$PROJECT_DIR$/src/backend/access/transam/xlogfuncs.c" />
+        <option value="$PROJECT_DIR$/doc/src/sgml/func.sgml" />
+        <option value="$PROJECT_DIR$/src/test/modules/dummy_seclabel/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -568,22 +592,22 @@
               <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="postgres" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
+              <item name="pl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="postgres" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="ecpg" type="462c0819:PsiDirectoryNode" />
+              <item name="pl" type="462c0819:PsiDirectoryNode" />
+              <item name="plpgsql" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PostgresС60" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="postgres" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="interfaces" type="462c0819:PsiDirectoryNode" />
-              <item name="ecpg" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="pl" type="462c0819:PsiDirectoryNode" />
+              <item name="plpgsql" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -610,52 +634,54 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.PostgresRun">
+    <configuration name="ALL" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+    </configuration>
     <configuration name="PostgresRun" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-D $PROJECT_DIR$/cmake-build-debug/temp_data/ -l $PROJECT_DIR$/cmake-build-debug/pg.log run" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="initPostgresDb" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/cmake-build-debug/distribution/usr/local/bin/pg_ctl">
+      <envs>
+        <env name="LD_LIBRARY_PATH" value="$PROJECT_DIR$/cmake-build-debug/distribution/usr/local/lib" />
+      </envs>
+    </configuration>
+    <configuration name="_int" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="_int" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="Unnamed" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="initPostgresDb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="adminpack" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="adminpack" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="_int" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="_int" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="amcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="adminpack" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="adminpack" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="amcheck_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="amcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="amcheck_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="amcheck_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="amcheck_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="amcheck_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="ascii_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ascii_and_mic" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="amcheck_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="amcheck_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="auth_delay" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="auth_delay" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="ascii_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ascii_and_mic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="auto_explain" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="auto_explain" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="auth_delay" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="auth_delay" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="autoinc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="autoinc" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="auto_explain" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="auto_explain" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="bloom" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="autoinc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="autoinc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="bloom_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="bloom" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="bloom_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="bloom_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
-      <envs />
-    </configuration>
-    <configuration name="bloom_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
-      <envs />
-    </configuration>
-    <configuration name="bloom_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="bloom_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="bloom_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="brin_isolation_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="brin_isolation_check" CONFIG_NAME="Debug">
@@ -667,46 +693,46 @@
     <configuration name="brin_isolation_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="brin_isolation_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gin" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gin" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gin_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gin_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gin_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gin_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gin_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gin_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gin_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gist" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gist" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gist_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gist_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gist_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gist_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="btree_gist_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="btree_gist_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="btree_gist_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="chkpass" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="chkpass" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="chkpass" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="chkpass" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="citext" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="citext" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="citext_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="citext_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="citext_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="citext_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="citext_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="citext_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="citext_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="clusterdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="clusterdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="clusterdb">
@@ -721,7 +747,7 @@
     <configuration name="commit_ts_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="commit_ts_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="common_basebackup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="common_basebackup" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="common_basebackup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="common_basebackup" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="common_dump" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="common_dump" CONFIG_NAME="Debug">
@@ -730,10 +756,10 @@
     <configuration name="common_print" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="common_print" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="contrib_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="contrib_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="contrib_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="contrib_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="contrib_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="contrib_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="contrib_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="contrib_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="createdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="createdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="createdb">
@@ -742,58 +768,58 @@
     <configuration name="createuser" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="createuser" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="createuser">
       <envs />
     </configuration>
-    <configuration name="cube" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="cube" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="cube_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="cube_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="cube_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="cube_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="cube_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="cube_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cube_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="cyrillic_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cyrillic_and_mic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="cyrillic_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="cyrillic_and_mic" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dblink" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dblink" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dblink_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dblink_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dblink_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dblink_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dblink_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dblink_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dblink_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_int" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_int" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_int_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_int_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_int_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_int_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_int_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_int_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_int_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_snowball" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_snowball" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_snowball" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_snowball" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_xsyn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_xsyn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_xsyn_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_xsyn_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_xsyn_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_xsyn_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="dict_xsyn_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="dict_xsyn_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dict_xsyn_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="dropdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dropdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="dropdb">
@@ -814,19 +840,19 @@
     <configuration name="dummy_seclabel_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="dummy_seclabel_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="duplicate_oids" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="duplicate_oids" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="duplicate_oids" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="duplicate_oids" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="earthdistance" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="earthdistance" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="earthdistance_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="earthdistance_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="earthdistance_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="earthdistance_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="earthdistance_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="earthdistance_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="earthdistance_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="ecpg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ecpg" CONFIG_NAME="Debug">
@@ -1018,61 +1044,61 @@
     <configuration name="ecpg_regress_thread_thread_implicit" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ecpg_regress_thread_thread_implicit" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="ecpg_regress_thread_thread_implicit">
       <envs />
     </configuration>
-    <configuration name="euc2004_sjis2004" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc2004_sjis2004" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="euc2004_sjis2004" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc2004_sjis2004" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="euc_cn_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_cn_and_mic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="euc_cn_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_cn_and_mic" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="euc_jp_and_sjis" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_jp_and_sjis" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="euc_jp_and_sjis" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_jp_and_sjis" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="euc_kr_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_kr_and_mic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="euc_kr_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_kr_and_mic" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="euc_tw_and_big5" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_tw_and_big5" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="euc_tw_and_big5" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="euc_tw_and_big5" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="file_fdw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="file_fdw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="file_fdw_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="file_fdw_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="file_fdw_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="file_fdw_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="file_fdw_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="file_fdw_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="file_fdw_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="fuzzystrmatch" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="fuzzystrmatch" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="fuzzystrmatch" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="fuzzystrmatch" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="gen-rtab" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="gen-rtab" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="gen-rtab" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="gen-rtab" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="gen-rtab">
       <envs />
     </configuration>
-    <configuration name="gen_errorcodes" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="gen_errorcodes" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="gen_errorcodes" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="gen_errorcodes" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="generate_parser_gram_h" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="generate_parser_gram_h" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="generate_parser_gram_h" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="generate_parser_gram_h" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="hstore" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="hstore" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="hstore_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="hstore_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="hstore_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="hstore_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="hstore_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="hstore_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="hstore_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="initdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="initdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="initdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="initdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="initdb">
       <envs />
     </configuration>
-    <configuration name="insert_username" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="insert_username" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="insert_username" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="insert_username" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="installcheck" CONFIG_NAME="Debug">
@@ -1081,25 +1107,25 @@
     <configuration name="installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-D $PROJECT_DIR$/contrib/bloom/tmp_check/data -l logfile start" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
       <envs />
     </configuration>
-    <configuration name="intarray_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="intarray_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="intarray_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="intarray_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="intarray_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="intarray_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="intarray_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="intarray_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="intarray_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="intarray_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="intarray_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="intarray_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="isn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="isn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="isn_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="isn_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="isn_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="isn_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="isn_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="isn_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isn_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="isolation_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isolation_check" CONFIG_NAME="Debug">
@@ -1114,31 +1140,31 @@
     <configuration name="isolationtester" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="isolationtester" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="isolationtester">
       <envs />
     </configuration>
-    <configuration name="latin2_and_win1250" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="latin2_and_win1250" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="latin2_and_win1250" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="latin2_and_win1250" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="latin_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="latin_and_mic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="latin_and_mic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="latin_and_mic" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="libdump" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="libdump" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="lo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="lo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="lo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="lo" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="ltree" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="ltree" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="ltree_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="ltree_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="ltree_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="ltree_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="ltree_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="ltree_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="ltree_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="moddatetime" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="moddatetime" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="moddatetime" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="moddatetime" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="modules_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="modules_check" CONFIG_NAME="Debug">
@@ -1147,37 +1173,37 @@
     <configuration name="modules_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="modules_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="oid2name" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="oid2name" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="oid2name" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="oid2name" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pageinspect" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pageinspect" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pageinspect_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pageinspect_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pageinspect_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pageinspect_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pageinspect_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pageinspect_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pageinspect_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="passwordcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="passwordcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="passwordcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="passwordcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_archivecleanup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_archivecleanup" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_archivecleanup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_archivecleanup" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_archivecleanup">
       <envs />
     </configuration>
-    <configuration name="pg_basebackup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_basebackup" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_basebackup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_basebackup" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_basebackup">
       <envs />
     </configuration>
-    <configuration name="pg_buffercache" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_buffercache" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_buffercache" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_buffercache" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_config" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_config" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_config" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_config" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_config">
       <envs />
     </configuration>
-    <configuration name="pg_controldata" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_controldata" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_controldata" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_controldata" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_controldata">
       <envs />
     </configuration>
     <configuration name="pg_ctl" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_ctl" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
@@ -1192,7 +1218,7 @@
     <configuration name="pg_ecpg_regress" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_ecpg_regress" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ecpg_regress">
       <envs />
     </configuration>
-    <configuration name="pg_freespacemap" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_freespacemap" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_freespacemap" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_freespacemap" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pg_isolation_regress" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_isolation_regress" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_isolation_regress">
@@ -1201,13 +1227,13 @@
     <configuration name="pg_isready" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_isready" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_isready">
       <envs />
     </configuration>
-    <configuration name="pg_prewarm" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_prewarm" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_prewarm" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_prewarm" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_receivewal" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_receivewal" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_receivewal" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_receivewal" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_receivewal">
       <envs />
     </configuration>
-    <configuration name="pg_recvlogical" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_recvlogical" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_recvlogical" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_recvlogical" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_recvlogical">
       <envs />
     </configuration>
     <configuration name="pg_regress" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_regress" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_regress">
@@ -1222,19 +1248,19 @@
     <configuration name="pg_rewind" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_rewind" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_rewind">
       <envs />
     </configuration>
-    <configuration name="pg_standby" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_standby" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_standby" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_standby" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_standby">
       <envs />
     </configuration>
-    <configuration name="pg_stat_statements" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_stat_statements" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_stat_statements_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_stat_statements_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_stat_statements_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_stat_statements_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_stat_statements_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_stat_statements_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_stat_statements_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pg_test_fsync" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_test_fsync" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_test_fsync">
@@ -1243,31 +1269,31 @@
     <configuration name="pg_test_timing" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_test_timing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_test_timing">
       <envs />
     </configuration>
-    <configuration name="pg_trgm" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_trgm" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_trgm_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_trgm_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_trgm_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_trgm_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_trgm_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_trgm_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_trgm_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pg_upgrade" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_upgrade" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_upgrade">
       <envs />
     </configuration>
-    <configuration name="pg_visibility" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_visibility" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_visibility_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_visibility_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_visibility_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_visibility_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pg_visibility_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pg_visibility_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_visibility_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pg_waldump" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pg_waldump" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_waldump">
@@ -1282,22 +1308,22 @@
     <configuration name="pgcommon_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcommon_srv" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgcrypto" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgcrypto" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgcrypto_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgcrypto_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgcrypto_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgcrypto_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgcrypto_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgcrypto_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgcrypto_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pgfeutils" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgfeutils" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgoutput" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgoutput" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgoutput" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgoutput" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pgport" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgport" CONFIG_NAME="Debug">
@@ -1306,19 +1332,19 @@
     <configuration name="pgport_srv" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgport_srv" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgrowlocks" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgrowlocks" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgrowlocks" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgrowlocks" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgstattuple" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgstattuple" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgstattuple_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgstattuple_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgstattuple_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgstattuple_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pgstattuple_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pgstattuple_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgstattuple_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pgtypes" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pgtypes" CONFIG_NAME="Debug">
@@ -1327,31 +1353,31 @@
     <configuration name="plpgsql" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="plpgsql" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="postgres" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="postgres" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="postgres">
       <envs />
     </configuration>
-    <configuration name="postgres_fdw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="postgres_fdw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="postgres_fdw_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="postgres_fdw_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="postgres_fdw_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="postgres_fdw_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="postgres_fdw_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="postgres_fdw_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="postgres_fdw_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="pq" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pq" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="pqwalreceiver" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pqwalreceiver" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="pqwalreceiver" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="pqwalreceiver" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="psql" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="psql" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="psql">
       <envs />
     </configuration>
-    <configuration name="refint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="refint" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="refint" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="refint" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="regress" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="regress" CONFIG_NAME="Debug">
@@ -1360,16 +1386,16 @@
     <configuration name="reindexdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="reindexdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="reindexdb">
       <envs />
     </configuration>
-    <configuration name="seg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="seg" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="seg_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="seg_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="seg_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="seg_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="seg_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="seg_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="seg_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="snapshot_too_old_isolation_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="snapshot_too_old_isolation_check" CONFIG_NAME="Debug">
@@ -1381,22 +1407,22 @@
     <configuration name="snapshot_too_old_isolation_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="snapshot_too_old_isolation_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tablefunc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tablefunc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tablefunc_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tablefunc_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tablefunc_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tablefunc_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tablefunc_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tablefunc_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablefunc_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="tablespace-setup" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tablespace-setup" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tcn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tcn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tcn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tcn" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="test_ddl_deparse" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_ddl_deparse" CONFIG_NAME="Debug">
@@ -1411,25 +1437,25 @@
     <configuration name="test_ddl_deparse_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_ddl_deparse_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding_isolation_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_isolation_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding_isolation_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_isolation_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding_isolation_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_isolation_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding_isolation_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_isolation_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="test_decoding_isolation_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_isolation_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="test_decoding_isolation_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_decoding_isolation_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="test_extensions_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_extensions_check" CONFIG_NAME="Debug">
@@ -1486,107 +1512,107 @@
     <configuration name="test_shm_mq_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="test_shm_mq_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="timetravel" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="timetravel" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="timetravel" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="timetravel" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_rows" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_rows" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_rows_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_rows_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_rows_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_rows_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_rows_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_rows_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_rows_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_time" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_time" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_time_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_time_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_time_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_time_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="tsm_system_time_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="tsm_system_time_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="tsm_system_time_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="unaccent" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="unaccent" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="unaccent_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent_check" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="unaccent_check" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent_check" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="unaccent_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent_installcheck" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="unaccent_installcheck" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent_installcheck" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="unaccent_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent_installcheck_tmp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="unaccent_installcheck_tmp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="unaccent_installcheck_tmp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_ascii" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_ascii" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_ascii" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_ascii" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_big5" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_big5" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_big5" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_big5" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_cyrillic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_cyrillic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_cyrillic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_cyrillic" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_euc2004" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc2004" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_euc2004" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc2004" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_euc_cn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_cn" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_euc_cn" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_cn" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_euc_jp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_jp" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_euc_jp" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_jp" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_euc_kr" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_kr" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_euc_kr" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_kr" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_euc_tw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_tw" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_euc_tw" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_euc_tw" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_gb18030" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_gb18030" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_gb18030" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_gb18030" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_gbk" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_gbk" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_gbk" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_gbk" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_iso8859" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_iso8859" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_iso8859" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_iso8859" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_iso8859_1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_iso8859_1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_iso8859_1" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_iso8859_1" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_johab" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_johab" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_johab" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_johab" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_sjis" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_sjis" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_sjis" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_sjis" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_sjis2004" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_sjis2004" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_sjis2004" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_sjis2004" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_uhc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_uhc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_uhc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_uhc" CONFIG_NAME="Debug">
       <envs />
     </configuration>
-    <configuration name="utf8_and_win" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_win" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="utf8_and_win" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="utf8_and_win" CONFIG_NAME="Debug">
       <envs />
     </configuration>
     <configuration name="vacuumdb" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="vacuumdb" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="vacuumdb">
       <envs />
     </configuration>
-    <configuration name="vacuumlo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="vacuumlo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="pg_ctl">
+    <configuration name="vacuumlo" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="vacuumlo" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="vacuumlo">
       <envs />
     </configuration>
     <configuration name="zic" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PostgresС60" TARGET_NAME="zic" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PostgresС60" RUN_TARGET_NAME="zic">
       <envs />
     </configuration>
     <list size="325">
-      <item index="0" class="java.lang.String" itemvalue="Application.Unnamed" />
+      <item index="0" class="java.lang.String" itemvalue="Application.ALL" />
       <item index="1" class="java.lang.String" itemvalue="Application.PostgresRun" />
       <item index="2" class="java.lang.String" itemvalue="Application.contrib_check" />
       <item index="3" class="java.lang.String" itemvalue="Application.contrib_installcheck" />
@@ -1934,6 +1960,7 @@
       <workItem from="1522327615030" duration="476000" />
       <workItem from="1522331739741" duration="80000" />
       <workItem from="1522332095104" duration="17631000" />
+      <workItem from="1522843141804" duration="259000" />
     </task>
     <task id="LOCAL-00001" summary="Merge remote-tracking branch 'cmake/cmake' into 10.3_fork&#10;1) Сборка Postgres на основе CMake (основа CMake взята из другого репозитория)&#10;2) Добавление проектных файлов CLion">
       <created>1522152040686</created>
@@ -1967,43 +1994,50 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56160000" />
+    <option name="totallyTimeSpent" value="62882000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1050" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1044" extended-state="6" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16288877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3273743" sideWeight="0.4949921" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.49815497" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37765363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49832404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24469274" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36445445" sideWeight="0.4949921" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295838" sideWeight="0.49815497" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="18" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37765363" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4983127" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24409449" sideWeight="0.5" order="19" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="20" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.4949921" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.49815497" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24469274" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49832404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16288877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37765363" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36445445" sideWeight="0.4949921" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295838" sideWeight="0.49815497" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36536312" sideWeight="0.5050079" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49832404" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24469274" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24196099" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3768279" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4480447" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout>
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -2059,166 +2093,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/interfaces/ecpg/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bin/pg_dump/pg_restore.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2176">
-          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/regress/pg_regress.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41803">
-          <caret line="2459" column="46" lean-forward="false" selection-start-line="2459" selection-start-column="46" selection-end-line="2459" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/parser/gram.y">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3264">
-          <caret line="192" column="12" lean-forward="false" selection-start-line="192" selection-start-column="12" selection-end-line="192" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/c.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17119">
-          <caret line="1007" column="8" lean-forward="false" selection-start-line="1007" selection-start-column="8" selection-end-line="1007" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="258" lean-forward="false" selection-start-line="16" selection-start-column="258" selection-end-line="16" selection-end-column="258" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/.name" />
-    <entry file="file://$PROJECT_DIR$/PGXS.cmake.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/modules/snapshot_too_old/results/sto_using_cursor.out" />
-    <entry file="file://$PROJECT_DIR$/cmake/MakeNLS.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contrib/adminpack/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contrib/amcheck/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contrib/auth_delay/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/contrib/bloom/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1938">
-            <caret line="114" column="192" lean-forward="false" selection-start-line="114" selection-start-column="192" selection-end-line="114" selection-end-column="192" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/FindICU.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10778">
-          <caret line="634" column="12" lean-forward="false" selection-start-line="634" selection-start-column="12" selection-end-line="634" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/pg_config.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="612" column="10" lean-forward="false" selection-start-line="612" selection-start-column="10" selection-end-line="612" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/pg_config.h.win32">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="475" column="10" lean-forward="false" selection-start-line="475" selection-start-column="10" selection-end-line="475" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/pg_config.h.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="632" column="7" lean-forward="false" selection-start-line="632" selection-start-column="7" selection-end-line="632" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configure.in">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="757">
-          <caret line="1564" column="10" lean-forward="false" selection-start-line="1564" selection-start-column="10" selection-end-line="1564" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/netdb.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="566" column="7" lean-forward="false" selection-start-line="566" selection-start-column="7" selection-end-line="566" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/include/getaddrinfo.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="97" column="7" lean-forward="false" selection-start-line="97" selection-start-column="7" selection-end-line="97" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/bin/cmake/share/cmake-3.9/Modules/CheckFunctionExists.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="69" column="0" lean-forward="false" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/stdlib.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
@@ -2242,8 +2116,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bin/initdb/po/cs.po">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="893" column="28" lean-forward="false" selection-start-line="893" selection-start-column="28" selection-end-line="893" selection-end-column="28" />
+        <state relative-caret-position="174">
+          <caret line="223" column="33" lean-forward="false" selection-start-line="223" selection-start-column="33" selection-end-line="223" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -2258,7 +2132,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="78" column="31" lean-forward="false" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2266,7 +2139,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
           <caret line="203" column="16" lean-forward="false" selection-start-line="203" selection-start-column="16" selection-end-line="203" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2281,15 +2153,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12886">
           <caret line="758" column="15" lean-forward="false" selection-start-line="758" selection-start-column="15" selection-end-line="758" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bin/initdb/initdb.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46070">
-          <caret line="2710" column="46" lean-forward="false" selection-start-line="2710" selection-start-column="46" selection-end-line="2710" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="119">
+          <caret line="539" column="3" lean-forward="false" selection-start-line="539" selection-start-column="3" selection-end-line="539" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -2297,7 +2167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4301">
           <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2305,7 +2174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5372">
           <caret line="316" column="0" lean-forward="false" selection-start-line="316" selection-start-column="0" selection-end-line="316" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2329,15 +2197,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/contrib/test_decoding/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="188">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -2345,7 +2211,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="49" lean-forward="false" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2353,7 +2218,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="58" lean-forward="false" selection-start-line="1" selection-start-column="58" selection-end-line="1" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2361,7 +2225,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="29" column="55" lean-forward="false" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2369,15 +2232,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="23" column="13" lean-forward="false" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake/RegressCheck.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="238" column="30" lean-forward="false" selection-start-line="238" selection-start-column="30" selection-end-line="238" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2385,7 +2239,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2393,7 +2246,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
           <caret line="162" column="26" lean-forward="false" selection-start-line="162" selection-start-column="26" selection-end-line="162" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2409,7 +2261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2417,14 +2268,201 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="394">
           <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/modules/test_parser/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/installation.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="1751" column="32" lean-forward="false" selection-start-line="1751" selection-start-column="32" selection-end-line="1751" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bin/pg_basebackup/po/ko.po">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="105" column="33" lean-forward="false" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/hstore/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/regress/pg_regress.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="1161" column="11" lean-forward="false" selection-start-line="1161" selection-start-column="5" selection-end-line="1161" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/cube/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="24" column="26" lean-forward="false" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/hstore_plperl/expected/create_transform.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="11" column="5" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake/RegressCheck.cmake">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/release-9.1.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="9059" column="57" lean-forward="false" selection-start-line="9059" selection-start-column="57" selection-end-line="9059" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/release-9.0.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="8283" column="18" lean-forward="false" selection-start-line="8283" selection-start-column="18" selection-end-line="8284" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/cube/sql/cube.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/contrib/bloom/t/001_wal.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/monitoring.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50711">
+          <caret line="2983" column="43" lean-forward="false" selection-start-line="2983" selection-start-column="43" selection-end-line="2983" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/tablefunc.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="23" lean-forward="false" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/xfunc.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/filelist.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2482">
+          <caret line="146" column="38" lean-forward="false" selection-start-line="146" selection-start-column="38" selection-end-line="146" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/dfunc.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/utils/pg_lsn.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/include/utils/fmgrprotos.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27251">
+          <caret line="1603" column="13" lean-forward="false" selection-start-line="1603" selection-start-column="13" selection-end-line="1603" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/access/transam/xlogfuncs.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6290">
+          <caret line="370" column="24" lean-forward="false" selection-start-line="370" selection-start-column="24" selection-end-line="370" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/catalog/postgres.bki">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29189">
+          <caret line="1717" column="20" lean-forward="false" selection-start-line="1717" selection-start-column="20" selection-end-line="1717" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/src/sgml/func.sgml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="18455" column="15" lean-forward="false" selection-start-line="18455" selection-start-column="15" selection-end-line="18455" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pl/plpgsql/src/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="1452" column="22" lean-forward="false" selection-start-line="1452" selection-start-column="22" selection-end-line="1452" selection-end-column="22" />
+        <state relative-caret-position="170">
+          <caret line="10" column="52" lean-forward="false" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/modules/dummy_seclabel/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="56" lean-forward="false" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
           <folding />
         </state>
       </provider>
