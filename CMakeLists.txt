@@ -1451,12 +1451,21 @@ set(debug_env_cmd
 	"PATH=${TMP_DISTRIB_DIR}${PGBINDIR}:$$PATH"
 )
 
-add_custom_target(initPostgresDb
+add_custom_target(installPostgresDb
 	COMMAND DESTDIR=${TMP_DISTRIB_DIR} ${check_make_command} install -j 8
+	DEPENDS postgres pq pg_ctl
+	WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
+)
+
+add_custom_target(initPostgresDb
 	COMMAND ${debug_env_cmd} ldd ${TMP_DISTRIB_DIR}${PGBINDIR}/initdb
 	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
 	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E touch ${CMAKE_POSTGRES_BINARY_DIR}/pg.log
 	COMMAND ${debug_env_cmd} ${TMP_DISTRIB_DIR}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
+	DEPENDS installPostgresDb
 	WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
 )
+
+#Набор заголовков для подключение других модуль
+set_property(GLOBAL PROPERTY POSTGRES_INCLUDE_DIRS "${TMP_DISTRIB_DIR}${INCLUDEDIR}")
 
