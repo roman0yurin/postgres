@@ -116,6 +116,11 @@ install(TARGETS pq
 		RUNTIME DESTINATION ${PGBINDIR}
 		LIBRARY DESTINATION ${LIBDIR})
 
+#Этот файл нужен для интеграции сторонних библиотек с Postgres
+install(FILES
+	libpq-fe.h
+	DESTINATION ${INCLUDEDIR}
+)
 if(ENABLE_NLS)
 	MAKE_MO(libpq "cs;de;es;fr;it;ja;ko;pl;pt_BR;ru;tr;zh_CN;zh_TW;he;sv")
 endif()
