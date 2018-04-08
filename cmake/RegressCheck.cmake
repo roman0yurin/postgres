@@ -135,13 +135,6 @@ endif()
 
 
 set(TAP_FLAGS "-I;${CMAKE_POSTGRES_SOURCE_DIR}/src/test/perl/;--verbose")
-
-if(CMAKE_GENERATOR STREQUAL "Ninja")
-	set(check_make_command "ninja")
-else()
-	set(check_make_command ${CMAKE_MAKE_PROGRAM})
-endif()
-
 macro(REGRESS_CHECK TARGET_NAME REGRESS_OPTS REGRESS_FILES)
 	add_custom_target(${TARGET_NAME}_installcheck_tmp
 		COMMAND ${pg_regress_check_tmp} --inputdir="${CMAKE_CURRENT_SOURCE_DIR}" --dbname=${TARGET_NAME}_regress ${REGRESS_OPTS} --dlpath=${tmp_check_folder}${LIBDIR} ${MAXCONNOPT} ${TEMP_CONF} ${REGRESS_FILES}
