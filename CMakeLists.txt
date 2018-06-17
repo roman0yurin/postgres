@@ -1446,7 +1446,6 @@ add_custom_target(installPostgresDb
 )
 
 add_custom_target(initPostgresDb
-	COMMAND ${debug_env_cmd} ldd ${TMP_DISTRIB_DIR}${PGBINDIR}/initdb
 	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
 	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E touch ${CMAKE_POSTGRES_BINARY_DIR}/pg.log
 	COMMAND ${debug_env_cmd} ${TMP_DISTRIB_DIR}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
