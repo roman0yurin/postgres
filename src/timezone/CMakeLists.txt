@@ -64,7 +64,7 @@ endif()
 
 JOIN("${tzdata}" " " tzdata_string)
 install(
-	CODE "message('${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} \$ENV{DESTDIR}${PGSHAREDIR_ZIC}/timezone -p US/Eastern ${tzdata_string}')"
-	CODE "execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"\$ENV{DESTDIR}${PGSHAREDIR_ZIC}/timezone\" -p \"US/Eastern\" ${tzdata_string})"
+	CODE "message('${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} ${CMAKE_INSTALL_PREFIX}/${PGSHAREDIR_ZIC}/timezone -p US/Eastern ${tzdata_string}')"
+	CODE "execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"${CMAKE_INSTALL_PREFIX}/${PGSHAREDIR_ZIC}/timezone\" -p \"US/Eastern\" ${tzdata_string})"
 )
 

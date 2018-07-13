@@ -12,15 +12,12 @@ set(CMAKE_POSTGRES_BINARY_DIR ${CMAKE_CURRENT_BINARY_DIR})
 #Корневая папка исходников Postgres
 set(CMAKE_POSTGRES_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
 set_property(GLOBAL PROPERTY POSTGRES_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR})
-set_property(GLOBAL PROPERTY POSTGRES_BIN_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+set_property(GLOBAL PROPERTY POSTGRES_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
 #Папка для временного развертывания дистрибутива БД
 #set(TMP_DISTRIB_DIR ${CMAKE_POSTGRES_BINARY_DIR}/distribution)
-#Папка для временного разветывания файлов базыва данных
-set(TMP_DATA_DIR ${CMAKE_POSTGRES_BINARY_DIR}/temp_data)
 message("BUILD POSTGRES CMAKE_CURRENT_SOURCE_DIR        =${CMAKE_POSTGRES_SOURCE_DIR}")
 message("BUILD POSTGRES CMAKE_BINARY_DIR        =${CMAKE_BINARY_DIR}")
-message("BUILD POSTGRES CMAKE_CURRENT_BINARY_DIR=${CMAKE_POSTGRES_BINARY_DIR}")
 
 include(CheckTypeSize)
 include(CheckSymbolExists)
@@ -73,9 +70,8 @@ endif(NOT INCLUDEDIRSERVER)
 
 
 set(LIBDIR "lib")
-set(PKGLIBDIR "bin")
-
-
+set(PKGLIBDIR "lib")
+set_property(GLOBAL PROPERTY POSTGRES_LIB_DIR ${PKGLIBDIR})
 
 set(LOCALEDIR "share/locale")
 
@@ -1390,7 +1386,6 @@ configure_file(
 	@ONLY
 )
 
-message("=========================== ${CMAKE_INSTALL_PREFIX}")
 install(FILES ${PROJECT_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/PGXS.cmake
 		DESTINATION ${LIBDIR}/cmake)
 
@@ -1428,26 +1423,12 @@ message(STATUS "PROVE (TAP tests): ${PROVE}")
 message(STATUS "Strong random source: ${STRONG_RANDOM_SOURCE}")
 message(STATUS "------------------")
 
-set(debug_env_cmd
-	${CMAKE_COMMAND} -E env
-	"LD_LIBRARY_PATH=${CMAKE_INSTALL_PREFIX}${LIBDIR}:$$LD_LIBRARY_PATH"
-	"PATH=${CMAKE_INSTALL_PREFIX}${PGBINDIR}:$$PATH"
-)
 #Папка для библиотек Postgres-а
 set_property(GLOBAL PROPERTY DB_DISTRIBUTION_ROOT ${CMAKE_INSTALL_PREFIX})
 set_property(GLOBAL PROPERTY POSTGRES_DISTRIB_LIB_DIR ${LIBDIR})
 set_property(GLOBAL PROPERTY POSTGRES_DISTRIB_BIN_DIR ${PGBINDIR})
 set_property(GLOBAL PROPERTY POSTGRES_DISTRIB_SHARE_DIR ${PGSHAREDIR})
 set_property(GLOBAL PROPERTY POSTGRES_DISTRIB_LOCALE_DIR ${LOCALEDIR})
-
-add_custom_target(initPostgresDb
-	COMMAND ${debug_env_cmd} ldd ${CMAKE_INSTALL_PREFIX}${PGBINDIR}/initdb
-	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E make_directory ${TMP_DATA_DIR}
-	COMMAND ${debug_env_cmd} ${CMAKE_COMMAND} -E touch ${CMAKE_POSTGRES_BINARY_DIR}/../pg.log
-	COMMAND ${debug_env_cmd} ${CMAKE_INSTALL_PREFIX}/usr/local/bin/initdb -D ${TMP_DATA_DIR} --username=postgres
-	DEPENDS installPostgresDb
-	WORKING_DIRECTORY ${CMAKE_POSTGRES_BINARY_DIR}
-)
 
 #Набор заголовков для подключение других модуль
 set_property(GLOBAL PROPERTY POSTGRES_INCLUDE_DIRS "${CMAKE_INSTALL_PREFIX}${INCLUDEDIR}")
