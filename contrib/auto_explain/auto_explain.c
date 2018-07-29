@@ -56,8 +56,8 @@ static bool current_query_sampled = true;
 	(auto_explain_log_min_duration >= 0 && \
 	 (nesting_level == 0 || auto_explain_log_nested_statements))
 
-void		_PG_init(void);
-void		_PG_fini(void);
+PGDLLEXPORT void		_PG_init(void);
+PGDLLEXPORT void		_PG_fini(void);
 
 static void explain_ExecutorStart(QueryDesc *queryDesc, int eflags);
 static void explain_ExecutorRun(QueryDesc *queryDesc,

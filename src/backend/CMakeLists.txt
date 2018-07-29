@@ -17,10 +17,11 @@ set(gen_fmgrtab_output
 	${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgrtab.c
 )
 
+message("============ COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl ${postgres_include_catalog}/pg_proc.h CURR DIR ${CMAKE_CURRENT_SOURCE_DIR}/utils")
 add_custom_command(
 	MAIN_DEPENDENCY ${gen_fmgrtab_depend}
 	OUTPUT ${gen_fmgrtab_output}
-	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog Gen_fmgrtab.pl ${postgres_include_catalog}/pg_proc.h
+	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl ${postgres_include_catalog}/pg_proc.h
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgroids.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgroids.h
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgrprotos.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgrprotos.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils
@@ -42,8 +43,8 @@ add_custom_command(
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils
 )
 
-flex_target(GUC_SCANNER utils/misc/guc-file.l  ${CMAKE_CURRENT_SOURCE_DIR}/utils/misc/guc-file.c)
-set_source_files_properties(utils/misc/guc.c PROPERTIES OBJECT_DEPENDS ${FLEX_GUC_SCANNER_OUTPUTS})
+flex_target(GUC_SCANNER utils/misc/guc-file.l  "${CMAKE_CURRENT_SOURCE_DIR}/utils/misc/guc-file.c")
+set_source_files_properties(utils/misc/guc.c PROPERTIES OBJECT_DEPENDS "${FLEX_GUC_SCANNER_OUTPUTS}")
 
 if(WIN32 OR MINGW)
 	set(dynloader_SRCS port/dynloader/win32.c)
@@ -1069,9 +1070,15 @@ target_link_libraries(postgres
 	${GSS_LIBS}
 	${ICU_LIBRARIES}
 )
-
 if(OPENSSL_FOUND)
 	target_link_libraries(postgres ${OPENSSL_LIBRARIES})
+endif()
+
+
+if(DBGHELP_FOUND)
+	target_link_libraries(postgres ${DBGHELP_LIBRARIES})
+elseif(DEFINED ENV{MINGW64_PROJ_ROOT})
+	target_link_libraries(postgres "$ENV{MINGW64_PROJ_ROOT}/mingw64/x86_64-w64-mingw32/lib/libdbghelp.a")
 endif()
 
 if(LIBXML2_FOUND)

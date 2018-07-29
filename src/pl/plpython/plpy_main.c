@@ -75,7 +75,7 @@ static PLyExecutionContext *PLy_execution_contexts = NULL;
 
 
 void
-_PG_init(void)
+PGDLLEXPORT _PG_init(void)
 {
 	int		  **bitmask_ptr;
 
