@@ -7,7 +7,7 @@ set(gen_errorcodes_depend
 set(gen_errorcodes_output
 	${PROJECT_SOURCE_DIR}/src/include/utils/errcodes.h
 )
-
+message("======= gen_errorcodes_output = ${gen_errorcodes_output} | ${gen_errorcodes_depend}")
 add_custom_command(
 	MAIN_DEPENDENCY ${gen_errorcodes_depend}
 	DEPENDS ${gen_errorcodes_depend}

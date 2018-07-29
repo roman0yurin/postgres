@@ -13,7 +13,7 @@ add_custom_command(
 
 flex_target(SCANSLASH_SCAN
 	psqlscanslash.l
-	${CMAKE_CURRENT_SOURCE_DIR}/psqlscanslash.c
+	"${CMAKE_CURRENT_SOURCE_DIR}/psqlscanslash.c"
 )
 
 set(psql_SRCS

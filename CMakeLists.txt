@@ -46,7 +46,12 @@ set(PG_VERSION_NUM 100000)
 set(PACKAGE_BUGREPORT "pgsql-bugs@postgresql.org")
 
  # Offer the user the choice of overriding the installation directories
+if(WIN32)
 set(INSTALL_LIB_DIR lib CACHE PATH "Installation directory for libraries")
+else()
+set(INSTALL_LIB_DIR bin CACHE PATH "Installation directory for libraries")
+endif()
+
 set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
 set(INSTALL_INCLUDE_DIR include CACHE PATH
   "Installation directory for header files")
@@ -68,9 +73,14 @@ if(NOT INCLUDEDIRSERVER)
 	set(INCLUDEDIRSERVER "include/server")
 endif(NOT INCLUDEDIRSERVER)
 
+if(WIN32)
+	set(LIBDIR "bin")
+	set(PKGLIBDIR "bin")
+else()
+	set(LIBDIR "lib/pg_c60")
+	set(PKGLIBDIR "lib/pg_c60")
+endif()
 
-set(LIBDIR "lib/pg_c60")
-set(PKGLIBDIR "lib/pg_c60")
 set_property(GLOBAL PROPERTY POSTGRES_LIB_DIR ${PKGLIBDIR})
 set_property(GLOBAL PROPERTY POSTGRES_SHARE_DIR ${PGSHAREDIR})
 
@@ -156,6 +166,7 @@ if(WITH_OPENSSL)
 	find_package(OpenSSL)
 endif()
 find_package(ZLIB)
+message("=========== ZLIB_FOUND ${ZLIB_FOUND}")
 
 option(WITH_PYTHON "Python is optional" OFF)
 if(WITH_PYTHON)
@@ -164,7 +175,7 @@ if(WITH_PYTHON)
 endif()
 find_package(SELinux)
 
-option(WITH_LIBXML "LIBXML is optional" OFF)
+option(WITH_LIBXML "LIBXML is optional" ON)
 if(WITH_LIBXML)
 	find_package(LibXml2)
 	find_package(LibXslt)
@@ -201,11 +212,11 @@ if(USE_LDAP)
 	find_package(LDAP REQUIRED)
 endif()
 
-if(WIN32 OR MINGW)
-	set(NEED_REPL_SNPRINTF ON)
-else()
-	set(NEED_REPL_SNPRINTF OFF)
-endif()
+#if(WIN32 OR MINGW)
+#	set(NEED_REPL_SNPRINTF ON)
+#else()
+#	set(NEED_REPL_SNPRINTF OFF)
+#endif()
 
 option(ENABLE_NLS "Define if you want National Language Support" OFF)
 if(ENABLE_NLS)
@@ -273,7 +284,7 @@ endif()
 
 option(USE_SYSTEMD "Define to build with systemd support" OFF)
 option(USE_BSD_AUTH "Define to build with BSD Authentication support" OFF)
-option(USE_ASSERT_CHECKING "Define to build with assertion checks." OFF)
+option(USE_ASSERT_CHECKING "Define to build with assertion checks." ON)
 option(USE_BONJOUR "Define to build with Bonjour support." OFF)
 if(USE_BONJOUR)
 	check_include_files(dns_sd.h HAVE_DNS_SD_H)
@@ -540,7 +551,7 @@ if(HAVE_IFADDRS_H)
 endif()
 check_function_exists(getifaddrs HAVE_GETIFADDRS)
 
-if(MSVC)
+if(WIN32)
 	set(HAVE_MINIDUMP_TYPE 1)
 endif()
 
@@ -783,8 +794,11 @@ check_type_size("long" SIZEOF_LONG)
 check_type_size("size_t" SIZEOF_SIZE_T)
 check_type_size(__int128 PG_INT128_TYPE)
 if(PG_INT128_TYPE AND NOT WIN32)
+	message("=========== SET 128")
 	set(HAVE_INT128 1)
 	set(PG_INT128_TYPE __int128)
+else()
+	set(HAVE_INT128 0)
 endif()
 
 
@@ -1256,12 +1270,17 @@ else(CMAKE_C_COMPILER_ID STREQUAL "SunPro")
 endif(CMAKE_C_COMPILER_ID STREQUAL "SunPro")
 
 if(WIN32 OR MINGW)
+	if(NOT DEFINED ENV{WIN_DBG_HELP_DEBUGGERS})
+		message(ERROR "Env variable WIN_DBG_HELP_DEBUGGERS is required for gbgHelp library. Example path: \"C:/Program Files (x86)/Windows Kits/10/Debuggers\"")
+	endif()
+	include_directories(DBGHELP_INCLUDE_DIR)
 	set(CMAKE_EXTRA_INCLUDE_FILES
 		${CMAKE_EXTRA_INCLUDE_FILES}
 		windows.h
 		string.h
-		dbghelp.h
+		"$ENV{WIN_DBG_HELP_DEBUGGERS}/inc/dbghelp.h"
 	)
+	install(FILES "$ENV{WIN_DBG_HELP_DEBUGGERS}/x64/dbghelp.dll" DESTINATION ${LIBDIR})
 	set(CMAKE_REQUIRED_DEFINITIONS "WIN32_LEAN_AND_MEAN")
 	check_type_size(MINIDUMP_TYPE NAVE_MINIDUMP_TYPE)
 endif(WIN32 OR MINGW)
@@ -1273,6 +1292,10 @@ endif()
 
 if(NEED_REPL_SNPRINTF)
 	option(USE_REPL_SNPRINTF "Use replacement snprintf() functions." ON)
+endif()
+
+if(MINGW)
+	set(USE_REPL_SNPRINTF false)
 endif()
 
 find_program(SED_EXECUTABLE sed)

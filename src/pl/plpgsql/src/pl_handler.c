@@ -144,7 +144,7 @@ plpgsql_extra_errors_assign_hook(const char *newvalue, void *extra)
  * DO NOT make this static nor change its name!
  */
 void
-_PG_init(void)
+PGDLLEXPORT _PG_init(void)
 {
 	/* Be sure we do initialization only once (should be redundant now) */
 	static bool inited = false;

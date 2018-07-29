@@ -174,7 +174,7 @@ typedef struct BloomScanOpaqueData
 typedef BloomScanOpaqueData *BloomScanOpaque;
 
 /* blutils.c */
-extern void _PG_init(void);
+extern PGDLLEXPORT void _PG_init(void);
 extern void initBloomState(BloomState *state, Relation index);
 extern void BloomFillMetapage(Relation index, Page metaPage);
 extern void BloomInitMetapage(Relation index);

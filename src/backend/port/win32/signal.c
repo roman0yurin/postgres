@@ -247,7 +247,9 @@ pg_signal_dispatch_thread(LPVOID param)
 	FlushFileBuffers(pipe);
 	DisconnectNamedPipe(pipe);
 	CloseHandle(pipe);
-
+#ifdef __MINGW32__
+	elog(DEBUG4, "DISPATCH SIGNAL %d\n", sigNum);
+#endif
 	pg_queue_signal(sigNum);
 	return 0;
 }
@@ -256,6 +258,9 @@ pg_signal_dispatch_thread(LPVOID param)
 static DWORD WINAPI
 pg_signal_thread(LPVOID param)
 {
+#ifdef __MINGW32__
+	elog(DEBUG5, "pg_signal_thread\n");
+#endif
 	char		pipename[128];
 	HANDLE		pipe = pgwin32_initial_signal_pipe;
 
@@ -355,6 +360,9 @@ pg_console_handler(DWORD dwCtrlType)
 		dwCtrlType == CTRL_CLOSE_EVENT ||
 		dwCtrlType == CTRL_SHUTDOWN_EVENT)
 	{
+#ifdef __MINGW32__
+		elog(DEBUG5, "CONSOLE CTRL+C");
+#endif
 		pg_queue_signal(SIGINT);
 		return TRUE;
 	}

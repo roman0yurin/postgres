@@ -1,3 +1,7 @@
+if(WIN32)
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fno-asynchronous-unwind-tables")
+endif()
+
 include_directories(
 	"${PROJECT_SOURCE_DIR}/src/include"
 	"${PROJECT_SOURCE_DIR}/src/interfaces/libpq"

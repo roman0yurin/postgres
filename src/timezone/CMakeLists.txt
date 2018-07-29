@@ -63,8 +63,16 @@ else()
 endif()
 
 JOIN("${tzdata}" " " tzdata_string)
-install(
-	CODE "message('CPACK_PREFIX=\$ENV{DESTDIR} @ ${CPACK_PACKAGING_INSTALL_PREFIX} @ ${CPACK_INSTALL_PREFIX}')"
-	CODE "execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"\$ENV{DESTDIR}/${CPACK_PACKAGING_INSTALL_PREFIX}/${PGSHAREDIR_ZIC}/timezone\" -p \"US/Eastern\" ${tzdata_string})"
-)
+if(WIN32)
+	install(
+			CODE "message('CPACK_PREFIX=\$ENV{DESTDIR} @ ${CPACK_PACKAGING_INSTALL_PREFIX} @ ${CPACK_INSTALL_PREFIX}')"
+			CODE "execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"\$ENV{DESTDIR}/${PGSHAREDIR_ZIC}/timezone\" -p \"US/Eastern\" ${tzdata_string})"
+	)
+else()
+	install(
+			CODE "message('CPACK_PREFIX=\$ENV{DESTDIR} @ ${CPACK_PACKAGING_INSTALL_PREFIX} @ ${CPACK_INSTALL_PREFIX}')"
+			CODE "execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"\$ENV{DESTDIR}/${CPACK_PACKAGING_INSTALL_PREFIX}/${PGSHAREDIR_ZIC}/timezone\" -p \"US/Eastern\" ${tzdata_string})"
+	)
+endif()
+
 

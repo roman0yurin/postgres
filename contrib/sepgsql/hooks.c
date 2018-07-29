@@ -31,7 +31,7 @@ PG_MODULE_MAGIC;
 /*
  * Declarations
  */
-void		_PG_init(void);
+PGDLLEXPORT void		_PG_init(void);
 
 /*
  * Saved hook entries (if stacked)

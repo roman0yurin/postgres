@@ -35,7 +35,7 @@
 
 PG_MODULE_MAGIC;
 
-void		_PG_init(void);
+PGDLLEXPORT void		_PG_init(void);
 
 struct WalReceiverConn
 {

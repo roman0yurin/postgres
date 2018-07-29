@@ -9,7 +9,7 @@ set(psqlscan_flags, "-Cfe -p -p")
 
 flex_target(psqlscan
 	psqlscan.l
-	"${CMAKE_CURRENT_SOURCE_DIR}/psqlscan.c"
+	${CMAKE_CURRENT_SOURCE_DIR}/psqlscan.c
 	${psqlscan_flags}
 )
 

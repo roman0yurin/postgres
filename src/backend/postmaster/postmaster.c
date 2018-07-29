@@ -3202,6 +3202,9 @@ static bool
 CleanupBackgroundWorker(int pid,
 						int exitstatus) /* child's exit status */
 {
+#ifdef __MINGW32__
+	elog(DEBUG5, "CLEANUP WORKER %d\n", pid);
+#endif
 	char		namebuf[MAXPGPATH];
 	slist_mutable_iter iter;
 
@@ -4675,6 +4678,10 @@ retry:
 		elog(LOG, "CreateProcess call failed: %m (error code %lu)",
 			 GetLastError());
 		return -1;
+	}else{
+#ifdef __MINGW32__
+		elog(DEBUG5, "LAUNCHED PID %d >> %s,\n", pi.dwProcessId, cmdLine);
+#endif
 	}
 
 	if (!save_backend_variables(param, port, pi.hProcess, pi.dwProcessId))

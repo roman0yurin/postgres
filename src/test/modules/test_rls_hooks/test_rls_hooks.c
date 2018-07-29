@@ -36,8 +36,8 @@ PG_MODULE_MAGIC;
 static row_security_policy_hook_type prev_row_security_policy_hook_permissive = NULL;
 static row_security_policy_hook_type prev_row_security_policy_hook_restrictive = NULL;
 
-void		_PG_init(void);
-void		_PG_fini(void);
+PGDLLEXPORT void		_PG_init(void);
+PGDLLEXPORT void		_PG_fini(void);
 
 /* Install hooks */
 void

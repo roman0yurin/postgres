@@ -715,7 +715,9 @@
 /*#define PACKAGE_VERSION "@PACKAGE_VERSION@"*/
 
 /* Define to the name of a signed 128-bit integer type. */
+#if @HAVE_INT128@
 #define PG_INT128_TYPE @PG_INT128_TYPE@
+#endif
 
 /* Define to the name of a signed 64-bit integer type. */
 #define PG_INT64_TYPE @PG_INT64_TYPE@

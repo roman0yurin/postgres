@@ -389,6 +389,12 @@ typedef struct
 /* Expected signature of an info function */
 typedef const Pg_finfo_record *(*PGFInfoFunction) (void);
 
+#ifdef __MINGW32__
+#define PGDLLEXPORT2 PGDLLEXPORT
+#else
+#define PGDLLEXPORT2
+#endif
+
 /*
  *	Macro to build an info function associated with the given function name.
  *
@@ -402,7 +408,7 @@ typedef const Pg_finfo_record *(*PGFInfoFunction) (void);
  *	info function, since authors shouldn't need to be explicitly aware of it.
  */
 #define PG_FUNCTION_INFO_V1(funcname) \
-extern Datum funcname(PG_FUNCTION_ARGS); \
+extern PGDLLEXPORT2 Datum funcname(PG_FUNCTION_ARGS); \
 extern PGDLLEXPORT const Pg_finfo_record * CppConcat(pg_finfo_,funcname)(void); \
 const Pg_finfo_record * \
 CppConcat(pg_finfo_,funcname) (void) \

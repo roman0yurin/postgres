@@ -1206,6 +1206,9 @@ ShutdownPostgres(int code, Datum arg)
 static void
 StatementTimeoutHandler(void)
 {
+#ifdef __MINGW32__
+	elog(DEBUG5, "STATEMENT_TIMEOUT SIGINT");
+#endif
 	int			sig = SIGINT;
 
 	/*
@@ -1231,6 +1234,9 @@ LockTimeoutHandler(void)
 #ifdef HAVE_SETSID
 	/* try to signal whole process group */
 	kill(-MyProcPid, SIGINT);
+#endif
+#ifdef __MINGW32__
+	elog(DEBUG5, "SIGINT BY LOCK TIMEOUT %d\n", MyProcPid);
 #endif
 	kill(MyProcPid, SIGINT);
 }
