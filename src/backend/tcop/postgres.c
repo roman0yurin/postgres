@@ -2638,6 +2638,9 @@ die(SIGNAL_ARGS)
 		ProcessInterrupts();
 
 	errno = save_errno;
+#ifdef __MINGW32
+	elog(DEBUG5, "CLOSE BY SIGNAL %d\n", postgres_signal_arg);
+#endif
 }
 
 /*
@@ -2647,6 +2650,9 @@ die(SIGNAL_ARGS)
 void
 StatementCancelHandler(SIGNAL_ARGS)
 {
+#ifdef __MINGW32
+	elog(DEBUG5, "BG WORKER Canceled");
+#endif
 	int			save_errno = errno;
 
 	/*

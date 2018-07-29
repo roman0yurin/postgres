@@ -126,7 +126,12 @@ pvsnprintf(char *buf, size_t len, const char *fmt, va_list args)
 	 * If vsnprintf reports an error other than ENOMEM, fail.  The possible
 	 * causes of this are not user-facing errors, so elog should be enough.
 	 */
+#ifndef __MINGW32__
 	if (nprinted < 0 && errno != 0 && errno != ENOMEM)
+#else
+	//Поведение функции изменилось на MINGW в новом стандарте C, теперь она кидает ошибку ERANGE, если значение не влазит в буфер 	
+	if (nprinted < 0 && errno != 0 && errno != ENOMEM && errno != ERANGE)
+#endif
 	{
 #ifndef FRONTEND
 		elog(ERROR, "vsnprintf failed: %m");

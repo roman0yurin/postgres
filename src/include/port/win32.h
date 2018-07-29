@@ -42,9 +42,12 @@
 #if !defined(__MINGW64_VERSION_MAJOR) || defined(_MSC_VER)
 #define _WINSOCKAPI_
 #endif
+#undef ERROR
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #include <windows.h>
+#undef ERROR
+#define ERROR 20 //Тут происходит конфликт определений, сбрасываем виндовое определение и возвращаем постгресовское
 #undef small
 #include <process.h>
 #include <signal.h>
@@ -86,7 +89,7 @@
 #define PGDLLIMPORT __declspec (dllimport)
 #endif
 
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__MINGW32__)
 #define PGDLLEXPORT __declspec (dllexport)
 #else
 #define PGDLLEXPORT
@@ -444,12 +447,14 @@ typedef unsigned short mode_t;
 
 #endif							/* _MSC_VER */
 
-/* These aren't provided by either MingW or MSVC */
-#define S_IRGRP 0
-#define S_IWGRP 0
-#define S_IXGRP 0
-#define S_IRWXG 0
-#define S_IROTH 0
-#define S_IWOTH 0
-#define S_IXOTH 0
-#define S_IRWXO 0
+/* These aren't provided by MSVC */
+#ifndef __MINGW32__
+	#define S_IRGRP 0
+	#define S_IWGRP 0
+	#define S_IXGRP 0
+	#define S_IRWXG 0
+	#define S_IROTH 0
+	#define S_IWOTH 0
+	#define S_IXOTH 0
+	#define S_IRWXO 0
+#endif

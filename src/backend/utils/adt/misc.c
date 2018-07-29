@@ -281,6 +281,9 @@ pg_signal_backend(int pid, int sig)
 Datum
 pg_cancel_backend(PG_FUNCTION_ARGS)
 {
+#ifdef __MINGW32
+	elog(DEBUG5, "postmaster SIGINT to BACKEND %d\n", PG_GETARG_INT32(0));
+#endif
 	int			r = pg_signal_backend(PG_GETARG_INT32(0), SIGINT);
 
 	if (r == SIGNAL_BACKEND_NOSUPERUSER)

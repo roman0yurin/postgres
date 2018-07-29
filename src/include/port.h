@@ -14,18 +14,17 @@
 #define PG_PORT_H
 
 #include <ctype.h>
-#include <netdb.h>
-#include <pwd.h>
 
 /* socket has a different definition on WIN32 */
 #ifndef WIN32
-typedef int pgsocket;
-
-#define PGINVALID_SOCKET (-1)
+    #include <netdb.h>
+    #include <pwd.h>
+    typedef int pgsocket;
+    #define PGINVALID_SOCKET (-1)
 #else
-typedef SOCKET pgsocket;
-
-#define PGINVALID_SOCKET INVALID_SOCKET
+    #include <winsock.h>
+    typedef SOCKET pgsocket;
+    #define PGINVALID_SOCKET INVALID_SOCKET
 #endif
 
 /* non-blocking */
@@ -372,8 +371,12 @@ extern int	fls(int mask);
 #endif
 
 #ifndef HAVE_FSEEKO
-#define fseeko(a, b, c) fseek(a, b, c)
-#define ftello(a)		ftell(a)
+    #ifndef fseeko
+        #define fseeko(a, b, c) fseek(a, b, c)
+    #endif
+    #ifndef ftello
+        #define ftello(a)		ftell(a)
+    #endif
 #endif
 
 #if !defined(HAVE_GETPEEREID) && !defined(WIN32)
@@ -393,8 +396,12 @@ extern double rint(double x);
 #endif
 
 #ifndef HAVE_INET_ATON
-#include <netinet/in.h>
-#include <arpa/inet.h>
+#ifndef WIN32
+    #include <netinet/in.h>
+    #include <arpa/inet.h>
+#else
+    #include <Winsock2.h>
+#endif
 extern int	inet_aton(const char *cp, struct in_addr *addr);
 #endif
 
