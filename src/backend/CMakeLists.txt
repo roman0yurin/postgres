@@ -17,7 +17,6 @@ set(gen_fmgrtab_output
 	${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgrtab.c
 )
 
-message("============ COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl ${postgres_include_catalog}/pg_proc.h CURR DIR ${CMAKE_CURRENT_SOURCE_DIR}/utils")
 add_custom_command(
 	MAIN_DEPENDENCY ${gen_fmgrtab_depend}
 	OUTPUT ${gen_fmgrtab_output}
