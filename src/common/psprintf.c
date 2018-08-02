@@ -120,7 +120,7 @@ pvsnprintf(char *buf, size_t len, const char *fmt, va_list args)
 
 	nprinted = vsnprintf(buf, len, fmt, args);
 
-	Assert(buf[len - 1] == '\0');
+	Assert(buf[len - 1] == '\0' || len -1 < nprinted);
 
 	/*
 	 * If vsnprintf reports an error other than ENOMEM, fail.  The possible

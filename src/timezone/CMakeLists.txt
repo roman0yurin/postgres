@@ -64,10 +64,12 @@ endif()
 
 JOIN("${tzdata}" " " tzdata_string)
 if(WIN32)
-	install(
-			CODE "message('CPACK_PREFIX=\$ENV{DESTDIR} @ ${CPACK_PACKAGING_INSTALL_PREFIX} @ ${CPACK_INSTALL_PREFIX}')"
-			CODE "execute_process(COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"\$ENV{DESTDIR}/${PGSHAREDIR_ZIC}/timezone\" -p \"US/Eastern\" ${tzdata_string})"
+	add_custom_target(generateTimezoneConfigs
+		COMMAND ${CMAKE_CURRENT_BINARY_DIR}/zic${CMAKE_EXECUTABLE_SUFFIX} -d \"${CMAKE_CURRENT_BINARY_DIR}/timezone\" -p \"US/Eastern\" ${tzdata_string}
+		DEPENDS zic
+		WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 	)
+	INSTALL( DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/timezone DESTINATION "${PGSHAREDIR_ZIC}" )
 else()
 	install(
 			CODE "message('CPACK_PREFIX=\$ENV{DESTDIR} @ ${CPACK_PACKAGING_INSTALL_PREFIX} @ ${CPACK_INSTALL_PREFIX}')"

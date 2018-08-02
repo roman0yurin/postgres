@@ -348,10 +348,6 @@ if(ZLIB_FOUND)
 	set(HAVE_LIBZ 1)
 endif()
 
-if(NOT CMAKE_C_FLAGS)
-	set(CMAKE_C_FLAGS "-O2")
-endif()
-
 if(CMAKE_COMPILER_IS_GNUCC)
 	if(CMAKE_C_COMPILER_VERSION VERSION_GREATER 3.3 OR CMAKE_C_COMPILER_VERSION VERSION_EQUAL 3.3)
 		# Disable strict-aliasing rules; needed for gcc 3.3+
