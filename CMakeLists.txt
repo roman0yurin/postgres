@@ -56,7 +56,7 @@ set(INSTALL_BIN_DIR bin CACHE PATH "Installation directory for executables")
 set(INSTALL_INCLUDE_DIR include CACHE PATH
   "Installation directory for header files")
 
-set(PGBINDIR "bin")
+set(PGBINDIR ${BINDIR})
 set(PGSHAREDIR "share/postgresql")
 
 if(NOT SYSCONFDIR)
@@ -72,14 +72,8 @@ endif(NOT PKGINCLUDEDIR)
 if(NOT INCLUDEDIRSERVER)
 	set(INCLUDEDIRSERVER "include/server")
 endif(NOT INCLUDEDIRSERVER)
+set(PKGLIBDIR ${LIBDIR})
 
-if(WIN32)
-	set(LIBDIR "bin")
-	set(PKGLIBDIR "bin")
-else()
-	set(LIBDIR "lib/pg_c60")
-	set(PKGLIBDIR "lib/pg_c60")
-endif()
 
 set_property(GLOBAL PROPERTY POSTGRES_LIB_DIR ${PKGLIBDIR})
 set_property(GLOBAL PROPERTY POSTGRES_SHARE_DIR ${PGSHAREDIR})
