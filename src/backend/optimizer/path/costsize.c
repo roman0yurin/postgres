@@ -119,7 +119,7 @@ int			effective_cache_size = DEFAULT_EFFECTIVE_CACHE_SIZE;
 
 Cost		disable_cost = 1.0e10;
 
-int			max_parallel_workers_per_gather = 2;
+int			max_parallel_workers_per_gather = 5;
 
 bool		enable_seqscan = true;
 bool		enable_indexscan = true;

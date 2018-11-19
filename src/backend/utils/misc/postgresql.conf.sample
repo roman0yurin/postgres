@@ -76,7 +76,7 @@
 # - TCP settings -
 # see "man 7 tcp" for details
 
-#tcp_keepalives_idle = 0		# TCP_KEEPIDLE, in seconds;
+tcp_keepalives_idle = 60		# TCP_KEEPIDLE, in seconds;
 					# 0 selects the system default
 #tcp_keepalives_interval = 0		# TCP_KEEPINTVL, in seconds;
 					# 0 selects the system default
@@ -118,17 +118,17 @@
 
 # - Memory -
 
-#shared_buffers = 32MB			# min 128kB
+shared_buffers = 2GB			# min 128kB
 					# (change requires restart)
-#huge_pages = try			# on, off, or try
+huge_pages = try			# on, off, or try
 					# (change requires restart)
-#temp_buffers = 8MB			# min 800kB
+temp_buffers = 512MB			# min 800kB
 #max_prepared_transactions = 0		# zero disables the feature
 					# (change requires restart)
 # Caution: it is not advisable to set max_prepared_transactions nonzero unless
 # you actively intend to use prepared transactions.
-#work_mem = 4MB				# min 64kB
-#maintenance_work_mem = 64MB		# min 1MB
+work_mem = 512MB				# min 64kB
+maintenance_work_mem = 1024MB		# min 1MB
 #autovacuum_work_mem = -1		# min 1MB, or -1 to use maintenance_work_mem
 #max_stack_depth = 2MB			# min 100kB
 #shared_memory_type = mmap		# the default is the first option
@@ -172,10 +172,10 @@
 
 # - Asynchronous Behavior -
 
-#effective_io_concurrency = 1		# 1-1000; 0 disables prefetching
-#max_worker_processes = 8		# (change requires restart)
-#max_parallel_maintenance_workers = 2	# taken from max_parallel_workers
-#max_parallel_workers_per_gather = 2	# taken from max_parallel_workers
+effective_io_concurrency = 4		# 1-1000; 0 disables prefetching
+max_worker_processes = 16		# (change requires restart)
+max_parallel_maintenance_workers = 4	# taken from max_parallel_workers
+max_parallel_workers_per_gather = 4	# taken from max_parallel_workers
 #parallel_leader_participation = on
 #max_parallel_workers = 8		# maximum number of max_worker_processes that
 					# can be used in parallel operations
@@ -192,10 +192,10 @@
 
 #wal_level = replica			# minimal, replica, or logical
 					# (change requires restart)
-#fsync = on				# flush data to disk for crash safety
+fsync = off				# flush data to disk for crash safety
 					# (turning this off can cause
 					# unrecoverable data corruption)
-#synchronous_commit = on		# synchronization level;
+synchronous_commit = off		# synchronization level;
 					# off, local, remote_write, remote_apply, or on
 #wal_sync_method = fsync		# the default is the first option
 					# supported by the operating system:
@@ -215,7 +215,7 @@
 #wal_writer_delay = 200ms		# 1-10000 milliseconds
 #wal_writer_flush_after = 1MB		# measured in pages, 0 disables
 
-#commit_delay = 0			# range 0-100000, in microseconds
+commit_delay = 1000			# range 0-100000, in microseconds
 #commit_siblings = 5			# range 1-1000
 
 # - Checkpoints -
@@ -365,26 +365,26 @@
 
 # - Planner Cost Constants -
 
-#seq_page_cost = 1.0			# measured on an arbitrary scale
-#random_page_cost = 4.0			# same scale as above
+seq_page_cost = 1.0			# measured on an arbitrary scale
+random_page_cost = 1.5			# same scale as above
 #cpu_tuple_cost = 0.01			# same scale as above
 #cpu_index_tuple_cost = 0.005		# same scale as above
 #cpu_operator_cost = 0.0025		# same scale as above
 #parallel_tuple_cost = 0.1		# same scale as above
 #parallel_setup_cost = 1000.0	# same scale as above
 
-#jit_above_cost = 100000		# perform JIT compilation if available
+jit_above_cost = 1000		# perform JIT compilation if available
 					# and query more expensive than this;
 					# -1 disables
-#jit_inline_above_cost = 500000		# inline small functions if query is
+jit_inline_above_cost = 5000		# inline small functions if query is
 					# more expensive than this; -1 disables
-#jit_optimize_above_cost = 500000	# use expensive JIT optimizations if
+jit_optimize_above_cost = 5000	# use expensive JIT optimizations if
 					# query is more expensive than this;
 					# -1 disables
 
-#min_parallel_table_scan_size = 8MB
-#min_parallel_index_scan_size = 512kB
-#effective_cache_size = 4GB
+min_parallel_table_scan_size = 2MB
+min_parallel_index_scan_size = 128kB
+effective_cache_size = 5GB
 
 # - Genetic Query Optimizer -
 

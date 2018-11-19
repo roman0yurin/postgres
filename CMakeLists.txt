@@ -19,6 +19,9 @@ set_property(GLOBAL PROPERTY POSTGRES_BIN_DIR ${CMAKE_CURRENT_BINARY_DIR})
 message("BUILD POSTGRES CMAKE_CURRENT_SOURCE_DIR        =${CMAKE_POSTGRES_SOURCE_DIR}")
 message("BUILD POSTGRES CMAKE_BINARY_DIR        =${CMAKE_BINARY_DIR}")
 
+#TCP
+add_definitions(-DTCP_KEEPIDLE -DTCP_NODELAY)
+
 include(CheckTypeSize)
 include(CheckSymbolExists)
 include(CheckFunctionExists)
