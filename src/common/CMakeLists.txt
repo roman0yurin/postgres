@@ -2,25 +2,9 @@ if(OPENSSL_FOUND)
 	include_directories(BEFORE ${OPENSSL_INCLUDE_DIR})
 endif()
 
-set(pgcommon_srv_SRCS
-	exec.c
-	pg_lzcompress.c
-	pgfnames.c
-	psprintf.c
-	relpath.c
-	rmtree.c
-	string.c
-	username.c
-	wait_error.c
-	controldata_utils.c
-	config_info.c
-	keywords.c
-	md5.c
-	ip.c
-	base64.c
-	saslprep.c
-	scram-common.c
-)
+file(GLOB pgcommon_srv_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
+file(GLOB exclude_pgcommon_srv_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/fe_*.c ${CMAKE_CURRENT_SOURCE_DIR}/restricted_token.c)
+list(REMOVE_ITEM pgcommon_srv_SRCS ${exclude_pgcommon_srv_SRCS})
 
 if(OPENSSL_FOUND)
 	set(pgcommon_srv_SRCS ${pgcommon_srv_SRCS} sha2_openssl.c)

@@ -14,17 +14,17 @@
 
 { oid => '3727',
   descr => 'simple dictionary: just lower case and check for stopword',
-  tmplname => 'simple', tmplinit => 'dsimple_init',
+  tmplname => 'simple', tmplnamespace => 'PGNSP', tmplinit => 'dsimple_init',
   tmpllexize => 'dsimple_lexize' },
 { oid => '3730', descr => 'synonym dictionary: replace word by its synonym',
-  tmplname => 'synonym', tmplinit => 'dsynonym_init',
+  tmplname => 'synonym', tmplnamespace => 'PGNSP', tmplinit => 'dsynonym_init',
   tmpllexize => 'dsynonym_lexize' },
 { oid => '3733', descr => 'ispell dictionary',
-  tmplname => 'ispell', tmplinit => 'dispell_init',
+  tmplname => 'ispell', tmplnamespace => 'PGNSP', tmplinit => 'dispell_init',
   tmpllexize => 'dispell_lexize' },
 { oid => '3742',
   descr => 'thesaurus dictionary: phrase by phrase substitution',
-  tmplname => 'thesaurus', tmplinit => 'thesaurus_init',
-  tmpllexize => 'thesaurus_lexize' },
+  tmplname => 'thesaurus', tmplnamespace => 'PGNSP',
+  tmplinit => 'thesaurus_init', tmpllexize => 'thesaurus_lexize' },
 
 ]

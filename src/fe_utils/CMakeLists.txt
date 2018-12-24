@@ -13,11 +13,9 @@ flex_target(psqlscan
 	${psqlscan_flags}
 )
 
+file(GLOB_RECURSE pgfeutils_SRC ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
+
 add_library(pgfeutils STATIC
-	mbprint.c
-	print.c
-	psqlscan.c
-	simple_list.c
-	string_utils.c
+	${pgfeutils_SRC}
 	${FLEX_psqlscan_OUTPUTS}
 )

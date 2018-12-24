@@ -11,6 +11,7 @@ set(pgtypes_SRC
 	timestamp.c
 	interval.c
 	${PROJECT_SOURCE_DIR}/src/port/pgstrcasecmp.c
+	${PROJECT_SOURCE_DIR}/src/common/string.c
 )
 if(USE_REPL_SNPRINTF)
 	set(pgtypes_SRC

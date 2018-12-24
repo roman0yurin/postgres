@@ -1,5 +1,7 @@
 set(INCLUDEDIR_INTERNAL ${PKGINCLUDEDIR}/internal)
 
+add_subdirectory(catalog)
+
 # These headers are needed by the public headers of the interfaces.
 install(FILES
 	postgres_ext.h

@@ -383,6 +383,7 @@ sub FindDefinedSymbol
 		$include_path .= '/';
 	}
 	my $file = $include_path . $catalog_header;
+	print "!!!$file!!\n";
 	open(my $find_defined_symbol, '<', $file) || die "$file: $!";
 	while (<$find_defined_symbol>)
 	{
