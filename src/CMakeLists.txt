@@ -1,4 +1,7 @@
-include_directories("${PROJECT_SOURCE_DIR}/src/include")
+include_directories(
+				"${PROJECT_SOURCE_DIR}/src/include"
+				"${LLVM_INCLUDE_DIRS}"
+)
 
 set(gen_errorcodes_depend
 	${PROJECT_SOURCE_DIR}/src/backend/utils/errcodes.txt

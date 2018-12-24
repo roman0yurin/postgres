@@ -38,14 +38,14 @@ endif()
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-set(POSTGRES_MAJOR_VERSION 10)
-set(POSTGRES_MINOR_VERSION 3)
+set(POSTGRES_MAJOR_VERSION 11)
+set(POSTGRES_MINOR_VERSION 1)
 set(POSTGRES_PATCH_VERSION 0)
 set(POSTGRES_VERSION
   ${POSTGRES_MAJOR_VERSION}.${POSTGRES_MINOR_VERSION}.${POSTGRES_PATCH_VERSION})
 
-set(PG_VERSION "10.3")
-set(PG_VERSION_NUM 100000)
+set(PG_VERSION "11.1")
+set(PG_VERSION_NUM 110001)
 set(PACKAGE_BUGREPORT "pgsql-bugs@postgresql.org")
 
  # Offer the user the choice of overriding the installation directories
@@ -207,6 +207,12 @@ option(USE_LDAP "build with LDAP support" OFF)
 if(USE_LDAP)
 	find_package(LDAP REQUIRED)
 endif()
+
+find_package(LLVM 5.0 REQUIRED)
+message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
+message(STATUS "Using LLVMConfig.cmake in: ${LLVM_DIR}")
+message("LLVM_INCLUDE_DIRS=${LLVM_INCLUDE_DIRS}")
+message("LLVM_LIBRARIES=${LLVM_LIBRARIES}")
 
 #if(WIN32 OR MINGW)
 #	set(NEED_REPL_SNPRINTF ON)

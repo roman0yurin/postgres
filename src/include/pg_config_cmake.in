@@ -946,4 +946,70 @@
 
 #cmakedefine USE_FP_STRICT 1
 
+#define pg_restrict __restrict
+
+/* Define to 1 if you have the declaration of
+`LLVMCreateGDBRegistrationListener', and to 0 if you don't. */
+#undef HAVE_DECL_LLVMCREATEGDBREGISTRATIONLISTENER
+
+/* Define to 1 if you have the declaration of
+   `LLVMCreatePerfJITEventListener', and to 0 if you don't. */
+#undef HAVE_DECL_LLVMCREATEPERFJITEVENTLISTENER
+
+/* Define to 1 if you have the declaration of `LLVMGetHostCPUFeatures', and to
+   0 if you don't. */
+#define HAVE_DECL_LLVMGETHOSTCPUFEATURES 0
+
+/* Define to 1 if you have the declaration of `LLVMGetHostCPUName', and to 0
+   if you don't. */
+#define HAVE_DECL_LLVMGETHOSTCPUNAME 0
+
+/* Define to 1 if you have the declaration of `LLVMOrcGetSymbolAddressIn', and
+   to 0 if you don't. */
+#define HAVE_DECL_LLVMORCGETSYMBOLADDRESSIN 0
+
+/* Define to 1 if you have the declaration of `strtoll', and to 0 if you
+   don't. */
+#define HAVE_DECL_STRTOLL 1
+
+/* Define to 1 if you have the declaration of `strtoull', and to 0 if you
+   don't. */
+#define HAVE_DECL_STRTOULL 1
+
+/* Define to 1 if you have the `SSL_clear_options' function. */
+#define HAVE_SSL_CLEAR_OPTIONS 1
+
+/* Define to 1 if stdbool.h conforms to C99. */
+#define HAVE_STDBOOL_H 1
+
+
+/* Define to 1 if you have the `X509_get_signature_nid' function. */
+#define HAVE_X509_GET_SIGNATURE_NID 1
+
+/* Define to 1 if the system has the type `_Bool'. */
+#define HAVE__BOOL 1
+
+/* Define to 1 if you have the `__strtoll' function. */
+#define HAVE___STRTOLL 1
+
+/* Define to 1 if you have the `__strtoull' function. */
+#define HAVE___STRTOULL 1
+
+/* The size of `bool', as computed by sizeof. */
+#undef SIZEOF_BOOL
+
+/* Define to 1 to use ARMv8 CRC Extension. */
+#undef USE_ARMV8_CRC32C
+
+/* Define to 1 to use ARMv8 CRC Extension with a runtime check. */
+#undef USE_ARMV8_CRC32C_WITH_RUNTIME_CHECK
+
+/* Define to 1 to build with LLVM based JIT support. (--with-llvm) */
+#define USE_LLVM 1
+
+#define HAVE_RINT 1
+
+#define LLVM_VERSION_MAJOR @LLVM_VERSION_MAJOR@
+
+
 #endif  // AUTO_CONFIG_H

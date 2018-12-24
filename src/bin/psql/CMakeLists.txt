@@ -19,7 +19,6 @@ flex_target(SCANSLASH_SCAN
 set(psql_SRCS
 	command.c
 	common.c
-	conditional.c
 	help.c
 	help.h
 	input.c

@@ -6,11 +6,19 @@ include_directories(
 
 set(postgres_include_catalog "${PROJECT_SOURCE_DIR}/src/include/catalog")
 
+set(FMGR_DATA
+				${postgres_include_catalog}/pg_language.dat
+				${postgres_include_catalog}/pg_proc.dat
+)
+
 set(gen_fmgrtab_depend
 	utils/Gen_fmgrtab.pl
 	${CMAKE_CURRENT_SOURCE_DIR}/catalog/Catalog.pm
 	${postgres_include_catalog}/pg_proc.h
+	${PROJECT_SOURCE_DIR}/src/include/access/transam.h
+	${FMGR_DATA}
 )
+
 set(gen_fmgrtab_output
 	${PROJECT_SOURCE_DIR}/src/include/utils/fmgroids.h
 	${PROJECT_SOURCE_DIR}/src/include/utils/fmgrprotos.h
@@ -20,7 +28,8 @@ set(gen_fmgrtab_output
 add_custom_command(
 	MAIN_DEPENDENCY ${gen_fmgrtab_depend}
 	OUTPUT ${gen_fmgrtab_output}
-	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl ${postgres_include_catalog}/pg_proc.h
+	DEPENDS ${CATALOG_DAT_GEN_OUT}
+	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl -I${PROJECT_SOURCE_DIR}/src/include ${FMGR_DATA}
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgroids.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgroids.h
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgrprotos.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgrprotos.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils
@@ -116,129 +125,7 @@ set(rmgrdesc_SRC
 	PARENT_SCOPE
 )
 
-set(access_SRCS
-	${gen_fmgrtab_output}
-	${gen_probe_output}
-	${PROJECT_SOURCE_DIR}/src/include/dynloader.h
-	${access_rmgrdesc_SRC}
-
-	access/brin/brin.c
-	access/brin/brin_pageops.c
-	access/brin/brin_revmap.c
-	access/brin/brin_tuple.c
-	access/brin/brin_xlog.c
-	access/brin/brin_minmax.c
-	access/brin/brin_inclusion.c
-	access/brin/brin_validate.c
-
-	access/common/bufmask.c
-	access/common/heaptuple.c
-	access/common/indextuple.c
-	access/common/printtup.c
-	access/common/printsimple.c
-	access/common/reloptions.c
-	access/common/scankey.c
-	access/common/tupconvert.c
-	access/common/tupdesc.c
-
-	access/gin/ginutil.c
-	access/gin/gininsert.c
-	access/gin/ginxlog.c
-	access/gin/ginentrypage.c
-	access/gin/gindatapage.c
-	access/gin/ginbtree.c
-	access/gin/ginscan.c
-	access/gin/ginget.c
-	access/gin/ginvacuum.c
-	access/gin/ginarrayproc.c
-	access/gin/ginbulk.c
-	access/gin/ginfast.c
-	access/gin/ginpostinglist.c
-	access/gin/ginlogic.c
-	access/gin/ginvalidate.c
-
-	access/gist/gist.c
-	access/gist/gistutil.c
-	access/gist/gistxlog.c
-	access/gist/gistvacuum.c
-	access/gist/gistget.c
-	access/gist/gistscan.c
-	access/gist/gistproc.c
-	access/gist/gistsplit.c
-	access/gist/gistbuild.c
-	access/gist/gistbuildbuffers.c
-	access/gist/gistvalidate.c
-
-	access/hash/hash.c
-	access/hash/hashfunc.c
-	access/hash/hashinsert.c
-	access/hash/hashovfl.c
-	access/hash/hashpage.c
-	access/hash/hashsearch.c
-	access/hash/hashsort.c
-	access/hash/hashutil.c
-	access/hash/hashvalidate.c
-	access/hash/hash_xlog.c
-
-	access/heap/heapam.c
-	access/heap/hio.c
-	access/heap/pruneheap.c
-	access/heap/rewriteheap.c
-	access/heap/syncscan.c
-	access/heap/tuptoaster.c
-	access/heap/visibilitymap.c
-
-	access/index/genam.c
-	access/index/indexam.c
-	access/index/amapi.c
-	access/index/amvalidate.c
-
-	access/nbtree/nbtcompare.c
-	access/nbtree/nbtinsert.c
-	access/nbtree/nbtpage.c
-	access/nbtree/nbtree.c
-	access/nbtree/nbtsearch.c
-	access/nbtree/nbtutils.c
-	access/nbtree/nbtsort.c
-	access/nbtree/nbtxlog.c
-	access/nbtree/nbtvalidate.c
-
-	access/spgist/spgutils.c
-	access/spgist/spginsert.c
-	access/spgist/spgscan.c
-	access/spgist/spgvacuum.c
-	access/spgist/spgdoinsert.c
-	access/spgist/spgxlog.c
-	access/spgist/spgtextproc.c
-	access/spgist/spgquadtreeproc.c
-	access/spgist/spgkdtreeproc.c
-	access/spgist/spgvalidate.c
-
-	access/tablesample/bernoulli.c
-	access/tablesample/system.c
-	access/tablesample/tablesample.c
-
-	access/transam/clog.c
-	access/transam/commit_ts.c
-	access/transam/multixact.c
-	access/transam/generic_xlog.c
-	access/transam/parallel.c
-	access/transam/rmgr.c
-	access/transam/slru.c
-	access/transam/subtrans.c
-	access/transam/timeline.c
-	access/transam/transam.c
-	access/transam/twophase.c
-	access/transam/twophase_rmgr.c
-	access/transam/varsup.c
-	access/transam/xact.c
-	access/transam/xlog.c
-	access/transam/xlogarchive.c
-	access/transam/xlogfuncs.c
-	access/transam/xloginsert.c
-	access/transam/xlogreader.c
-	access/transam/xlogutils.c
-)
+file(GLOB_RECURSE access_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/access/*.c)
 
 bison_target(BOOTSTRAP_PARSER bootstrap/bootparse.y ${CMAKE_CURRENT_SOURCE_DIR}/bootstrap/bootparse.c)
 flex_target(BOOTSTRAP_SCANNER bootstrap/bootscanner.l  ${CMAKE_CURRENT_SOURCE_DIR}/bootstrap/bootscanner.c)
@@ -323,6 +210,10 @@ set(POSTGRES_BKI_SRCS
 	${postgres_include_catalog}/indexing.h
 )
 
+
+# The .dat files we need can just be listed alphabetically.
+file(GLOB_RECURSE POSTGRES_BKI_DATA ${postgres_include_catalog}/*.dat)
+
 set(catalog_SRCS
 	catalog/catalog.c
 	catalog/dependency.c
@@ -360,10 +251,19 @@ set(catalog_include
 	"-I${PROJECT_SOURCE_DIR}/src/include/catalog"
 )
 
+
 add_custom_command(
-	DEPENDS ${POSTGRES_BKI_SRCS}
+				OUTPUT catalog/postgres.bki
+				COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
+				COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
+				COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/catalog/*_d.h ${PROJECT_SOURCE_DIR}/src/include/catalog
+				WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
+)
+
+add_custom_command(
+	DEPENDS ${POSTGRES_BKI_SRCS} ${POSTGRES_BKI_DATA}
 	OUTPUT ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
-	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl ${catalog_include} --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
+	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
 	COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
 )
@@ -420,79 +320,9 @@ set(commands_SRCS
 	commands/view.c
 )
 
-set(executor_SRCS
-	executor/execAmi.c
-	executor/execCurrent.c
-	executor/execGrouping.c
-	executor/execIndexing.c
-	executor/execJunk.c
-	executor/execMain.c
-	executor/execProcnode.c
-	executor/execParallel.c
-	executor/execScan.c
-	executor/execTuples.c
-	executor/execUtils.c
-	executor/execExpr.c
-	executor/execExprInterp.c
-	executor/execReplication.c
-	executor/execSRF.c
-	executor/functions.c
-	executor/instrument.c
-	executor/tqueue.c
-	executor/nodeAppend.c
-	executor/nodeAgg.c
-	executor/nodeBitmapAnd.c
-	executor/nodeBitmapOr.c
-	executor/nodeBitmapHeapscan.c
-	executor/nodeBitmapIndexscan.c
-	executor/nodeCustom.c
-	executor/nodeHash.c
-	executor/nodeHashjoin.c
-	executor/nodeIndexscan.c
-	executor/nodeIndexonlyscan.c
-	executor/nodeLimit.c
-	executor/nodeLockRows.c
-	executor/nodeMaterial.c
-	executor/nodeMergeAppend.c
-	executor/nodeMergejoin.c
-	executor/nodeModifyTable.c
-	executor/nodeNestloop.c
-	executor/nodeFunctionscan.c
-	executor/nodeRecursiveunion.c
-	executor/nodeResult.c
-	executor/nodeSamplescan.c
-	executor/nodeSeqscan.c
-	executor/nodeSetOp.c
-	executor/nodeSort.c
-	executor/nodeUnique.c
-	executor/nodeValuesscan.c
-	executor/nodeCtescan.c
-	executor/nodeWorktablescan.c
-	executor/nodeGroup.c
-	executor/nodeGather.c
-	executor/nodeSubplan.c
-	executor/nodeSubqueryscan.c
-	executor/nodeTidscan.c
-	executor/nodeForeignscan.c
-	executor/nodeWindowAgg.c
-	executor/nodeGatherMerge.c
-	executor/nodeNamedtuplestorescan.c
-	executor/nodeProjectSet.c
-	executor/nodeTableFuncscan.c
-	executor/tstoreReceiver.c
-	executor/spi.c
-)
+file(GLOB_RECURSE executor_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/executor/*.c)
 
-set(lib_SRCS
-	lib/binaryheap.c
-	lib/bipartite_match.c
-	lib/hyperloglog.c
-	lib/ilist.c
-	lib/pairingheap.c
-	lib/rbtree.c
-	lib/stringinfo.c
-	lib/knapsack.c
-)
+file(GLOB_RECURSE lib_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/lib/*.c)
 
 if(OPENSSL_FOUND)
 	set(libpq_ssl_SRCS libpq/be-secure-openssl.c)
@@ -513,161 +343,20 @@ set(libpq_SRCS
 	${libpq_ssl_SRCS}
 )
 
-set(utils_SRCS
-	utils/error/assert.c
-	utils/error/elog.c
-	utils/cache/attoptcache.c
-	utils/cache/catcache.c
-	utils/cache/evtcache.c
-	utils/cache/inval.c
-	utils/cache/plancache.c
-	utils/cache/relcache.c
-	utils/cache/relmapper.c
-	utils/cache/relfilenodemap.c
-	utils/cache/spccache.c
-	utils/cache/syscache.c
-	utils/cache/lsyscache.c
-	utils/cache/typcache.c
-	utils/cache/ts_cache.c
-	utils/mmgr/aset.c
-	utils/mmgr/dsa.c
-	utils/mmgr/mcxt.c
-	utils/mmgr/portalmem.c
-	utils/mmgr/freepage.c
-	utils/mmgr/memdebug.c
-	utils/mmgr/slab.c
-	utils/adt/acl.c
-	utils/adt/arrayfuncs.c
-	utils/adt/array_expanded.c
-	utils/adt/array_selfuncs.c
-	utils/adt/array_typanalyze.c
-	utils/adt/array_userfuncs.c
-	utils/adt/arrayutils.c
-	utils/adt/ascii.c
-	utils/adt/bool.c
-	utils/adt/cash.c
-	utils/adt/char.c
-	utils/adt/date.c
-	utils/adt/datetime.c
-	utils/adt/datum.c
-	utils/adt/dbsize.c
-	utils/adt/domains.c
-	utils/adt/encode.c
-	utils/adt/enum.c
-	utils/adt/expandeddatum.c
-	utils/adt/float.c
-	utils/adt/format_type.c
-	utils/adt/formatting.c
-	utils/adt/genfile.c
-	utils/adt/geo_ops.c
-	utils/adt/geo_selfuncs.c
-	utils/adt/geo_spgist.c
-	utils/adt/inet_cidr_ntop.c
-	utils/adt/inet_net_pton.c
-	utils/adt/int.c
-	utils/adt/int8.c
-	utils/adt/json.c
-	utils/adt/jsonb.c
-	utils/adt/jsonb_gin.c
-	utils/adt/jsonb_op.c
-	utils/adt/jsonb_util.c
-	utils/adt/jsonfuncs.c
-	utils/adt/like.c
-	#utils/adt/like_match.c
-	utils/adt/lockfuncs.c
-	utils/adt/mac.c
-	utils/adt/misc.c
-	utils/adt/nabstime.c
-	utils/adt/name.c
-	utils/adt/network.c
-	utils/adt/network_gist.c
-	utils/adt/network_selfuncs.c
-	utils/adt/numeric.c
-	utils/adt/numutils.c
-	utils/adt/oid.c
-	utils/adt/oracle_compat.c
-	utils/adt/orderedsetaggs.c
-	utils/adt/pg_locale.c
-	utils/adt/pg_lsn.c
-	utils/adt/pg_upgrade_support.c
-	utils/adt/pgstatfuncs.c
-	utils/adt/pseudotypes.c
-	utils/adt/quote.c
-	utils/adt/rangetypes.c
-	utils/adt/rangetypes_gist.c
-	utils/adt/rangetypes_selfuncs.c
-	utils/adt/rangetypes_spgist.c
-	utils/adt/rangetypes_typanalyze.c
-	utils/adt/regexp.c
-	utils/adt/regproc.c
-	utils/adt/ri_triggers.c
-	utils/adt/rowtypes.c
-	utils/adt/ruleutils.c
-	utils/adt/selfuncs.c
-	utils/adt/tid.c
-	utils/adt/timestamp.c
-	utils/adt/trigfuncs.c
-	utils/adt/tsginidx.c
-	utils/adt/tsgistidx.c
-	utils/adt/tsquery.c
-	utils/adt/tsquery_cleanup.c
-	utils/adt/tsquery_gist.c
-	utils/adt/tsquery_op.c
-	utils/adt/tsquery_rewrite.c
-	utils/adt/tsquery_util.c
-	utils/adt/tsrank.c
-	utils/adt/tsvector.c
-	utils/adt/tsvector_op.c
-	utils/adt/tsvector_parser.c
-	utils/adt/txid.c
-	utils/adt/uuid.c
-	utils/adt/varbit.c
-	utils/adt/varchar.c
-	utils/adt/varlena.c
-	utils/adt/amutils.c
-	utils/adt/version.c
-	utils/adt/windowfuncs.c
-	utils/adt/xid.c
-	utils/adt/xml.c
-	utils/adt/network_spgist.c
-	utils/adt/mac8.c
-	utils/fmgr/dfmgr.c
-	utils/fmgr/fmgr.c
-	utils/fmgr/funcapi.c
-	utils/hash/dynahash.c
-	utils/hash/hashfn.c
-	utils/hash/pg_crc.c
-	utils/init/globals.c
-	utils/init/miscinit.c
-	utils/init/postinit.c
-	utils/resowner/resowner.c
-	utils/sort/logtape.c
-	utils/sort/sortsupport.c
-	utils/sort/tuplesort.c
-	utils/sort/tuplestore.c
-	utils/time/combocid.c
-	utils/time/tqual.c
-	utils/time/snapmgr.c
-	utils/misc/guc.c
-	utils/misc/help_config.c
-	utils/misc/pg_rusage.c
-	utils/misc/pg_controldata.c
-	utils/misc/pg_config.c
-	utils/misc/ps_status.c
-	utils/misc/rls.c
-	utils/misc/sampling.c
-	utils/misc/superuser.c
-	utils/misc/timeout.c
-	utils/misc/tzparser.c
-	utils/misc/backend_random.c
-	utils/misc/queryenvironment.c
-	utils/mb/encnames.c
-	utils/mb/conv.c
-	utils/mb/mbutils.c
-	utils/mb/wchar.c
-	utils/mb/wstrcmp.c
-	utils/mb/wstrncmp.c
+file(GLOB_RECURSE utils_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/utils/*.c)
+
+file(GLOB_RECURSE utils_conversion_procs_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/conversion_procs/*.c)
+list(REMOVE_ITEM utils_SRCS
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/levenshtein.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/like_match.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/sort/qsort_tuple.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/misc/guc-file.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/iso.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/win866.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/win1251.c
+				${utils_conversion_procs_SRCS}
 )
+list(APPEND utils_SRCS ${gen_fmgrtab_output} ${gen_probe_output} ${PROJECT_SOURCE_DIR}/src/include/dynloader.h)
 
 set(nodes_SRCS
 	nodes/nodeFuncs.c
@@ -884,53 +573,7 @@ set(backend_port_SRCS
 	${SHMEM_IMPLEMENTATION}
 )
 
-
-set(storage_SRCS
-	${gen_lwlocknames_output}
-	storage/buffer/buf_table.c
-	storage/buffer/buf_init.c
-	storage/buffer/bufmgr.c
-	storage/buffer/freelist.c
-	storage/buffer/localbuf.c
-	storage/file/fd.c
-	storage/file/buffile.c
-	storage/file/copydir.c
-	storage/file/reinit.c
-	storage/freespace/freespace.c
-	storage/freespace/fsmpage.c
-	storage/freespace/indexfsm.c
-	storage/ipc/dsm_impl.c
-	storage/ipc/dsm.c
-	storage/ipc/ipc.c
-	storage/ipc/ipci.c
-	storage/ipc/pmsignal.c
-	storage/ipc/procarray.c
-	storage/ipc/procsignal.c
-	storage/ipc/shmem.c
-	storage/ipc/shmqueue.c
-	storage/ipc/shm_mq.c
-	storage/ipc/shm_toc.c
-	storage/ipc/sinval.c
-	storage/ipc/sinvaladt.c
-	storage/ipc/standby.c
-	storage/ipc/latch.c
-	storage/large_object/inv_api.c
-	storage/lmgr/lmgr.c # Need some for check s_lock
-	storage/lmgr/lock.c
-	storage/lmgr/proc.c
-	storage/lmgr/deadlock.c
-	storage/lmgr/lwlock.c
-	storage/lmgr/spin.c
-	storage/lmgr/s_lock.c
-	storage/lmgr/predicate.c
-	storage/lmgr/condition_variable.c
-	storage/page/bufpage.c
-	storage/page/checksum.c
-	storage/page/itemptr.c
-	storage/smgr/md.c
-	storage/smgr/smgr.c
-	storage/smgr/smgrtype.c
-)
+file(GLOB_RECURSE storage_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/storage/*.c)
 
 if(NOT MSVC)
 	set_source_files_properties(storage/page/checksum.c
@@ -1006,6 +649,9 @@ add_custom_command(
 set_source_files_properties(utils/sort/tuplesort.c
 	PROPERTIES OBJECT_DEPENDS "${PROJECT_SOURCE_DIR}/src/backend/utils/sort/qsort_tuple.c")
 
+file(GLOB_RECURSE JIT_SRC jit/*.c jit/*.cpp)
+file(GLOB_RECURSE PART_SRC partitioning/*.c)
+
 set(postgres_SRCS
 	${access_SRCS}
 	${storage_SRCS}
@@ -1029,6 +675,8 @@ set(postgres_SRCS
 	${replication_SRCS}
 	${timezone_SRCS}
 	${statistics_SRCS}
+	${JIT_SRC}
+	${PART_SRC}
 	main/main.c
 )
 
@@ -1068,6 +716,7 @@ target_link_libraries(postgres
 	${LIB_M}
 	${GSS_LIBS}
 	${ICU_LIBRARIES}
+	${LLVM_LIBRARIES}
 )
 if(OPENSSL_FOUND)
 	target_link_libraries(postgres ${OPENSSL_LIBRARIES})
