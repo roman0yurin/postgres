@@ -28,7 +28,6 @@ set(gen_fmgrtab_output
 add_custom_command(
 	MAIN_DEPENDENCY ${gen_fmgrtab_depend}
 	OUTPUT ${gen_fmgrtab_output}
-	DEPENDS ${CATALOG_DAT_GEN_OUT}
 	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl -I${PROJECT_SOURCE_DIR}/src/include ${FMGR_DATA}
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgroids.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgroids.h
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgrprotos.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgrprotos.h
@@ -256,20 +255,20 @@ add_custom_command(
 				OUTPUT catalog/postgres.bki
 				COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
 				COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
-				COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/catalog/*_d.h ${PROJECT_SOURCE_DIR}/src/include/catalog
 				WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
 )
 
-add_custom_command(
-	DEPENDS ${POSTGRES_BKI_SRCS} ${POSTGRES_BKI_DATA}
-	OUTPUT ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
-	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
-	COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
-	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
+
+##Генерация исходников через Perl. При разработке выывается вручную, так как add_custom_target с DEPENDENCY будет делать перегенерацию каждый раз, а add_custom_command работает только в пределах одного CMAKE файла
+add_custom_target(
+		POSTGRES_GENERATE_SRC
+		DEPENDS ${POSTGRES_BKI_SRCS} ${POSTGRES_BKI_DATA} postgres_dat_gen
+		COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
+		COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
+		COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/catalog/*_d.h ${PROJECT_SOURCE_DIR}/src/include/catalog
+		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
 )
 
-set_source_files_properties(utils/cache/relcache.c
-	PROPERTIES OBJECT_DEPENDS ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h)
 
 set(commands_SRCS
 	commands/aggregatecmds.c
@@ -563,6 +562,13 @@ add_custom_command(
 	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr
 )
 
+#add_custom_target(
+#		postgres_lock_gen
+#		COMMAND ${PERL_EXECUTABLE} generate-lwlocknames.pl lwlocknames.txt
+#		COMMAND ${CMAKE_COMMAND} -E copy lwlocknames.h ${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
+#		WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr
+#)
+
 set(backend_port_SRCS
 	port/atomics.c
 	port/tas/${TAS}
@@ -677,6 +683,7 @@ set(postgres_SRCS
 	${statistics_SRCS}
 	${JIT_SRC}
 	${PART_SRC}
+	${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
 	main/main.c
 )
 
