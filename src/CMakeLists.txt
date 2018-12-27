@@ -1,3 +1,5 @@
+set(CMAKE_CFLAGS "${CMAKE_CFLAGS} -Wno-register")
+
 include_directories(
 				"${PROJECT_SOURCE_DIR}/src/include"
 				"${LLVM_INCLUDE_DIRS}"
