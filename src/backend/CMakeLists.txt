@@ -655,7 +655,7 @@ add_custom_command(
 set_source_files_properties(utils/sort/tuplesort.c
 	PROPERTIES OBJECT_DEPENDS "${PROJECT_SOURCE_DIR}/src/backend/utils/sort/qsort_tuple.c")
 
-file(GLOB_RECURSE JIT_SRC jit/*.c jit/*.cpp)
+file(GLOB JIT_SRC jit/*.c jit/*.cpp)
 file(GLOB_RECURSE PART_SRC partitioning/*.c)
 
 set(postgres_SRCS
@@ -831,6 +831,7 @@ DESTINATION ${PGSHAREDIR})
 
 add_subdirectory(utils/mb/conversion_procs)
 add_subdirectory(snowball)
+add_subdirectory(jit/llvm)
 
 if(ENABLE_NLS)
 	MAKE_MO(postgres "de;es;fr;id;it;ja;pl;pt_BR;ru;zh_CN;ko")
