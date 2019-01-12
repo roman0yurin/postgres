@@ -739,7 +739,7 @@
 #define PG_VERSION_NUM @PG_VERSION_NUM@
 
 /* A string containing the version number, platform, and C compiler */
-#define PG_VERSION_STR "PostgreSQL @PG_VERSION@ on @CMAKE_SYSTEM_NAME@, compiled by @CMAKE_C_COMPILER_ID@, @VOID_POINTER_SIZE_BIT@-bit"
+#define PG_VERSION_STR "PostgreSQL @PG_VERSION@ (C60 edition) on @CMAKE_SYSTEM_NAME@, compiled by @CMAKE_C_COMPILER_ID@ (CMake), @VOID_POINTER_SIZE_BIT@-bit"
 
 /* Define to 1 to allow profiling output to be saved separately for each
    process. */
