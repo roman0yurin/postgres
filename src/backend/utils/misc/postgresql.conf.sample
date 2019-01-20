@@ -172,7 +172,7 @@ maintenance_work_mem = 1024MB		# min 1MB
 
 # - Asynchronous Behavior -
 
-effective_io_concurrency = 4		# 1-1000; 0 disables prefetching
+effective_io_concurrency = @PG_IO_CONCURRENCY@# 1-1000; 0 disables prefetching
 max_worker_processes = 16		# (change requires restart)
 max_parallel_maintenance_workers = 4	# taken from max_parallel_workers
 max_parallel_workers_per_gather = 4	# taken from max_parallel_workers

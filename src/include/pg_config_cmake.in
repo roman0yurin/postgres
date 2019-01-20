@@ -406,9 +406,6 @@
 /* Define to 1 if you have the `readlink' function. */
 #cmakedefine HAVE_READLINK 1
 
-/* Define to 1 if you have the `rint' function. */
-#cmakedefine HAVE_RINT 1
-
 /* Define to 1 if you have the global variable
    'rl_completion_append_character'. */
 #cmakedefine HAVE_RL_COMPLETION_APPEND_CHARACTER 1
@@ -1005,7 +1002,7 @@
 #undef USE_ARMV8_CRC32C_WITH_RUNTIME_CHECK
 
 /* Define to 1 to build with LLVM based JIT support. (--with-llvm) */
-#define USE_LLVM 1
+#define USE_LLVM @POSTGRES_CLANG_JIT@
 
 #define HAVE_RINT 1
 
