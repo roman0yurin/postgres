@@ -1,3 +1,7 @@
+IF (WIN32)
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-attributes -Wno-expansion-to-defined -fno-reorder-blocks-and-partition")
+ENDIF()
+
 include_directories(
 	"${PROJECT_SOURCE_DIR}/src/include/libpq"
 	"${PROJECT_SOURCE_DIR}/src/interfaces/libpq"
@@ -258,11 +262,16 @@ add_custom_command(
 				WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
 )
 
+set(ADDITIONAL_GENERATIONS )
+if(WIN32)
+	set(ADDITIONAL_GENERATIONS ${ADDITIONAL_GENERATIONS} generateTimezoneConfigs)
+endif()
+
 
 ##Генерация исходников через Perl. При разработке выывается вручную, так как add_custom_target с DEPENDENCY будет делать перегенерацию каждый раз, а add_custom_command работает только в пределах одного CMAKE файла
 add_custom_target(
 		POSTGRES_GENERATE_SRC
-		DEPENDS ${POSTGRES_BKI_SRCS} ${POSTGRES_BKI_DATA} postgres_dat_gen
+		DEPENDS ${POSTGRES_BKI_SRCS} ${POSTGRES_BKI_DATA} postgres_dat_gen ${ADDITIONAL_GENERATIONS}
 		COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
 		COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
 		COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/catalog/*_d.h ${PROJECT_SOURCE_DIR}/src/include/catalog
@@ -826,12 +835,18 @@ install(FILES
 	catalog/system_views.sql
 	libpq/pg_hba.conf.sample
 	libpq/pg_ident.conf.sample
-	utils/misc/postgresql.conf.sample
+	${CMAKE_CURRENT_BINARY_DIR}/utils/misc/postgresql.conf.sample
 DESTINATION ${PGSHAREDIR})
-
+set(PG_IO_CONCURRENCY 4)
+if(WIN32)
+	set(PG_IO_CONCURRENCY 0)
+endif()
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/utils/misc/postgresql.conf.sample ${CMAKE_CURRENT_BINARY_DIR}/utils/misc/postgresql.conf.sample)
 add_subdirectory(utils/mb/conversion_procs)
 add_subdirectory(snowball)
-add_subdirectory(jit/llvm)
+if(NOT WIN32)
+	add_subdirectory(jit/llvm)
+endif()
 
 if(ENABLE_NLS)
 	MAKE_MO(postgres "de;es;fr;id;it;ja;pl;pt_BR;ru;zh_CN;ko")

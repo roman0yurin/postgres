@@ -40,6 +40,9 @@
 #define WARNING		19			/* Warnings.  NOTICE is for expected messages
 								 * like implicit sequence creation by SERIAL.
 								 * WARNING is for unexpected messages. */
+#ifdef WIN32
+#undef ERROR
+#endif
 #define ERROR		20			/* user error - abort transaction; return to
 								 * known state */
 /* Save ERROR value in PGERROR so it can be restored when Win32 includes
