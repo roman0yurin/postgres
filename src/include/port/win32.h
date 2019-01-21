@@ -51,7 +51,7 @@
 #define PGDLLIMPORT __declspec (dllimport)
 #endif
 
-#ifdef _MSC_VER
+#ifdef WIN32
 #define PGDLLEXPORT __declspec (dllexport)
 #else
 #define PGDLLEXPORT

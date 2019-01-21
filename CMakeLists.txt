@@ -22,11 +22,6 @@ message("BUILD POSTGRES CMAKE_BINARY_DIR        =${CMAKE_BINARY_DIR}")
 #TCP
 add_definitions(-DTCP_KEEPIDLE -DTCP_NODELAY)
 
-if(WIN32)
-	#хоть у нас и не VisualStudio, но без определения MSC_VER отключается экспорт символов в библиотеках
-	add_definitions(-D_MSC_VER 1500)
-endif()
-
 include(CheckTypeSize)
 include(CheckSymbolExists)
 include(CheckFunctionExists)
