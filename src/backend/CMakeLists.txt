@@ -693,6 +693,7 @@ set(postgres_SRCS
 	${JIT_SRC}
 	${PART_SRC}
 	${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
+	${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.c
 	main/main.c
 )
 
