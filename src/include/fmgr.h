@@ -257,6 +257,7 @@ extern struct varlena *pg_detoast_datum_packed(struct varlena *datum);
 		if ((Pointer) (ptr) != PG_GETARG_POINTER(n)) \
 			pfree(ptr); \
 	} while (0)
+#define PG_IS_COPY(ptr,n) (Pointer) (ptr) != PG_GETARG_POINTER(n)
 
 /* Macros for fetching arguments of standard types */
 
