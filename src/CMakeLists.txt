@@ -1,9 +1,7 @@
-set(CMAKE_CFLAGS "${CMAKE_CFLAGS} -Wno-register")
-
-include_directories(
-				"${PROJECT_SOURCE_DIR}/src/include"
-				"${LLVM_INCLUDE_DIRS}"
-)
+include_directories("${PROJECT_SOURCE_DIR}/src/include")
+if(NOT WIN32)
+	include_directories("${LLVM_INCLUDE_DIRS}")
+endif()
 
 set(gen_errorcodes_depend
 	${PROJECT_SOURCE_DIR}/src/backend/utils/errcodes.txt

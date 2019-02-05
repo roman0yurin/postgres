@@ -9,7 +9,7 @@ include_directories(BEFORE ${LLVM_INCLUDE_DIRS})
 
 #Переключаемся на CLANG в этом пакете
 SET (CMAKE_C_COMPILER             "/usr/bin/clang")
-SET (CMAKE_CFLAGS                "-Wno-ignored-attributes -std=c99")
+SET (CMAKE_C_FLAGS                "${CMAKE_C_FLAGS} -Wno-ignored-attributes -std=c99")
 
 SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++")
 
@@ -21,7 +21,7 @@ SET (CMAKE_RANLIB  "/usr/bin/llvm-ranlib")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${LLVM_CXXFLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-ignored-attributes -Wno-c99-extensions")
-set(CMAKE_CFLAGS  "${CMAKE_CFLAGS} ${LLVM_CFLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-ignored-attributes -Wno-c99-extensions -std=c99")
+set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} ${LLVM_CFLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-ignored-attributes -Wno-c99-extensions -std=c99")
 
 get_property(POSTGRES_SRC_DIR GLOBAL PROPERTY POSTGRES_SRC_DIR)
 get_property(POSTGRES_LIB_DIR GLOBAL PROPERTY POSTGRES_LIB_DIR)
