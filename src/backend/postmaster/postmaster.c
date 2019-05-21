@@ -4490,6 +4490,15 @@ backend_forkexec(Port *port)
 	return internal_forkexec(ac, av, port);
 }
 
+void calculate_name_for_temp_file(char* tmpfilename, size_t max_size)
+{
+    static unsigned long tmpBackendFileNum = 0;
+
+    snprintf(tmpfilename, MAXPGPATH, "%s/%s.backend_var.%d.%lu",
+             PG_TEMP_FILES_DIR, PG_TEMP_FILE_PREFIX,
+             MyProcPid, ++tmpBackendFileNum);
+}
+
 #ifndef WIN32
 
 /*
@@ -4501,7 +4510,6 @@ backend_forkexec(Port *port)
 static pid_t
 internal_forkexec(int argc, char *argv[], Port *port)
 {
-	static unsigned long tmpBackendFileNum = 0;
 	pid_t		pid;
 	char		tmpfilename[MAXPGPATH];
 	BackendParameters param;
@@ -4511,9 +4519,7 @@ internal_forkexec(int argc, char *argv[], Port *port)
 		return -1;				/* log made by save_backend_variables */
 
 	/* Calculate name for temp file */
-	snprintf(tmpfilename, MAXPGPATH, "%s/%s.backend_var.%d.%lu",
-			 PG_TEMP_FILES_DIR, PG_TEMP_FILE_PREFIX,
-			 MyProcPid, ++tmpBackendFileNum);
+	calculate_name_for_temp_file(tmpfilename, MAXPGPATH);
 
 	/* Open file */
 	fp = AllocateFile(tmpfilename, PG_BINARY_W);
@@ -6541,3 +6547,6 @@ InitPostmasterDeathWatchHandle(void)
 								 GetLastError())));
 #endif							/* WIN32 */
 }
+
+//По возможности выносим все изменения в отдельный файл для упрощения процесса последующего merge
+#include "postmasterC60.c.in"

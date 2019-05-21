@@ -10676,4 +10676,16 @@
   proname => 'pg_partition_root', prorettype => 'regclass',
   proargtypes => 'regclass', prosrc => 'pg_partition_root' },
 
+# Вызвать сохранение параметров backend-процесса
+{ oid => '3423', descr => 'save backend parameters',
+  proname => 'c60_save_backend_parameters', pronamespace => 'PGNSP',
+  proowner => 'PGUID', prolang => '12', procost => '1', prorows => '0',
+  provariadic => '0', protransform => '0', prokind => 'f', prosecdef => 'f',
+  proleakproof => 'f', proisstrict => 'f', proretset => 'f', provolatile => 'v',
+  proparallel => 'u', pronargs => '0', pronargdefaults => '0',
+  prorettype => 'text', proargtypes => '', proallargtypes => '_null_',
+  proargmodes => '_null_', proargnames => '_null_', proargdefaults => '_null_',
+  protrftypes => '_null_', prosrc => 'c60_save_backend_parameters',
+  probin => '_null_', proconfig => '_null_', proacl => '_null_' },
+
 ]
