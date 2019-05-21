@@ -109,6 +109,7 @@
 #include "pgstat.h"
 #include "port/pg_bswap.h"
 #include "postmaster/autovacuum.h"
+#include "postmaster/backend_parameters.h"
 #include "postmaster/bgworker_internals.h"
 #include "postmaster/fork_process.h"
 #include "postmaster/pgarch.h"
@@ -165,27 +166,10 @@
  *
  * Background workers are in this list, too.
  */
-typedef struct bkend
-{
-	pid_t		pid;			/* process id of backend */
-	int32		cancel_key;		/* cancel key for cancels for this backend */
-	int			child_slot;		/* PMChildSlot for this backend, if any */
-
-	/*
-	 * Flavor of backend or auxiliary process.  Note that BACKEND_TYPE_WALSND
-	 * backends initially announce themselves as BACKEND_TYPE_NORMAL, so if
-	 * bkend_type is normal, you should check for a recent transition.
-	 */
-	int			bkend_type;
-	bool		dead_end;		/* is it going to send an error and quit? */
-	bool		bgworker_notify;	/* gets bgworker start/stop notifications */
-	dlist_node	elem;			/* list link in BackendList */
-} Backend;
-
 static dlist_head BackendList = DLIST_STATIC_INIT(BackendList);
 
 #ifdef EXEC_BACKEND
-static Backend *ShmemBackendArray;
+Backend *ShmemBackendArray;
 #endif
 
 BackgroundWorker *MyBgworkerEntry = NULL;
@@ -212,14 +196,12 @@ char	   *ListenAddresses;
  */
 int			ReservedBackends;
 
-/* The socket(s) we're listening to. */
-#define MAXLISTEN	64
-static pgsocket ListenSocket[MAXLISTEN];
+pgsocket ListenSocket[MAXLISTEN];
 
 /*
  * Set by the -o option
  */
-static char ExtraOptions[MAXPGPATH];
+char ExtraOptions[MAXPGPATH];
 
 /*
  * These globals control the behavior of the postmaster in case some
@@ -392,7 +374,7 @@ static void CloseServerPorts(int status, Datum arg);
 static void unlink_external_pid_file(int status, Datum arg);
 static void getInstallationPaths(const char *argv0);
 static void checkControlFile(void);
-static Port *ConnCreate(int serverFd);
+Port *ConnCreate(int serverFd);
 static void ConnFree(Port *port);
 static void reset_shared(int port);
 static void SIGHUP_handler(SIGNAL_ARGS);
@@ -467,76 +449,11 @@ typedef struct
 static pid_t backend_forkexec(Port *port);
 static pid_t internal_forkexec(int argc, char *argv[], Port *port);
 
-/* Type for a socket that can be inherited to a client process */
-#ifdef WIN32
-typedef struct
-{
-	SOCKET		origsocket;		/* Original socket value, or PGINVALID_SOCKET
-								 * if not a socket */
-	WSAPROTOCOL_INFO wsainfo;
-} InheritableSocket;
-#else
-typedef int InheritableSocket;
-#endif
-
-/*
- * Structure contains all variables passed to exec:ed backends
- */
-typedef struct
-{
-	Port		port;
-	InheritableSocket portsocket;
-	char		DataDir[MAXPGPATH];
-	pgsocket	ListenSocket[MAXLISTEN];
-	int32		MyCancelKey;
-	int			MyPMChildSlot;
-#ifndef WIN32
-	unsigned long UsedShmemSegID;
-#else
-	HANDLE		UsedShmemSegID;
-#endif
-	void	   *UsedShmemSegAddr;
-	slock_t    *ShmemLock;
-	VariableCache ShmemVariableCache;
-	Backend    *ShmemBackendArray;
-#ifndef HAVE_SPINLOCKS
-	PGSemaphore *SpinlockSemaArray;
-#endif
-	int			NamedLWLockTrancheRequests;
-	NamedLWLockTranche *NamedLWLockTrancheArray;
-	LWLockPadded *MainLWLockArray;
-	slock_t    *ProcStructLock;
-	PROC_HDR   *ProcGlobal;
-	PGPROC	   *AuxiliaryProcs;
-	PGPROC	   *PreparedXactProcs;
-	PMSignalData *PMSignalState;
-	InheritableSocket pgStatSock;
-	pid_t		PostmasterPid;
-	TimestampTz PgStartTime;
-	TimestampTz PgReloadTime;
-	pg_time_t	first_syslogger_file_time;
-	bool		redirection_done;
-	bool		IsBinaryUpgrade;
-	int			max_safe_fds;
-	int			MaxBackends;
-#ifdef WIN32
-	HANDLE		PostmasterHandle;
-	HANDLE		initial_signal_pipe;
-	HANDLE		syslogPipe[2];
-#else
-	int			postmaster_alive_fds[2];
-	int			syslogPipe[2];
-#endif
-	char		my_exec_path[MAXPGPATH];
-	char		pkglib_path[MAXPGPATH];
-	char		ExtraOptions[MAXPGPATH];
-} BackendParameters;
-
-static void read_backend_variables(char *id, Port *port);
+void read_backend_variables(char *id, Port *port);
 static void restore_backend_variables(BackendParameters *param, Port *port);
 
 #ifndef WIN32
-static bool save_backend_variables(BackendParameters *param, Port *port);
+bool save_backend_variables(BackendParameters *param, Port *port);
 #else
 static bool save_backend_variables(BackendParameters *param, Port *port,
 					   HANDLE childProcess, pid_t childPid);
@@ -2378,7 +2295,7 @@ canAcceptConnections(void)
  *
  * Returns NULL on failure, other than out-of-memory which is fatal.
  */
-static Port *
+Port *
 ConnCreate(int serverFd)
 {
 	Port	   *port;
@@ -4414,6 +4331,57 @@ backend_forkexec(Port *port)
 	return internal_forkexec(ac, av, port);
 }
 
+void calculate_name_for_temp_file(char* tmpfilename, size_t max_size)
+{
+    static unsigned long tmpBackendFileNum = 0;
+
+    snprintf(tmpfilename, MAXPGPATH, "%s/%s.backend_var.%d.%lu",
+             PG_TEMP_FILES_DIR, PG_TEMP_FILE_PREFIX,
+             MyProcPid, ++tmpBackendFileNum);
+}
+
+int write_backend_params_to_file(const char* tmpfilename, BackendParameters *param)
+{
+    /* Open file */
+    FILE *fp = AllocateFile(tmpfilename, PG_BINARY_W);
+    if (!fp)
+    {
+        /*
+         * As in OpenTemporaryFileInTablespace, try to make the temp-file
+         * directory, ignoring errors.
+         */
+        (void) MakePGDirectory(PG_TEMP_FILES_DIR);
+
+        fp = AllocateFile(tmpfilename, PG_BINARY_W);
+        if (!fp)
+        {
+            ereport(LOG,
+                    (errcode_for_file_access(),
+                            errmsg("could not create file \"%s\": %m",
+                                   tmpfilename)));
+            return -1;
+        }
+    }
+
+    if (fwrite(param, sizeof(BackendParameters), 1, fp) != 1)
+    {
+        ereport(LOG,
+                (errcode_for_file_access(),
+                        errmsg("could not write to file \"%s\": %m", tmpfilename)));
+        FreeFile(fp);
+        return -1;
+    }
+
+    /* Release file */
+    if (FreeFile(fp))
+    {
+        ereport(LOG,
+                (errcode_for_file_access(),
+                        errmsg("could not write to file \"%s\": %m", tmpfilename)));
+        return -1;
+    }
+}
+
 #ifndef WIN32
 
 /*
@@ -4425,7 +4393,6 @@ backend_forkexec(Port *port)
 static pid_t
 internal_forkexec(int argc, char *argv[], Port *port)
 {
-	static unsigned long tmpBackendFileNum = 0;
 	pid_t		pid;
 	char		tmpfilename[MAXPGPATH];
 	BackendParameters param;
@@ -4435,9 +4402,7 @@ internal_forkexec(int argc, char *argv[], Port *port)
 		return -1;				/* log made by save_backend_variables */
 
 	/* Calculate name for temp file */
-	snprintf(tmpfilename, MAXPGPATH, "%s/%s.backend_var.%d.%lu",
-			 PG_TEMP_FILES_DIR, PG_TEMP_FILE_PREFIX,
-			 MyProcPid, ++tmpBackendFileNum);
+	calculate_name_for_temp_file(tmpfilename, MAXPGPATH);
 
 	/* Open file */
 	fp = AllocateFile(tmpfilename, PG_BINARY_W);
@@ -5985,7 +5950,7 @@ static void read_inheritable_socket(SOCKET *dest, InheritableSocket *src);
 
 /* Save critical backend variables into the BackendParameters struct */
 #ifndef WIN32
-static bool
+bool
 save_backend_variables(BackendParameters *param, Port *port)
 #else
 static bool
@@ -6152,7 +6117,7 @@ read_inheritable_socket(SOCKET *dest, InheritableSocket *src)
 }
 #endif
 
-static void
+void
 read_backend_variables(char *id, Port *port)
 {
 	BackendParameters param;

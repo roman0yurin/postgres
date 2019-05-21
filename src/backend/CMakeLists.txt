@@ -532,6 +532,7 @@ set(postmaster_SRCS
 	postmaster/startup.c
 	postmaster/syslogger.c
 	postmaster/walwriter.c
+	postmaster/save_backend_params.cpp
 )
 
 if(WIN32 OR CYGWIN OR MINGW)
