@@ -532,6 +532,13 @@ static void refuseDupeIndexAttach(Relation parentIdx, Relation partIdx,
 static List *GetParentedForeignKeyRefs(Relation partition);
 static void ATDetachCheckNoForeignKeyRefs(Relation partition);
 
+extern uint32 interpretCreateOidOption(List *defList);
+
+/**
+* Установить следующее значение счетчика Oid после указанного, если текущее значение меньше
+**/
+extern void setNextAfter(Oid target);
+
 
 /* ----------------------------------------------------------------
  *		DefineRelation
@@ -757,6 +764,13 @@ DefineRelation(CreateStmt *stmt, char relkind, Oid ownerId,
 	 */
 	descriptor = BuildDescForRelation(stmt->tableElts);
 
+    uint32 manualOid = interpretCreateOidOption(stmt->options);
+
+    if(manualOid != InvalidOid){
+        //Во избежание коллизий прокручиваем счетчик
+        setNextAfter(manualOid);
+    }
+
 	/*
 	 * Find columns with default values and prepare for insertion of the
 	 * defaults.  Pre-cooked (that is, inherited) defaults go into a list of
@@ -851,7 +865,7 @@ DefineRelation(CreateStmt *stmt, char relkind, Oid ownerId,
 	relationId = heap_create_with_catalog(relname,
 										  namespaceId,
 										  tablespaceId,
-										  InvalidOid,
+										  manualOid,
 										  InvalidOid,
 										  ofTypeId,
 										  ownerId,

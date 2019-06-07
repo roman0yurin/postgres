@@ -15805,7 +15805,9 @@ dumpTableSchema(Archive *fout, TableInfo *tbinfo)
 		}
 
 		if (nonemptyReloptions(tbinfo->reloptions) ||
-			nonemptyReloptions(tbinfo->toast_reloptions))
+			nonemptyReloptions(tbinfo->toast_reloptions) ||
+			dopt->oids && tbinfo->dataObj != NULL
+        )
 		{
 			bool		addcomma = false;
 
@@ -15821,6 +15823,12 @@ dumpTableSchema(Archive *fout, TableInfo *tbinfo)
 					appendPQExpBufferStr(q, ", ");
 				appendReloptionsArrayAH(q, tbinfo->toast_reloptions, "toast.",
 										fout);
+			}
+			if(dopt->oids && tbinfo->dataObj != NULL){
+                if (addcomma)
+                    appendPQExpBufferStr(q, ", ");
+                appendPQExpBuffer(q, "oid=%u", tbinfo->dataObj->dobj.catId.oid);
+                appendReloptionsArrayAH(q, tbinfo->reloptions, "", fout);
 			}
 			appendPQExpBufferChar(q, ')');
 		}

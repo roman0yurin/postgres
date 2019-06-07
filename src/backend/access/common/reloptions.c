@@ -900,6 +900,9 @@ transformRelOptions(Datum oldOptions, List *defList, const char *namspace,
 									def->defnamespace)));
 			}
 
+            if (strcmp(def->defname, "oid") == 0)
+                continue; //Этот параметр нужен для бекапа с устойчивыми OID таблиц
+
 			/* ignore if not in the same namespace */
 			if (namspace == NULL)
 			{

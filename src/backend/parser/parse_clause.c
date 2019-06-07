@@ -248,6 +248,26 @@ setTargetTable(ParseState *pstate, RangeVar *relation,
 	return rtindex;
 }
 
+/**Читаем Oid таблицы заданый изначально**/
+uint32 interpretCreateOidOption(List *defList)
+{
+    ListCell   *cell;
+
+    /* Scan list to see if OIDS was included */
+    foreach(cell, defList)
+    {
+        DefElem    *def = (DefElem *) lfirst(cell);
+
+        if (def->defnamespace == NULL &&
+            strcmp(def->defname, "oid") == 0)
+        {
+            return (uint32)defGetInt32(def);
+        }
+    }
+
+    return InvalidOid;
+}
+
 /*
  * Extract all not-in-common columns from column lists of a source table
  */
