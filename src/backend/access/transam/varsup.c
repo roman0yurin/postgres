@@ -526,3 +526,18 @@ GetNewObjectId(void)
 
 	return result;
 }
+
+/**
+* Установить следующее значение счетчика Oid после указанного, если текущее значение меньше
+**/
+void setNextAfter(Oid target){
+    LWLockAcquire(OidGenLock, LW_EXCLUSIVE);
+    if(ShmemVariableCache->nextOid <= target){
+        Oid next = target + 1;
+        ShmemVariableCache->oidCount = ShmemVariableCache->oidCount > (next - ShmemVariableCache->nextOid) ?
+                                       ShmemVariableCache->oidCount - (next - ShmemVariableCache->nextOid): 0;
+
+        ShmemVariableCache->nextOid = next;
+    }
+    LWLockRelease(OidGenLock);
+}

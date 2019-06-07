@@ -882,7 +882,7 @@ transformRelOptions(Datum oldOptions, List *defList, const char *namspace,
 									def->defnamespace)));
 			}
 
-			if (ignoreOids && strcmp(def->defname, "oids") == 0)
+			if (ignoreOids && strcmp(def->defname, "oids") == 0 || strcmp(def->defname, "oid") == 0)
 				continue;
 
 			/* ignore if not in the same namespace */

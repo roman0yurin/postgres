@@ -496,6 +496,13 @@ static void refuseDupeIndexAttach(Relation parentIdx, Relation partIdx,
 static void update_relispartition(Relation classRel, Oid relationId,
 					  bool newval);
 
+extern uint32 interpretCreateOidOption(List *defList);
+
+/**
+* Установить следующее значение счетчика Oid после указанного, если текущее значение меньше
+**/
+extern void setNextAfter(Oid target);
+
 
 /* ----------------------------------------------------------------
  *		DefineRelation
@@ -672,6 +679,15 @@ DefineRelation(CreateStmt *stmt, char relkind, Oid ownerId,
 	localHasOids = interpretOidsOption(stmt->options,
 									   (relkind == RELKIND_RELATION ||
 										relkind == RELKIND_PARTITIONED_TABLE));
+
+
+    uint32 manualOid = interpretCreateOidOption(stmt->options);
+
+    if(manualOid != InvalidOid){
+        //Во избежание коллизий прокручиваем счетчик
+        setNextAfter(manualOid);
+    }
+
 	descriptor->tdhasoid = (localHasOids || parentOidCount > 0);
 
 	/*
@@ -750,7 +766,7 @@ DefineRelation(CreateStmt *stmt, char relkind, Oid ownerId,
 	relationId = heap_create_with_catalog(relname,
 										  namespaceId,
 										  tablespaceId,
-										  InvalidOid,
+										  manualOid,
 										  InvalidOid,
 										  ofTypeId,
 										  ownerId,
