@@ -6079,8 +6079,7 @@ static void read_inheritable_socket(SOCKET *dest, InheritableSocket *src);
 static bool
 save_backend_variables(BackendParameters *param, Port *port)
 #else
-static bool
-save_backend_variables(BackendParameters *param, Port *port,
+bool save_backend_variables(BackendParameters *param, Port *port,
 					   HANDLE childProcess, pid_t childPid)
 #endif
 {
