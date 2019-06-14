@@ -736,6 +736,11 @@ target_link_libraries(postgres
 	${ICU_LIBRARIES}
 	${LLVM_LIBRARIES}
 )
+
+if(USE_SYSTEMD)
+	target_link_libraries(postgres systemd)
+endif()
+
 if(OPENSSL_FOUND)
 	target_link_libraries(postgres ${OPENSSL_LIBRARIES})
 endif()
