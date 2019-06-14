@@ -28,7 +28,13 @@ void calculate_name_for_temp_file(char* tmpfilename, size_t max_size);
 
 int write_backend_params_to_file(const char* tmpfilename, BackendParameters* param);
 
-bool save_backend_variables(BackendParameters* param, Port* port);
+#ifndef WIN32
+bool
+save_backend_variables(BackendParameters *param, Port *port);
+#else
+bool save_backend_variables(BackendParameters *param, Port *port,
+                            HANDLE childProcess, pid_t childPid);
+#endif
 #endif
 
 Port* ConnCreate(int serverFd);
@@ -56,7 +62,12 @@ Datum c60_save_backend_parameters([[maybe_unused]] PG_FUNCTION_ARGS) {
     dsm_handle handle = dsm_segment_handle(seg); // при попытке подключиться по этому handler'у
                                                  // в своем процессе случается ошибка
 
-    bool saved = save_backend_variables(&params, MyProcPort);
+    bool saved =
+#ifndef WIN32
+            save_backend_variables(&params, MyProcPort);
+#else
+    false;//TODO реализация под Windows
+#endif
 
     if (!saved || write_backend_params_to_file(filename, &params) != 0) {
         PG_RETURN_TEXT_P(cstring_to_text(fail_msg));
