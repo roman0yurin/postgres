@@ -292,6 +292,11 @@ else()
 	set(GSS_LIBS "")
 endif()
 
+# option не будет затирать существующие переменные с таким же именем
+if (POLICY CMP0077)
+	cmake_policy(SET CMP0077 NEW)
+endif()
+
 option(USE_SYSTEMD "Define to build with systemd support" OFF)
 option(USE_BSD_AUTH "Define to build with BSD Authentication support" OFF)
 option(USE_ASSERT_CHECKING "Define to build with assertion checks." ON)
