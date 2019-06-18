@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
+cmake_policy(SET CMP0067 OLD) # была ошибка с поиском функции isnan
 
 project(PostgresС60 C CXX)
 
