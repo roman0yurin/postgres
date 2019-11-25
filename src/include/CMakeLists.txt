@@ -55,7 +55,6 @@ set(SUBDIRS
 
 install(FILES
 	c.h
-	dynloader.h
 	fmgr.h
 	funcapi.h
 	getaddrinfo.h

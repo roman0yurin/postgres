@@ -63,7 +63,6 @@ add_library(ecpg SHARED ${ecpg_SRC})
 if (MSVC)
 	gen_def(ecpg)
 endif()
-target_link_libraries(ecpg ${LIB_M} pgtypes pq)
 target_compile_definitions(ecpg PRIVATE -DFRONTEND)
 set_target_properties(ecpg PROPERTIES VERSION "6.8")
 

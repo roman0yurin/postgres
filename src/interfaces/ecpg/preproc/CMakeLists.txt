@@ -15,6 +15,8 @@ add_custom_command(
 	OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/preproc.y
 	COMMAND ${PERL_EXECUTABLE} parse.pl . < ${PROJECT_SOURCE_DIR}/src/backend/parser/gram.y > preproc.y
 	COMMAND ${PERL_EXECUTABLE} check_rules.pl . ${PROJECT_SOURCE_DIR}/src/backend/parser/gram.y
+	COMMAND ${PERL_EXECUTABLE} -I ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools/gen_keywordlist.pl --varname ScanCKeywords --no-case-fold c_kwlist.h
+	COMMAND ${PERL_EXECUTABLE} -I ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools/gen_keywordlist.pl --varname ScanECPGKeywords ecpg_kwlist.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
@@ -45,8 +47,8 @@ add_executable(ecpg_preproc
 
 target_link_libraries(ecpg_preproc
 	#pq
-	pgcommon
-	pgport
+	pgcommon_shlib
+	pgport_shlib
 )
 
 target_compile_definitions(ecpg_preproc PRIVATE

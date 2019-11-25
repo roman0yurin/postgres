@@ -14,8 +14,8 @@ add_executable(pg_ecpg_regress
 
 target_link_libraries(pg_ecpg_regress
 	pq
-	pgcommon
-	pgport
+	pgcommon_shlib
+	pgport_shlib
 )
 
 target_compile_definitions(pg_ecpg_regress PRIVATE
@@ -101,6 +101,12 @@ set(thread_tests
 set(ecpg_preproc_bin ${CMAKE_POSTGRES_BINARY_DIR}/src/interfaces/ecpg/preproc/ecpg${CMAKE_EXECUTABLE_SUFFIX})
 
 macro(ECPG_CHECK TARGET_LIST FOLDER PREPROC_OPTS)
+	if("${PREPROC_OPTS}" STREQUAL "-C;INFORMIX")
+		set(ECPG_COMPAT_LIB "ecpg_compat")
+	else()
+		set(ECPG_COMPAT_LIB)
+	endif()
+
 	foreach(test ${TARGET_LIST})
 		if(${test} STREQUAL "rnull")
 			set(PREPROC_OPTS2 "-r;no_indicator")
@@ -127,10 +133,13 @@ macro(ECPG_CHECK TARGET_LIST FOLDER PREPROC_OPTS)
 			${CMAKE_CURRENT_SOURCE_DIR}/${FOLDER}/${test}.c
 		)
 		target_link_libraries(ecpg_regress_${FOLDER}_${test}
+			${ECPG_COMPAT_LIB}
 			ecpg
-			ecpg_compat
 			pgtypes
 			pq
+			pgcommon_shlib
+			pgport_shlib
+			${LIB_M}
 		)
 		set_target_properties(ecpg_regress_${FOLDER}_${test}
 			PROPERTIES

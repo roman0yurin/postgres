@@ -14,14 +14,13 @@ add_executable(pg_rewind
 	copy_fetch.c
 	libpq_fetch.c
 	filemap.c
-	logging.c
 	${PROJECT_SOURCE_DIR}/src/backend/access/transam/xlogreader.c
 )
 
 target_link_libraries(pg_rewind
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 target_compile_definitions(pg_rewind PRIVATE -DFRONTEND)

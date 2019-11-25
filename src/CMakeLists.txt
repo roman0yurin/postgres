@@ -22,7 +22,7 @@ add_custom_target(gen_errorcodes DEPENDS ${gen_errorcodes_output})
 
 set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES ${gen_errorcodes_output})
 
-set(PARSER_SCAN_FLEX_FLAGS, "-Cfe -p -p")
+set(PARSER_SCAN_FLEX_FLAGS "-Cfe -p -p")
 bison_target(PARSER_GRAM
 	${PROJECT_SOURCE_DIR}/src/backend/parser/gram.y
 	${PROJECT_SOURCE_DIR}/src/backend/parser/gram.c
@@ -30,7 +30,7 @@ bison_target(PARSER_GRAM
 flex_target(PARSER_SCAN
 	${PROJECT_SOURCE_DIR}/src/backend/parser/scan.l
 	${PROJECT_SOURCE_DIR}/src/backend/parser/scan.c
-	${PARSER_SCAN_FLEX_FLAGS}
+	COMPILE_FLAGS ${PARSER_SCAN_FLEX_FLAGS}
 )
 
 set_source_files_properties(${BISON_PARSER_GRAM_OUTPUTS}

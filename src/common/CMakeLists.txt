@@ -2,27 +2,69 @@ if(OPENSSL_FOUND)
 	include_directories(BEFORE ${OPENSSL_INCLUDE_DIR})
 endif()
 
-file(GLOB pgcommon_srv_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/*.c)
-file(GLOB exclude_pgcommon_srv_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/fe_*.c ${CMAKE_CURRENT_SOURCE_DIR}/restricted_token.c)
-list(REMOVE_ITEM pgcommon_srv_SRCS ${exclude_pgcommon_srv_SRCS})
-list(REMOVE_ITEM pgcommon_srv_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/sha2_openssl.c ${CMAKE_CURRENT_SOURCE_DIR}/sha2.c)
+set(gen_lwlocknames_depend
+		${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/generate-lwlocknames.pl
+		${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.txt
+)
 
-if(OPENSSL_FOUND AND NOT WIN32)
-	set(pgcommon_srv_SRCS ${pgcommon_srv_SRCS} sha2_openssl.c)
-else()
-	set(pgcommon_srv_SRCS ${pgcommon_srv_SRCS} sha2.c)
-endif()
+set(gen_lwlocknames_output
+		${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.c
+		${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.h
+		${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
+)
+
+add_custom_command(
+		OUTPUT ${gen_lwlocknames_output}
+		MAIN_DEPENDENCY ${gen_lwlocknames_depend}
+		COMMAND ${PERL_EXECUTABLE} generate-lwlocknames.pl lwlocknames.txt
+		COMMAND ${CMAKE_COMMAND} -E copy lwlocknames.h ${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
+		WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr
+)
 
 set(pgcommon_SRCS
-	${pgcommon_srv_SRCS}
+	base64.c
+	config_info.c
+	controldata_utils.c
+	d2s.c
+	exec.c
+	f2s.c
+	file_perm.c
+	ip.c
+	keywords.c
+	kwlookup.c
+	link-canary.c
+	md5.c
+	pg_lzcompress.c
+	pgfnames.c
+	psprintf.c
+	relpath.c
+	rmtree.c
+	saslprep.c
+	scram-common.c
+	string.c
+	unicode_norm.c
+	username.c
+	wait_error.c
+)
+list(APPEND pgcommon_srv_SRCS ${gen_lwlocknames_output})
+if(OPENSSL_FOUND AND NOT WIN32)
+	list(APPEND pgcommon_srv_SRCS sha2_openssl.c)
+else()
+	list(APPEND pgcommon_srv_SRCS sha2.c)
+endif()
+
+set(pgfrontend_SRCS
+	${pgcommon_SRCS}
 	fe_memutils.c
 	file_utils.c
+	logging.c
 	restricted_token.c
 	${PROJECT_SOURCE_DIR}/src/include/parser/gram.h
 )
 
-add_library(pgcommon_srv STATIC ${pgcommon_srv_SRCS})
-add_library(pgcommon STATIC ${pgcommon_SRCS})
+add_library(pgcommon STATIC ${pgfrontend_SRCS})
+add_library(pgcommon_shlib STATIC ${pgfrontend_SRCS})
+add_library(pgcommon_srv STATIC ${pgcommon_SRCS})
 
 set_source_files_properties(
 	${PROJECT_SOURCE_DIR}/src/include/parser/gram.h
@@ -34,14 +76,10 @@ add_dependencies(pgcommon_srv gen_errorcodes)
 add_dependencies(pgcommon gen_errorcodes)
 
 target_compile_definitions(pgcommon PRIVATE -DFRONTEND)
-
-target_compile_definitions(pgcommon PRIVATE -DVAL_CPPFLAGS="${CMAKE_CXX_FLAGS}")
-target_compile_definitions(pgcommon PRIVATE -DVAL_CFLAGS="${CMAKE_C_FLAGS} ${COMPILE_DEFINITIONS}")
-target_compile_definitions(pgcommon PRIVATE -DVAL_CC="${CMAKE_C_COMPILER}")
-target_compile_definitions(pgcommon PRIVATE -DVAL_LDFLAGS="${CMAKE_SHARED_LINKER_FLAGS}")
+target_compile_definitions(pgcommon_shlib PRIVATE -DFRONTEND)
 
 # because port used in shared libraries
-set_property(TARGET pgcommon PROPERTY POSITION_INDEPENDENT_CODE TRUE)
+set_property(TARGET pgcommon_shlib PROPERTY POSITION_INDEPENDENT_CODE TRUE)
 
 install(TARGETS pgcommon
 		ARCHIVE DESTINATION ${LIBDIR})

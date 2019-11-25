@@ -17,9 +17,9 @@ add_library(common_basebackup STATIC
 
 target_link_libraries(common_basebackup
 	pgfeutils
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 set(basebackup_list 

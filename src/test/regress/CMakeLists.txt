@@ -12,8 +12,8 @@ add_executable(pg_regress
 
 target_link_libraries(pg_regress
 	pq
-	pgcommon
-	pgport
+	pgcommon_shlib
+	pgport_shlib
 )
 
 target_compile_definitions(pg_regress PRIVATE

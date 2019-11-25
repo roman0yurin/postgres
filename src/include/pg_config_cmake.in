@@ -1008,5 +1008,9 @@
 
 #define LLVM_VERSION_MAJOR @LLVM_VERSION_MAJOR@
 
+// TODO сделать через #cmakedefine
+#define HAVE_PWRITE 1
+
+#define HAVE_PREAD 1
 
 #endif  // AUTO_CONFIG_H

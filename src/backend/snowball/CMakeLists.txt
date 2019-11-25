@@ -67,15 +67,18 @@ set(snowball_SRCS
 	libstemmer/stem_ISO_8859_1_finnish.c
 	libstemmer/stem_ISO_8859_1_french.c
 	libstemmer/stem_ISO_8859_1_german.c
-	libstemmer/stem_ISO_8859_1_hungarian.c
+	libstemmer/stem_ISO_8859_1_indonesian.c
+	libstemmer/stem_ISO_8859_1_irish.c
 	libstemmer/stem_ISO_8859_1_italian.c
 	libstemmer/stem_ISO_8859_1_norwegian.c
 	libstemmer/stem_ISO_8859_1_porter.c
 	libstemmer/stem_ISO_8859_1_portuguese.c
 	libstemmer/stem_ISO_8859_1_spanish.c
 	libstemmer/stem_ISO_8859_1_swedish.c
+	libstemmer/stem_ISO_8859_2_hungarian.c
 	libstemmer/stem_ISO_8859_2_romanian.c
 	libstemmer/stem_KOI8_R_russian.c
+	libstemmer/stem_UTF_8_arabic.c
 	libstemmer/stem_UTF_8_danish.c
 	libstemmer/stem_UTF_8_dutch.c
 	libstemmer/stem_UTF_8_english.c
@@ -83,7 +86,11 @@ set(snowball_SRCS
 	libstemmer/stem_UTF_8_french.c
 	libstemmer/stem_UTF_8_german.c
 	libstemmer/stem_UTF_8_hungarian.c
+	libstemmer/stem_UTF_8_indonesian.c
+	libstemmer/stem_UTF_8_irish.c
 	libstemmer/stem_UTF_8_italian.c
+	libstemmer/stem_UTF_8_lithuanian.c
+	libstemmer/stem_UTF_8_nepali.c
 	libstemmer/stem_UTF_8_norwegian.c
 	libstemmer/stem_UTF_8_porter.c
 	libstemmer/stem_UTF_8_portuguese.c
@@ -91,6 +98,7 @@ set(snowball_SRCS
 	libstemmer/stem_UTF_8_russian.c
 	libstemmer/stem_UTF_8_spanish.c
 	libstemmer/stem_UTF_8_swedish.c
+	libstemmer/stem_UTF_8_tamil.c
 	libstemmer/stem_UTF_8_turkish.c
 )
 

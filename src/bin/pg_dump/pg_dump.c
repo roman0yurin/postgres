@@ -391,6 +391,7 @@ main(int argc, char **argv)
 		{"no-sync", no_argument, NULL, 7},
 		{"on-conflict-do-nothing", no_argument, &dopt.do_nothing, 1},
 		{"rows-per-insert", required_argument, NULL, 10},
+        {"tables_oid", no_argument, &dopt.tables_oid, 1},
 
 		{NULL, 0, NULL, 0}
 	};
@@ -15806,7 +15807,7 @@ dumpTableSchema(Archive *fout, TableInfo *tbinfo)
 
 		if (nonemptyReloptions(tbinfo->reloptions) ||
 			nonemptyReloptions(tbinfo->toast_reloptions) ||
-			dopt->oids && tbinfo->dataObj != NULL
+			dopt->tables_oid && tbinfo->dataObj != NULL
         )
 		{
 			bool		addcomma = false;
@@ -15824,7 +15825,7 @@ dumpTableSchema(Archive *fout, TableInfo *tbinfo)
 				appendReloptionsArrayAH(q, tbinfo->toast_reloptions, "toast.",
 										fout);
 			}
-			if(dopt->oids && tbinfo->dataObj != NULL){
+			if(dopt->tables_oid && tbinfo->dataObj != NULL){
                 if (addcomma)
                     appendPQExpBufferStr(q, ", ");
                 appendPQExpBuffer(q, "oid=%u", tbinfo->dataObj->dobj.catId.oid);

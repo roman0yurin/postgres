@@ -32,7 +32,7 @@ if (MSVC)
 	gen_def(pgtypes)
 endif()
 
-target_link_libraries(pgtypes ${LIB_M})
+target_link_libraries(pgtypes)
 target_compile_definitions(pgtypes PRIVATE -DFRONTEND)
 set_target_properties(pgtypes PROPERTIES VERSION "3.7")
 

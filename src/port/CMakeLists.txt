@@ -22,15 +22,20 @@ set(port_SRCS
 	inet_net_ntop.c
 	noblock.c
 	path.c
+	pg_bitutils.c
 	pgcheckdir.c
 	pgmkdirp.c
 	pgsleep.c
+	pg_strong_random.c
 	pgstrcasecmp.c
+	pgstrsignal.c
 	pqsignal.c
 	qsort.c
 	qsort_arg.c
 	quotes.c
+	snprintf.c
 	sprompt.c
+	strerror.c
 	tar.c
 	thread.c
 	${fallback_SRCS}
@@ -160,6 +165,7 @@ if(NOT HAVE_CRYPT)
 endif()
 
 add_library(pgport_srv STATIC ${port_SRCS})
+add_library(pgport_shlib STATIC ${port_SRCS})
 add_library(pgport STATIC ${port_SRCS})
 
 add_dependencies(pgport_srv gen_errorcodes)
@@ -170,6 +176,10 @@ set_property(TARGET pgport PROPERTY POSITION_INDEPENDENT_CODE TRUE)
 
 
 target_compile_definitions(pgport PRIVATE -DFRONTEND)
+target_compile_definitions(pgport_shlib PRIVATE -DFRONTEND)
+
+set_property(TARGET pgport_shlib PROPERTY POSITION_INDEPENDENT_CODE TRUE)
+
 set_source_files_properties(thread.c PROPERTIES COMPILE_FLAGS ${PTHREAD_CFLAGS})
 install(TARGETS pgport
 		ARCHIVE DESTINATION ${LIBDIR})

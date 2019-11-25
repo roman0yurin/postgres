@@ -172,6 +172,7 @@ typedef struct _dumpOptions
 
 	int			sequence_data;	/* dump sequence data even in schema-only mode */
 	int			do_nothing;
+    int         tables_oid;
 } DumpOptions;
 
 /*

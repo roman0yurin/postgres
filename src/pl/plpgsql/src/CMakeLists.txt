@@ -4,6 +4,8 @@ add_custom_command(
 	OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/plerrcodes.h"
 	MAIN_DEPENDENCY generate-plerrcodes.pl
 	COMMAND ${PERL_EXECUTABLE} "generate-plerrcodes.pl" "${PROJECT_SOURCE_DIR}/src/backend/utils/errcodes.txt" > "${CMAKE_CURRENT_SOURCE_DIR}/plerrcodes.h"
+	COMMAND ${PERL_EXECUTABLE} -I ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools/gen_keywordlist.pl --varname ReservedPLKeywords pl_reserved_kwlist.h
+	COMMAND ${PERL_EXECUTABLE} -I ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools ${CMAKE_CURRENT_SOURCE_DIR}/../../../tools/gen_keywordlist.pl --varname UnreservedPLKeywords pl_unreserved_kwlist.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 

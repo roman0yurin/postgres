@@ -13,8 +13,8 @@ add_executable(pg_isolation_regress
 
 target_link_libraries(pg_isolation_regress
 	pq
-	pgcommon
-	pgport
+	pgcommon_shlib
+	pgport_shlib
 )
 
 target_compile_definitions(pg_isolation_regress PRIVATE
@@ -33,9 +33,9 @@ add_executable(isolationtester
 )
 
 target_link_libraries(isolationtester
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 if(CMAKE_GENERATOR STREQUAL "Ninja")

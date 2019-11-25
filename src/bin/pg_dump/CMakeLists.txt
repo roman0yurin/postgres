@@ -31,9 +31,9 @@ add_executable(pg_dump
 target_link_libraries(pg_dump
 	libdump
 	pgfeutils
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_dump bin)
@@ -49,9 +49,9 @@ add_executable(pg_restore
 target_link_libraries(pg_restore
 	libdump
 	pgfeutils
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_restore bin)
@@ -68,9 +68,9 @@ add_executable(pg_dumpall
 target_link_libraries(pg_dumpall
 	libdump
 	pgfeutils
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_dumpall bin)

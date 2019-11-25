@@ -32,7 +32,7 @@ set(gen_fmgrtab_output
 add_custom_command(
 	MAIN_DEPENDENCY ${gen_fmgrtab_depend}
 	OUTPUT ${gen_fmgrtab_output}
-	COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl -I${PROJECT_SOURCE_DIR}/src/include ${FMGR_DATA}
+	COMMAND ${PERL_EXECUTABLE} -I ${CMAKE_CURRENT_SOURCE_DIR}/catalog ${CMAKE_CURRENT_SOURCE_DIR}/utils/Gen_fmgrtab.pl --include-path=${PROJECT_SOURCE_DIR}/src/include ${FMGR_DATA}
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgroids.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgroids.h
 	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/utils/fmgrprotos.h ${PROJECT_SOURCE_DIR}/src/include/utils/fmgrprotos.h
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/utils
@@ -57,46 +57,6 @@ add_custom_command(
 flex_target(GUC_SCANNER utils/misc/guc-file.l  "${CMAKE_CURRENT_SOURCE_DIR}/utils/misc/guc-file.c")
 set_source_files_properties(utils/misc/guc.c PROPERTIES OBJECT_DEPENDS "${FLEX_GUC_SCANNER_OUTPUTS}")
 
-if(WIN32 OR MINGW)
-	set(dynloader_SRCS port/dynloader/win32.c)
-	set(dynloader_H port/dynloader/win32.h)
-elseif(CYGWIN)
-	set(dynloader_SRCS port/dynloader/cygwin.c)
-	set(dynloader_H port/dynloader/cygwin.h)
-elseif(APPLE)
-	set(dynloader_SRCS port/dynloader/darwin.c)
-	set(dynloader_H port/dynloader/darwin.h)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-	set(dynloader_SRCS port/dynloader/linux.c)
-	set(dynloader_H port/dynloader/linux.h)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "HP-UX")
-	set(dynloader_SRCS port/dynloader/hpux.c)
-	set(dynloader_H port/dynloader/hpux.h)
-#TODO: FreeBSD, OpenBSD, NetBSD is equal loader
-elseif(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
-	set(dynloader_SRCS port/dynloader/freebsd.c)
-	set(dynloader_H port/dynloader/freebsd.h)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "OpenBSD")
-	set(dynloader_SRCS port/dynloader/openbsd.c)
-	set(dynloader_H port/dynloader/openbsd.h)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "NetBSD")
-	set(dynloader_SRCS port/dynloader/netbsd.c)
-	set(dynloader_H port/dynloader/netbsd.h)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "SunOS")
-	set(dynloader_SRCS port/dynloader/solaris.c)
-	set(dynloader_H port/dynloader/solaris.h)
-elseif(CMAKE_SYSTEM_NAME STREQUAL "AIX")
-	set(dynloader_SRCS port/dynloader/aix.c)
-	set(dynloader_H port/dynloader/aix.h)
-else(WIN32 OR MINGW)
-	message(WARNING "${CMAKE_SYSTEM_NAME}")
-endif(WIN32 OR MINGW)
-
-add_custom_command(
-	MAIN_DEPENDENCY "${CMAKE_CURRENT_SOURCE_DIR}/${dynloader_H}"
-	OUTPUT "${PROJECT_SOURCE_DIR}/src/include/dynloader.h"
-	COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/${dynloader_H} ${PROJECT_SOURCE_DIR}/src/include/dynloader.h
-)
 
 #Need for bin/pg_xlogdump
 set(access_rmgrdesc_SRC
@@ -104,10 +64,12 @@ set(access_rmgrdesc_SRC
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/clogdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/committsdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/dbasedesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/genericdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/gindesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/gistdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/hashdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/heapdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/logicalmsgdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/mxactdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/nbtdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/relmapdesc.c
@@ -119,8 +81,6 @@ set(access_rmgrdesc_SRC
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/tblspcdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/xactdesc.c
 	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/xlogdesc.c
-	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/genericdesc.c
-	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/logicalmsgdesc.c
 )
 
 set(rmgrdesc_SRC
@@ -128,7 +88,197 @@ set(rmgrdesc_SRC
 	PARENT_SCOPE
 )
 
-file(GLOB_RECURSE access_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/access/*.c)
+set(access_brin_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_pageops.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_revmap.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_tuple.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_xlog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_minmax.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_inclusion.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/brin/brin_validate.c
+)
+
+set(access_common_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/bufmask.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/heaptuple.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/indextuple.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/printsimple.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/printtup.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/relation.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/reloptions.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/scankey.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/session.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/tupconvert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/common/tupdesc.c
+)
+
+set(access_gin_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginutil.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/gininsert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginxlog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginentrypage.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/gindatapage.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginbtree.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginscan.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginget.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginvacuum.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginarrayproc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginbulk.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginfast.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginpostinglist.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginlogic.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gin/ginvalidate.c
+)
+
+set(access_gist_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gist.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistutil.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistxlog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistvacuum.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistget.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistscan.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistproc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistsplit.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistbuild.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistbuildbuffers.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/gist/gistvalidate.c
+)
+
+set(access_hash_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hash.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashfunc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashinsert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashovfl.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashpage.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashsearch.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashsort.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashutil.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hashvalidate.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/hash/hash_xlog.c
+)
+
+set(access_heap_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/heapam.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/heapam_handler.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/heapam_visibility.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/hio.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/pruneheap.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/rewriteheap.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/syncscan.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/tuptoaster.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/vacuumlazy.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/heap/visibilitymap.c
+)
+
+set(access_index_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/index/amapi.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/index/amvalidate.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/index/genam.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/index/indexam.c
+)
+
+set(access_nbtree_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtcompare.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtinsert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtpage.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtree.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtsearch.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtsplitloc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtutils.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtsort.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtvalidate.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/nbtree/nbtxlog.c
+)
+
+set(access_rmgrdesc_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/brindesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/clogdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/committsdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/dbasedesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/genericdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/gindesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/gistdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/hashdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/heapdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/logicalmsgdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/mxactdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/nbtdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/relmapdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/replorigindesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/seqdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/smgrdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/spgdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/standbydesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/tblspcdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/xactdesc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/rmgrdesc/xlogdesc.c
+)
+
+set(access_spgist_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgutils.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spginsert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgscan.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgvacuum.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgvalidate.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgdoinsert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgxlog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgtextproc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgquadtreeproc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgkdtreeproc.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/spgist/spgproc.c
+)
+
+set(access_table_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/table/table.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/table/tableam.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/table/tableamapi.c
+)
+
+set(access_tablesample_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/tablesample/bernoulli.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/tablesample/system.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/tablesample/tablesample.c
+)
+
+set(access_transam_SRCS
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/clog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/commit_ts.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/generic_xlog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/multixact.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/parallel.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/rmgr.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/slru.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/subtrans.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/timeline.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/transam.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/twophase.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/twophase_rmgr.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/varsup.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xact.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xlog.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xlogarchive.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xlogfuncs.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xloginsert.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xlogreader.c
+	${CMAKE_CURRENT_SOURCE_DIR}/access/transam/xlogutils.c
+)
+
+set(access_SRCS
+		${access_brin_SRCS}
+		${access_common_SRCS}
+		${access_gin_SRCS}
+		${access_gist_SRCS}
+		${access_hash_SRCS}
+		${access_heap_SRCS}
+		${access_index_SRCS}
+		${access_nbtree_SRCS}
+		${access_rmgrdesc_SRCS}
+		${access_spgist_SRCS}
+		${access_table_SRCS}
+		${access_tablesample_SRCS}
+		${access_transam_SRCS}
+)
 
 bison_target(BOOTSTRAP_PARSER bootstrap/bootparse.y ${CMAKE_CURRENT_SOURCE_DIR}/bootstrap/bootparse.c)
 flex_target(BOOTSTRAP_SCANNER bootstrap/bootscanner.l  ${CMAKE_CURRENT_SOURCE_DIR}/bootstrap/bootscanner.c)
@@ -165,6 +315,8 @@ set(POSTGRES_BKI_SRCS
 	${postgres_include_catalog}/pg_largeobject_metadata.h
 	${postgres_include_catalog}/pg_largeobject.h
 	${postgres_include_catalog}/pg_aggregate.h
+	${postgres_include_catalog}/pg_statistic_ext.h
+	${postgres_include_catalog}/pg_statistic_ext_data.h
 	${postgres_include_catalog}/pg_statistic.h
 	${postgres_include_catalog}/pg_rewrite.h
 	${postgres_include_catalog}/pg_trigger.h
@@ -199,8 +351,6 @@ set(POSTGRES_BKI_SRCS
 	${postgres_include_catalog}/pg_init_privs.h
 	${postgres_include_catalog}/pg_seclabel.h
 	${postgres_include_catalog}/pg_shseclabel.h
-	${postgres_include_catalog}/pg_statistic_ext.h
-	${postgres_include_catalog}/pg_subscription_rel.h
 	${postgres_include_catalog}/pg_collation.h
 	${postgres_include_catalog}/pg_partitioned_table.h
 	${postgres_include_catalog}/pg_range.h
@@ -209,6 +359,7 @@ set(POSTGRES_BKI_SRCS
 	${postgres_include_catalog}/pg_publication.h
 	${postgres_include_catalog}/pg_publication_rel.h
 	${postgres_include_catalog}/pg_subscription.h
+	${postgres_include_catalog}/pg_subscription_rel.h
 	${postgres_include_catalog}/toasting.h
 	${postgres_include_catalog}/indexing.h
 )
@@ -267,14 +418,14 @@ if(WIN32)
 	set(ADDITIONAL_GENERATIONS ${ADDITIONAL_GENERATIONS} generateTimezoneConfigs)
 endif()
 
-
 ##Генерация исходников через Perl. При разработке выывается вручную, так как add_custom_target с DEPENDENCY будет делать перегенерацию каждый раз, а add_custom_command работает только в пределах одного CMAKE файла
 add_custom_target(
 		POSTGRES_GENERATE_SRC
 		DEPENDS ${POSTGRES_BKI_SRCS} ${POSTGRES_BKI_DATA} postgres_dat_gen ${ADDITIONAL_GENERATIONS}
-		COMMAND ${PERL_EXECUTABLE} -I${CMAKE_CURRENT_SOURCE_DIR}/catalog genbki.pl --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
+		COMMAND ${PERL_EXECUTABLE} genbki.pl --include-path=${CMAKE_CURRENT_SOURCE_DIR}/../include/ --set-version=${POSTGRES_MAJOR_VERSION} ${POSTGRES_BKI_SRCS}
 		COMMAND ${CMAKE_COMMAND} -E copy schemapg.h ${PROJECT_SOURCE_DIR}/src/include/catalog/schemapg.h
 		COMMAND mv ${CMAKE_CURRENT_SOURCE_DIR}/catalog/*_d.h ${PROJECT_SOURCE_DIR}/src/include/catalog
+		COMMAND ${PERL_EXECUTABLE} -I ${CMAKE_CURRENT_SOURCE_DIR}/../tools ${CMAKE_CURRENT_SOURCE_DIR}/../tools/gen_keywordlist.pl --extern -o ${CMAKE_CURRENT_SOURCE_DIR}/../common ${CMAKE_CURRENT_SOURCE_DIR}/../include/parser/kwlist.h
 		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/catalog
 )
 
@@ -323,7 +474,6 @@ set(commands_SRCS
 	commands/typecmds.c
 	commands/user.c
 	commands/vacuum.c
-	commands/vacuumlazy.c
 	commands/variable.c
 	commands/view.c
 )
@@ -351,12 +501,29 @@ set(libpq_SRCS
 	${libpq_ssl_SRCS}
 )
 
+bison_target(JSON_GRAM
+		utils/adt/jsonpath_gram.y
+		${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/jsonpath_gram.c
+)
+
+flex_target(JSON_SCAN
+		utils/adt/jsonpath_scan.l
+		${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/jsonpath_scan.c
+		COMPILE_FLAGS "-b -CF -p -p"
+)
+
+add_flex_bison_dependency(JSON_SCAN JSON_GRAM)
+
+set_source_files_properties(utils/adt/jsonpath.c PROPERTIES OBJECT_DEPENDS "${FLEX_JSON_SCAN_OUTPUTS};${BISON_JSON_GRAM_OUTPUTS}")
+
 file(GLOB_RECURSE utils_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/utils/*.c)
 
 file(GLOB_RECURSE utils_conversion_procs_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/conversion_procs/*.c)
 list(REMOVE_ITEM utils_SRCS
 				${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/levenshtein.c
 				${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/like_match.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/jsonpath_gram.c
+				${CMAKE_CURRENT_SOURCE_DIR}/utils/adt/jsonpath_scan.c
 				${CMAKE_CURRENT_SOURCE_DIR}/utils/sort/qsort_tuple.c
 				${CMAKE_CURRENT_SOURCE_DIR}/utils/misc/guc-file.c
 				${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/iso.c
@@ -364,7 +531,7 @@ list(REMOVE_ITEM utils_SRCS
 				${CMAKE_CURRENT_SOURCE_DIR}/utils/mb/win1251.c
 				${utils_conversion_procs_SRCS}
 )
-list(APPEND utils_SRCS ${gen_fmgrtab_output} ${gen_probe_output} ${PROJECT_SOURCE_DIR}/src/include/dynloader.h)
+list(APPEND utils_SRCS ${gen_fmgrtab_output} ${gen_probe_output} ${BISON_JSON_GRAM_OUTPUTS})
 
 set(nodes_SRCS
 	nodes/nodeFuncs.c
@@ -421,9 +588,12 @@ set(optimizer_SRCS
 	optimizer/prep/prepqual.c
 	optimizer/prep/preptlist.c
 	optimizer/prep/prepunion.c
+	optimizer/util/appendinfo.c
 	optimizer/util/clauses.c
+	optimizer/util/inherit.c
 	optimizer/util/joininfo.c
 	optimizer/util/orclauses.c
+	optimizer/util/paramassign.c
 	optimizer/util/pathnode.c
 	optimizer/util/placeholder.c
 	optimizer/util/plancat.c
@@ -532,7 +702,6 @@ set(postmaster_SRCS
 	postmaster/startup.c
 	postmaster/syslogger.c
 	postmaster/walwriter.c
-	postmaster/save_backend_params.cpp
 )
 
 if(WIN32 OR CYGWIN OR MINGW)
@@ -551,33 +720,6 @@ if(WIN32 OR CYGWIN OR MINGW)
 		)
 	endif(NAVE_MINIDUMP_TYPE)
 endif()
-
-set(gen_lwlocknames_depend
-	${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/generate-lwlocknames.pl
-	${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.txt
-)
-
-set(gen_lwlocknames_output
-	${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.c
-	${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.h
-	${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
-)
-
-
-add_custom_command(
-	OUTPUT ${gen_lwlocknames_output}
-	MAIN_DEPENDENCY ${gen_lwlocknames_depend}
-	COMMAND ${PERL_EXECUTABLE} generate-lwlocknames.pl lwlocknames.txt
-	COMMAND ${CMAKE_COMMAND} -E copy lwlocknames.h ${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
-	WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr
-)
-
-#add_custom_target(
-#		postgres_lock_gen
-#		COMMAND ${PERL_EXECUTABLE} generate-lwlocknames.pl lwlocknames.txt
-#		COMMAND ${CMAKE_COMMAND} -E copy lwlocknames.h ${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
-#		WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr
-#)
 
 set(backend_port_SRCS
 	port/atomics.c
@@ -652,6 +794,7 @@ set(timezone_SRCS
 set(statistics_SRCS
 	statistics/extended_stats.c
 	statistics/dependencies.c
+	statistics/mcv.c
 	statistics/mvdistinct.c
 )
 
@@ -693,8 +836,6 @@ set(postgres_SRCS
 	${statistics_SRCS}
 	${JIT_SRC}
 	${PART_SRC}
-	${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
-	${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr/lwlocknames.c
 	main/main.c
 )
 
@@ -725,9 +866,9 @@ add_executable(postgres
 )
 
 target_link_libraries(postgres
+	pq
 	pgcommon_srv
 	pgport_srv
-	pq
 	${READLINE_LIBRARY}
 	${CMAKE_THREAD_LIBS_INIT}
 	${DL_LIBRARIES}
@@ -790,7 +931,6 @@ add_custom_target(duplicate_oids
 )
 
 add_library(pqwalreceiver ${PLUGIN_TYPE}
-	${PROJECT_SOURCE_DIR}/src/include/storage/lwlocknames.h
 	${PROJECT_SOURCE_DIR}/src/include/utils/fmgrprotos.h
 	replication/libpqwalreceiver/libpqwalreceiver.c
 	${backend_port_win32_SRC}
@@ -799,7 +939,6 @@ add_library(pqwalreceiver ${PLUGIN_TYPE}
 set_target_properties(pqwalreceiver PROPERTIES PREFIX "lib")
 
 add_library(pgoutput ${PLUGIN_TYPE}
-	${gen_lwlocknames_output}
 	replication/pgoutput/pgoutput.c
 	${backend_port_win32_SRC}
 	${backend_port_darwin_SRC}

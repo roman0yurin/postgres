@@ -5,12 +5,12 @@ include_directories(BEFORE
 	"${PROJECT_SOURCE_DIR}/src/bin/psql"
 )
 
-set(psqlscan_flags, "-Cfe -p -p")
+set(psqlscan_flags "-Cfe -p -p")
 
 flex_target(psqlscan
 	psqlscan.l
 	${CMAKE_CURRENT_SOURCE_DIR}/psqlscan.c
-	${psqlscan_flags}
+	COMPILE_FLAGS ${psqlscan_flags}
 )
 
 file(GLOB_RECURSE pgfeutils_SRC ${CMAKE_CURRENT_SOURCE_DIR}/*.c)

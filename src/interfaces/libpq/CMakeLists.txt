@@ -15,6 +15,7 @@ endif(USE_OPENSSL)
 
 set(pq_SRCS
 	fe-auth.c
+	fe-auth-scram.c
 	fe-connect.c
 	fe-exec.c
 	fe-misc.c
@@ -22,7 +23,6 @@ set(pq_SRCS
 	fe-lobj.c
 	fe-protocol2.c
 	fe-protocol3.c
-	fe-auth-scram.c
 	pqexpbuffer.c
 	fe-secure.c
 	libpq-events.c

@@ -13,9 +13,9 @@ add_executable(pg_waldump
 )
 
 target_link_libraries(pg_waldump
-	pgcommon
-	pgport
 	pq
+	pgcommon_shlib
+	pgport_shlib
 )
 
 target_compile_definitions(pg_waldump PRIVATE -DFRONTEND)
