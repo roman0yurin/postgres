@@ -253,7 +253,7 @@ IsPostmasterChildWalSender(int slot)
  * actively using shared memory.  This is called in the child process.
  */
 void
-MarkPostmasterChildActive(void)
+MarkPostmasterChildActiveInternal(void)
 {
 	int			slot = MyPMChildSlot;
 
@@ -261,6 +261,14 @@ MarkPostmasterChildActive(void)
 	slot--;
 	Assert(PMSignalState->PMChildFlags[slot] == PM_CHILD_ASSIGNED);
 	PMSignalState->PMChildFlags[slot] = PM_CHILD_ACTIVE;
+}
+
+void (*MarkPostmasterChildActiveFunc)(void) = &MarkPostmasterChildActiveInternal;
+
+void
+MarkPostmasterChildActive(void)
+{
+    (*MarkPostmasterChildActiveFunc)();
 }
 
 /*

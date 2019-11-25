@@ -426,6 +426,10 @@ SocketBackend(StringInfo inBuf)
 			}
 			break;
 
+        case 0x0FA:        		/* наш особый случай, означающий вся инициализацияч пройдена и */
+                                /* нужно просто выйти в точку инициализации, чтобы задавать команды напрямую, */
+                                /* а не "внутри" стандартного цикла обработки */
+
 		case 'X':				/* terminate */
 			doing_extended_query_message = false;
 			ignore_till_sync = false;
@@ -4424,6 +4428,11 @@ PostgresMain(int argc, char *argv[],
 				finish_xact_command();
 				send_ready_for_query = true;
 				break;
+
+            case 0x0FA: 			/* наш особый случай, означающий вся инициализацияч пройдена и */
+                                    /* нужно просто выйти в точку инициализации, чтобы задавать команды напрямую, */
+                                    /* а не "внутри" стандартного цикла обработки */
+                return;
 
 				/*
 				 * 'X' means that the frontend is closing down the socket. EOF

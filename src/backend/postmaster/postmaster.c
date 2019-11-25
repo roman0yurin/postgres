@@ -400,7 +400,7 @@ static void LogChildExit(int lev, const char *procname,
 						 int pid, int exitstatus);
 static void PostmasterStateMachine(void);
 static void BackendInitialize(Port *port);
-static void BackendRun(Port *port) pg_attribute_noreturn();
+static void BackendRun(Port *port) /*pg_attribute_noreturn()*/;
 static void ExitPostmaster(int status) pg_attribute_noreturn();
 static int	ServerLoop(void);
 static int	BackendStartup(Port *port);
@@ -4970,6 +4970,8 @@ SubPostmasterMain(int argc, char *argv[])
 
 		/* And run the backend */
 		BackendRun(&port);		/* does not return */
+
+        return;
 	}
 	if (strcmp(argv[1], "--forkboot") == 0)
 	{

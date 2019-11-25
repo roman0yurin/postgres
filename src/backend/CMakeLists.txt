@@ -811,7 +811,7 @@ set_source_files_properties(utils/sort/tuplesort.c
 file(GLOB JIT_SRC jit/*.c jit/*.cpp)
 file(GLOB_RECURSE PART_SRC partitioning/*.c)
 
-set(postgres_SRCS
+set(postgres_core_SRCS
 	${access_SRCS}
 	${storage_SRCS}
 	${bootstrap_SRCS}
@@ -836,6 +836,10 @@ set(postgres_SRCS
 	${statistics_SRCS}
 	${JIT_SRC}
 	${PART_SRC}
+)
+
+set(postgres_SRCS
+	${postgres_core_SRCS}
 	main/main.c
 )
 
@@ -861,11 +865,19 @@ if(MINGW OR CYGWIN)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--stack,${WIN32_STACK_RLIMIT} -Wl,--export-all-symbols")
 endif()
 
+add_library(postgres_core SHARED ${postgres_core_SRCS})
+
 add_executable(postgres
-	${postgres_SRCS}
+	main/main.c
+)
+
+add_executable(postgres_sgaz
+	main/main_sgaz.c
+	main/memory_socket.cpp
 )
 
 target_link_libraries(postgres
+	postgres_core
 	pq
 	pgcommon_srv
 	pgport_srv
@@ -878,41 +890,71 @@ target_link_libraries(postgres
 	${LLVM_LIBRARIES}
 )
 
+target_link_libraries(postgres_sgaz
+	postgres_core
+	pq
+	pgcommon_srv
+	pgport_srv
+	${READLINE_LIBRARY}
+	${CMAKE_THREAD_LIBS_INIT}
+	${DL_LIBRARIES}
+	${LIB_M}
+	${GSS_LIBS}
+	${ICU_LIBRARIES}
+	${LLVM_LIBRARIES}
+)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+	target_compile_definitions(postgres_core PRIVATE -DEXEC_BACKEND)
+	target_compile_definitions(postgres PRIVATE -DEXEC_BACKEND)
+	target_compile_definitions(postgres_sgaz PRIVATE -DEXEC_BACKEND)
+endif()
+
 if(USE_SYSTEMD)
 	target_link_libraries(postgres systemd)
+#	target_link_libraries(postgres_sgaz systemd)
 endif()
 
 if(OPENSSL_FOUND)
 	target_link_libraries(postgres ${OPENSSL_LIBRARIES})
+	target_link_libraries(postgres_sgaz ${OPENSSL_LIBRARIES})
 endif()
 
 
 if(DBGHELP_FOUND)
 	target_link_libraries(postgres ${DBGHELP_LIBRARIES})
+	target_link_libraries(postgres_sgaz ${DBGHELP_LIBRARIES})
 elseif(DEFINED ENV{MINGW64_PROJ_ROOT})
 	target_link_libraries(postgres "$ENV{MINGW64_PROJ_ROOT}/mingw64/x86_64-w64-mingw32/lib/libdbghelp.a")
+	target_link_libraries(postgres_sgaz "$ENV{MINGW64_PROJ_ROOT}/mingw64/x86_64-w64-mingw32/lib/libdbghelp.a")
 endif()
 
 if(LIBXML2_FOUND)
 	target_link_libraries(postgres ${LIBXML2_LIBRARIES})
+	target_link_libraries(postgres_sgaz ${LIBXML2_LIBRARIES})
 endif()
 
 if(USE_PAM)
 	target_link_libraries(postgres ${PAM_LIB})
+	target_link_libraries(postgres_sgaz ${PAM_LIB})
 endif()
 
 if(LDAP_FOUND)
 	target_link_libraries(postgres ${LBER_LIBRARIES})
+	target_link_libraries(postgres_sgaz ${LBER_LIBRARIES})
 endif()
 
-add_dependencies(postgres gen_errorcodes generate_parser_gram_h)
+add_dependencies(postgres_core gen_errorcodes generate_parser_gram_h)
 
 if(UNIX AND NOT APPLE)
 	target_link_libraries(postgres rt)
+	target_link_libraries(postgres_sgaz rt)
 endif()
 
 
+target_compile_definitions(postgres_core PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
 target_compile_definitions(postgres PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
+target_compile_definitions(postgres_sgaz PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
 
 if(WIN32)
 	target_compile_definitions(postgres PRIVATE -DBUILDING_DLL -DEXEC_BACKEND)
@@ -983,6 +1025,14 @@ install(FILES
 	libpq/pg_ident.conf.sample
 	${CMAKE_CURRENT_BINARY_DIR}/utils/misc/postgresql.conf.sample
 DESTINATION ${PGSHAREDIR})
+
+install(TARGETS postgres_core
+		LIBRARY DESTINATION ${LIBDIR})
+
+install(TARGETS postgres postgres_sgaz
+		RUNTIME DESTINATION ${PGBINDIR}
+		LIBRARY DESTINATION ${LIBDIR})
+
 set(PG_IO_CONCURRENCY 4)
 if(WIN32)
 	set(PG_IO_CONCURRENCY 0)

@@ -142,8 +142,8 @@ secure_close(Port *port)
 /*
  *	Read data from a secure connection.
  */
-ssize_t
-secure_read(Port *port, void *ptr, size_t len)
+static ssize_t
+secure_read_internal(Port *port, void *ptr, size_t len)
 {
 	ssize_t		n;
 	int			waitfor;
@@ -231,8 +231,16 @@ retry:
 	return n;
 }
 
+ssize_t (*secure_read_func)(Port *, void *, size_t) = &secure_read_internal;
+
 ssize_t
-secure_raw_read(Port *port, void *ptr, size_t len)
+secure_read(Port *port, void *ptr, size_t len)
+{
+    return (*secure_read_func)(port, ptr, len);
+}
+
+ssize_t
+secure_raw_read_internal(Port *port, void *ptr, size_t len)
 {
 	ssize_t		n;
 
@@ -251,12 +259,19 @@ secure_raw_read(Port *port, void *ptr, size_t len)
 	return n;
 }
 
+ssize_t (*secure_raw_read_func)(Port *, void *, size_t) = &secure_raw_read_internal;
+
+ssize_t
+secure_raw_read(Port *port, void *ptr, size_t len)
+{
+    return (*secure_raw_read_func)(port, ptr, len);
+}
 
 /*
  *	Write data to a secure connection.
  */
 ssize_t
-secure_write(Port *port, void *ptr, size_t len)
+secure_write_internal(Port *port, void *ptr, size_t len)
 {
 	ssize_t		n;
 	int			waitfor;
@@ -327,8 +342,16 @@ retry:
 	return n;
 }
 
+ssize_t (*secure_write_func)(Port *, void *, size_t) = &secure_write_internal;
+
 ssize_t
-secure_raw_write(Port *port, const void *ptr, size_t len)
+secure_write(Port *port, void *ptr, size_t len)
+{
+    return (*secure_write_func)(port, ptr, len);
+}
+
+ssize_t
+secure_raw_write_internal(Port *port, const void *ptr, size_t len)
 {
 	ssize_t		n;
 
@@ -341,4 +364,12 @@ secure_raw_write(Port *port, const void *ptr, size_t len)
 #endif
 
 	return n;
+}
+
+ssize_t (*secure_raw_write_func)(Port *, const void *, size_t) = &secure_raw_write_internal;
+
+ssize_t
+secure_raw_write(Port *port, const void *ptr, size_t len)
+{
+    return (*secure_raw_write_func)(port, ptr, len);
 }

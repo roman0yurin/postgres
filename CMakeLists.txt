@@ -1395,6 +1395,12 @@ if(MSVC)
 	include_directories("${PROJECT_SOURCE_DIR}/src/include/port/win32_msvc")
 endif()
 
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+	set(HAVE_STRNLEN 1)
+	set(HAVE_STRSIGNAL 1)
+	set(HAVE_STRTOF 1)
+endif()
+
 configure_file(
 	"${PROJECT_SOURCE_DIR}/src/include/pg_config_cmake.in"
 	"${PROJECT_SOURCE_DIR}/src/include/pg_config.h"
