@@ -871,26 +871,19 @@ add_executable(postgres
 	main/main.c
 )
 
+set(postgres_init_SRCS
+	main/pg_loader.c
+	main/memory_socket.cpp
+	main/table_scanner.cpp
+)
+
+add_library(postgres_init STATIC ${postgres_init_SRCS})
+
 add_executable(postgres_sgaz
 	main/main_sgaz.c
-	main/memory_socket.cpp
 )
 
-target_link_libraries(postgres
-	postgres_core
-	pq
-	pgcommon_srv
-	pgport_srv
-	${READLINE_LIBRARY}
-	${CMAKE_THREAD_LIBS_INIT}
-	${DL_LIBRARIES}
-	${LIB_M}
-	${GSS_LIBS}
-	${ICU_LIBRARIES}
-	${LLVM_LIBRARIES}
-)
-
-target_link_libraries(postgres_sgaz
+set(postgres_common_libraries
 	postgres_core
 	pq
 	pgcommon_srv
@@ -907,54 +900,57 @@ target_link_libraries(postgres_sgaz
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	target_compile_definitions(postgres_core PRIVATE -DEXEC_BACKEND)
 	target_compile_definitions(postgres PRIVATE -DEXEC_BACKEND)
-	target_compile_definitions(postgres_sgaz PRIVATE -DEXEC_BACKEND)
-endif()
-
-if(USE_SYSTEMD)
-	target_link_libraries(postgres systemd)
-#	target_link_libraries(postgres_sgaz systemd)
+	target_compile_definitions(postgres_init PRIVATE -DEXEC_BACKEND)
 endif()
 
 if(OPENSSL_FOUND)
-	target_link_libraries(postgres ${OPENSSL_LIBRARIES})
-	target_link_libraries(postgres_sgaz ${OPENSSL_LIBRARIES})
+	list(APPEND postgres_common_libraries ${OPENSSL_LIBRARIES})
 endif()
 
 
 if(DBGHELP_FOUND)
-	target_link_libraries(postgres ${DBGHELP_LIBRARIES})
-	target_link_libraries(postgres_sgaz ${DBGHELP_LIBRARIES})
+	list(APPEND postgres_common_libraries ${DBGHELP_LIBRARIES})
 elseif(DEFINED ENV{MINGW64_PROJ_ROOT})
-	target_link_libraries(postgres "$ENV{MINGW64_PROJ_ROOT}/mingw64/x86_64-w64-mingw32/lib/libdbghelp.a")
-	target_link_libraries(postgres_sgaz "$ENV{MINGW64_PROJ_ROOT}/mingw64/x86_64-w64-mingw32/lib/libdbghelp.a")
+	list(APPEND postgres_common_libraries "$ENV{MINGW64_PROJ_ROOT}/mingw64/x86_64-w64-mingw32/lib/libdbghelp.a")
 endif()
 
 if(LIBXML2_FOUND)
-	target_link_libraries(postgres ${LIBXML2_LIBRARIES})
-	target_link_libraries(postgres_sgaz ${LIBXML2_LIBRARIES})
+	list(APPEND postgres_common_libraries ${LIBXML2_LIBRARIES})
 endif()
 
 if(USE_PAM)
-	target_link_libraries(postgres ${PAM_LIB})
-	target_link_libraries(postgres_sgaz ${PAM_LIB})
+	list(APPEND postgres_common_libraries ${PAM_LIB})
 endif()
 
 if(LDAP_FOUND)
-	target_link_libraries(postgres ${LBER_LIBRARIES})
-	target_link_libraries(postgres_sgaz ${LBER_LIBRARIES})
+	list(APPEND postgres_common_libraries ${LBER_LIBRARIES})
 endif()
 
 add_dependencies(postgres_core gen_errorcodes generate_parser_gram_h)
 
 if(UNIX AND NOT APPLE)
-	target_link_libraries(postgres rt)
-	target_link_libraries(postgres_sgaz rt)
+	list(APPEND postgres_common_libraries rt)
 endif()
 
+target_link_libraries(postgres
+	${postgres_common_libraries}
+)
+
+target_link_libraries(postgres_init
+	${postgres_common_libraries}
+)
+
+target_link_libraries(postgres_sgaz
+	postgres_init
+)
+
+if(USE_SYSTEMD)
+	target_link_libraries(postgres systemd)
+endif()
 
 target_compile_definitions(postgres_core PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
 target_compile_definitions(postgres PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
-target_compile_definitions(postgres_sgaz PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
+target_compile_definitions(postgres_init PRIVATE -DPG_KRB_SRVTAB="${PG_KRB_SRVTAB}")
 
 if(WIN32)
 	target_compile_definitions(postgres PRIVATE -DBUILDING_DLL -DEXEC_BACKEND)
@@ -993,8 +989,8 @@ if(MSVC)
 endif()
 
 if(WIN32)
-	target_link_libraries(pqwalreceiver postgres)
-	target_link_libraries(pgoutput postgres)
+	target_link_libraries(pqwalreceiver postgres_core)
+	target_link_libraries(pgoutput postgres_core)
 endif()
 
 #Strange logic
@@ -1029,7 +1025,7 @@ DESTINATION ${PGSHAREDIR})
 install(TARGETS postgres_core
 		LIBRARY DESTINATION ${LIBDIR})
 
-install(TARGETS postgres postgres_sgaz
+install(TARGETS postgres postgres_init
 		RUNTIME DESTINATION ${PGBINDIR}
 		LIBRARY DESTINATION ${LIBDIR})
 

@@ -76,6 +76,7 @@
 #include <sys/param.h>
 #include <netdb.h>
 #include <limits.h>
+#include "funcapi.h"
 
 #ifdef HAVE_SYS_SELECT_H
 #include <sys/select.h>

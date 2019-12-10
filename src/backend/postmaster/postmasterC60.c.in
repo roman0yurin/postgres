@@ -2,10 +2,10 @@
 /** Экпортируемая функция сохранения в файл параметров для запуска backend-процесса
  * (механизм, который используется в Postgres, когда задефайнен EXEC_BACKEND) */
 
-char *c60_save_backend_parameters_to_file(char *filename)
+char *c60_save_backend_parameters_to_file(char *parameters_file_name, char *program_file_path, char *library_file_path, char *data_dir_path)
 {
 #ifdef EXEC_BACKEND
-    calculate_name_for_temp_file(filename, MAXPGPATH);
+    calculate_name_for_temp_file(parameters_file_name, MAXPGPATH);
 
     BackendParameters params;
     memset(&params, 0, sizeof(params));
@@ -28,10 +28,10 @@ char *c60_save_backend_parameters_to_file(char *filename)
             params.ListenSocket[i] = PGINVALID_SOCKET;
 
         /* Open file */
-        FILE *fp = AllocateFile(filename, PG_BINARY_W);
+        FILE *fp = AllocateFile(parameters_file_name, PG_BINARY_W);
 
         if(!fp && MakePGDirectory(PG_TEMP_FILES_DIR) == 0)
-            fp = AllocateFile(filename, PG_BINARY_W);
+            fp = AllocateFile(parameters_file_name, PG_BINARY_W);
 
         if (fp)
         {
@@ -39,28 +39,34 @@ char *c60_save_backend_parameters_to_file(char *filename)
             {
                 params_saved = false;
                 ereport(LOG, (errcode_for_file_access(),
-                            errmsg("could not write to file \"%s\": %m", filename)));
+                            errmsg("could not write to file \"%s\": %m", parameters_file_name)));
+            }
+            else
+            {
+                strncpy(program_file_path, params.my_exec_path, MAXPGPATH);
+                strncpy(library_file_path, params.pkglib_path, MAXPGPATH);
+                strncpy(data_dir_path, params.DataDir, MAXPGPATH);
             }
 
             if (FreeFile(fp))
                 ereport(LOG, (errcode_for_file_access(),
-                            errmsg("could not write to file \"%s\": %m", filename)));
+                            errmsg("could not write to file \"%s\": %m", parameters_file_name)));
         }
         else
         {
             params_saved = false;
             ereport(LOG, (errcode_for_file_access(),
-                        errmsg("could not write to file \"%s\": %m", filename)));
+                        errmsg("could not write to file \"%s\": %m", parameters_file_name)));
         }
     }
 
-    return params_saved? filename : NULL;
+    return params_saved ? parameters_file_name : NULL;
 #else
     return NULL;
 #endif
 }
 
-bool patch_backend_parameters(char *filename, int tmp_file_handle)
+bool patch_backend_parameters(const char *filename, int tmp_file_handle)
 {
 #ifdef EXEC_BACKEND
     bool result = true;
@@ -84,3 +90,59 @@ bool patch_backend_parameters(char *filename, int tmp_file_handle)
     return false;
 #endif
 }
+
+#ifdef PG_MODULE_MAGIC
+PG_MODULE_MAGIC;
+#endif
+
+PG_FUNCTION_INFO_V1(c60_save_backend_parameters);
+Datum c60_save_backend_parameters(PG_FUNCTION_ARGS)
+{
+    char parameters_file_name[MAXPGPATH], program_file_path[MAXPGPATH], library_file_path[MAXPGPATH], data_dir_path[MAXPGPATH];
+    char *__filename = c60_save_backend_parameters_to_file(parameters_file_name, program_file_path, library_file_path, data_dir_path);
+    if(__filename)
+    {
+        PG_RETURN_VARCHAR_P((VarChar *) cstring_to_text(__filename));
+    }
+    else
+        PG_RETURN_NULL();
+}
+
+Datum
+c60_save_backend_parameters_ext(PG_FUNCTION_ARGS)
+{
+    TupleDesc            tupdesc;
+    if (get_call_result_type(fcinfo, NULL, &tupdesc) != TYPEFUNC_COMPOSITE)
+        ereport(ERROR,
+                (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
+                    errmsg("function returning record called in context "
+                           "that cannot accept type record")));
+
+    AttInMetadata *attinmeta = TupleDescGetAttInMetadata(tupdesc);
+
+    char **values = (char **) palloc(4 * sizeof(char *));
+    char parameters_file_name[MAXPGPATH], program_file_path[MAXPGPATH], library_file_path[MAXPGPATH], data_dir_path[MAXPGPATH];
+    char *__filename = c60_save_backend_parameters_to_file(parameters_file_name, program_file_path, library_file_path, data_dir_path);
+    if(__filename)
+    {
+        values[0] = parameters_file_name;
+        values[1] = program_file_path;
+        values[2] = library_file_path;
+        values[3] = data_dir_path;
+    }
+    else
+        values[0] = values[1] = values[2] = values[3] = NULL;
+
+    /* build a tuple */
+    HeapTuple tuple = BuildTupleFromCStrings(attinmeta, values);
+
+    /* make the tuple into a datum */
+    Datum result = HeapTupleGetDatum(tuple);
+
+    /* clean up (this is not really necessary) */
+    pfree(values);
+
+    PG_RETURN_DATUM(result);
+}
+
+PG_FUNCTION_INFO_V1(c60_save_backend_parameters_ext);

@@ -20,7 +20,7 @@ set(plpgsql_SRCS
 )
 
 add_library(plpgsql ${PLUGIN_TYPE} ${plpgsql_SRCS})
-target_link_libraries(plpgsql postgres)
+target_link_libraries(plpgsql postgres_core)
 if (MSVC)
 	gen_def(plpgsql)
 	target_link_libraries(plpgsql pgport pgcommon)

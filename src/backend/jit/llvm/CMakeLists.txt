@@ -40,7 +40,7 @@ list(REMOVE_ITEM LLVM_JIT_SRC ${CMAKE_CURRENT_SOURCE_DIR}/llvmjit_types.c)
 
 add_library(llvmjit SHARED ${LLVM_JIT_SRC})
 SET_TARGET_PROPERTIES(llvmjit PROPERTIES PREFIX "")
-target_link_libraries(llvmjit pq postgres)
+target_link_libraries(llvmjit pq postgres_core ${LLVM_LIBRARIES})
 install(
 				TARGETS llvmjit
 				DESTINATION ${POSTGRES_LIB_DIR}

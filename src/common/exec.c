@@ -211,6 +211,16 @@ find_my_exec(const char *argv0, char *retpath)
 		} while (*endp);
 	}
 
+#if defined(__linux__)
+    ssize_t count = readlink("/proc/self/exe", test_path, MAXPGPATH);
+    if(count)
+    {
+        test_path[count] = '\x00';
+        if(validate_exec(test_path) == 0)
+            return resolve_symlinks(test_path);
+    }
+#endif
+
 	log_error(errcode(ERRCODE_UNDEFINED_FILE),
 			  _("could not find a \"%s\" to execute"), argv0);
 	return -1;

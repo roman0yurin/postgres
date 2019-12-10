@@ -294,7 +294,7 @@ MarkPostmasterChildWalSender(void)
  * shared memory.  This is called in the child process.
  */
 void
-MarkPostmasterChildInactive(void)
+MarkPostmasterChildInactiveInternal(void)
 {
 	int			slot = MyPMChildSlot;
 
@@ -305,6 +305,12 @@ MarkPostmasterChildInactive(void)
 	PMSignalState->PMChildFlags[slot] = PM_CHILD_ASSIGNED;
 }
 
+extern void (*MarkPostmasterChildInactiveFunc)(void) = MarkPostmasterChildInactiveInternal;
+
+void MarkPostmasterChildInactive(void)
+{
+    (*MarkPostmasterChildInactiveFunc)();
+}
 
 /*
  * PostmasterIsAliveInternal - check whether postmaster process is still alive

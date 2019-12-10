@@ -11,6 +11,7 @@ extern ssize_t (*secure_raw_read_func)(Port *, void *, size_t);
 extern ssize_t (*secure_write_func)(Port *, void *, size_t);
 extern ssize_t (*secure_raw_write_func)(Port *, const void *, size_t);
 extern void (*MarkPostmasterChildActiveFunc)(void);
+extern void (*MarkPostmasterChildInactiveFunc)(void);
 
 }
 
@@ -134,7 +135,7 @@ ssize_t memory_raw_write(Port *, const void *ptr, size_t len)
 }
 
 void
-MarkPostmasterChildActiveStub(void)
+MarkPostmasterChildStub(void)
 {
 }
 
@@ -149,31 +150,33 @@ void setup_memory_socket()
     secure_write_func = memory_write;
     secure_raw_write_func = memory_raw_write;
 
-//    char buffer[128];
-//    std::string line("Hello world! How are you? I'm fine");
-//    std::string line("12345678901234567890123456789012345678901234567890");
-//    RingBuffer<16> test;
-//    std::cout << test.get(buffer, sizeof(buffer)) << std::endl;
-//    std::cout << test.put(line.c_str(), line.length()) << std::endl;
-//    std::cout << std::string(buffer, test.get(buffer, sizeof(buffer))) << std::endl;
-//    std::cout << test.put(line.c_str(), line.length()) << std::endl;
-//    std::cout << std::string(buffer, test.get(buffer, 13)) << std::endl;
-//    std::cout << test.put(line.c_str(), 7) << std::endl;
-//    std::cout << std::string(buffer, test.get(buffer, 13)) << std::endl;
-//    std::cout << test.put(line.c_str(), 7) << std::endl;
-//    std::cout << std::string(buffer, test.get(buffer, 13)) << std::endl;
-//    std::cout << test.put(line.c_str(), 13) << std::endl;
-//    std::cout << std::string(buffer, test.get(buffer, 10)) << std::endl;
-//    std::cout << test.put(line.c_str(), 13) << std::endl;
-//    std::cout << std::string(buffer, test.get(buffer, 10)) << std::endl;
-//
-//    std::cout << "test_ring<> - " << test_ring<2>(8, 1) << std::endl;
-//    std::cout << "test_ring<> - " << test_ring<2>(9, 1) << std::endl;
-//    std::cout << "test_ring<> - " << test_ring<2>(9, 2) << std::endl;
-//    std::cout << "test_ring<> - " << test_ring<2>(10, 3) << std::endl;
-//    std::cout << "test_ring<> - " << test_ring<2>(13, 2) << std::endl;
-//    std::cout << "test_ring<> - " << test_ring<2>(15, 0) << std::endl;
-//    std::cout << "test_ring<> - " << test_ring<2>(15, 3) << std::endl;
+#ifdef TEST_MEMORY_SOCKET
+    char buffer[128];
+    std::string line("Hello world! How are you? I'm fine");
+    std::string line("12345678901234567890123456789012345678901234567890");
+    RingBuffer<16> test;
+    std::cout << test.get(buffer, sizeof(buffer)) << std::endl;
+    std::cout << test.put(line.c_str(), line.length()) << std::endl;
+    std::cout << std::string(buffer, test.get(buffer, sizeof(buffer))) << std::endl;
+    std::cout << test.put(line.c_str(), line.length()) << std::endl;
+    std::cout << std::string(buffer, test.get(buffer, 13)) << std::endl;
+    std::cout << test.put(line.c_str(), 7) << std::endl;
+    std::cout << std::string(buffer, test.get(buffer, 13)) << std::endl;
+    std::cout << test.put(line.c_str(), 7) << std::endl;
+    std::cout << std::string(buffer, test.get(buffer, 13)) << std::endl;
+    std::cout << test.put(line.c_str(), 13) << std::endl;
+    std::cout << std::string(buffer, test.get(buffer, 10)) << std::endl;
+    std::cout << test.put(line.c_str(), 13) << std::endl;
+    std::cout << std::string(buffer, test.get(buffer, 10)) << std::endl;
+
+    std::cout << "test_ring<> - " << test_ring<2>(8, 1) << std::endl;
+    std::cout << "test_ring<> - " << test_ring<2>(9, 1) << std::endl;
+    std::cout << "test_ring<> - " << test_ring<2>(9, 2) << std::endl;
+    std::cout << "test_ring<> - " << test_ring<2>(10, 3) << std::endl;
+    std::cout << "test_ring<> - " << test_ring<2>(13, 2) << std::endl;
+    std::cout << "test_ring<> - " << test_ring<2>(15, 0) << std::endl;
+    std::cout << "test_ring<> - " << test_ring<2>(15, 3) << std::endl;
+#endif
 }
 
 int put_for_recv(const void *ptr, size_t len)
@@ -186,9 +189,10 @@ int get_from_send(void *ptr, size_t len)
     return for_send.get(ptr, len);
 }
 
-void SetupMarkPostmasterChildActiveInternal()
+void SetupMarkPostmasterChildInternal()
 {
-    MarkPostmasterChildActiveFunc = MarkPostmasterChildActiveStub;
+    MarkPostmasterChildActiveFunc = MarkPostmasterChildStub;
+    MarkPostmasterChildInactiveFunc = MarkPostmasterChildStub;
 }
 
 }

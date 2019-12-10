@@ -56,7 +56,7 @@ typedef struct
 	bool	   *orderbynulls;
 } ReorderTuple;
 
-static TupleTableSlot *IndexNext(IndexScanState *node);
+/*static*/ TupleTableSlot *IndexNext(IndexScanState *node);
 static TupleTableSlot *IndexNextWithReorder(IndexScanState *node);
 static void EvalOrderByExpressions(IndexScanState *node, ExprContext *econtext);
 static bool IndexRecheck(IndexScanState *node, TupleTableSlot *slot);
@@ -77,7 +77,7 @@ static HeapTuple reorderqueue_pop(IndexScanState *node);
  *		using the index specified in the IndexScanState information.
  * ----------------------------------------------------------------
  */
-static TupleTableSlot *
+/*static*/ TupleTableSlot *
 IndexNext(IndexScanState *node)
 {
 	EState	   *estate;
