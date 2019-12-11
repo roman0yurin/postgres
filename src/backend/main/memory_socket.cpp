@@ -12,6 +12,8 @@ extern ssize_t (*secure_write_func)(Port *, void *, size_t);
 extern ssize_t (*secure_raw_write_func)(Port *, const void *, size_t);
 extern void (*MarkPostmasterChildActiveFunc)(void);
 extern void (*MarkPostmasterChildInactiveFunc)(void);
+extern void (*ExceptionalConditionFunc)(const char*, const char*, const char*, int) pg_attribute_noreturn();
+void ExceptionalConditionInternal(const char *conditionName, const char *errorType, const char *fileName, int lineNumber) pg_attribute_noreturn();
 
 }
 
@@ -139,6 +141,28 @@ MarkPostmasterChildStub(void)
 {
 }
 
+void
+CppExceptionalConditionReThrower(const char *conditionName, const char *errorType, const char *fileName, int lineNumber) pg_attribute_noreturn();
+
+void
+CppExceptionalConditionReThrower(const char *conditionName, const char *errorType, const char *fileName, int lineNumber)
+{
+    char error[4096];
+    if (!PointerIsValid(conditionName)
+        || !PointerIsValid(fileName)
+        || !PointerIsValid(errorType))
+        snprintf(error, sizeof(error), "TRAP: ExceptionalCondition: bad arguments");
+    else
+    {
+        snprintf(error, sizeof(error), "TRAP: %s(\"%s\", File: \"%s\", Line: %d)",
+                     errorType, conditionName,
+                     fileName, lineNumber);
+    }
+
+    ExceptionalConditionFunc = &ExceptionalConditionInternal;
+    throw std::runtime_error(error);
+}
+
 }
 
 extern "C" {
@@ -193,6 +217,23 @@ void SetupMarkPostmasterChildInternal()
 {
     MarkPostmasterChildActiveFunc = MarkPostmasterChildStub;
     MarkPostmasterChildInactiveFunc = MarkPostmasterChildStub;
+}
+
+void SetupCppExceptionalConditionReThrower()
+{
+    ExceptionalConditionFunc = &CppExceptionalConditionReThrower;
+}
+
+void RestoreExceptionalCondition()
+{
+    ExceptionalConditionFunc = &ExceptionalConditionInternal;
+}
+
+void ThrowCppException(const char* message) pg_attribute_noreturn();
+
+void ThrowCppException(const char* message)
+{
+    throw std::runtime_error(message);
 }
 
 }

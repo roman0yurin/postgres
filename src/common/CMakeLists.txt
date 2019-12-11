@@ -21,6 +21,8 @@ add_custom_command(
 		WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}/src/backend/storage/lmgr
 )
 
+add_custom_target(gen_lwlocknames_target DEPENDS ${gen_lwlocknames_output})
+
 set(pgcommon_SRCS
 	base64.c
 	config_info.c
@@ -71,7 +73,7 @@ set_source_files_properties(
 	PROPERTIES GENERATED TRUE
 )
 
-add_dependencies(pgcommon_srv generate_parser_gram_h)
+add_dependencies(pgcommon_srv generate_parser_gram_h gen_lwlocknames_target)
 add_dependencies(pgcommon_srv gen_errorcodes)
 add_dependencies(pgcommon gen_errorcodes)
 

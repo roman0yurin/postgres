@@ -19,14 +19,20 @@
 
 #include <unistd.h>
 
+extern void
+ExceptionalConditionInternal(const char *conditionName,
+							 const char *errorType,
+							 const char *fileName,
+							 int lineNumber) pg_attribute_noreturn();
+
 /*
  * ExceptionalCondition - Handles the failure of an Assert()
  */
 void
-ExceptionalCondition(const char *conditionName,
-					 const char *errorType,
-					 const char *fileName,
-					 int lineNumber)
+ExceptionalConditionInternal(const char *conditionName,
+							 const char *errorType,
+							 const char *fileName,
+							 int lineNumber)
 {
 	if (!PointerIsValid(conditionName)
 		|| !PointerIsValid(fileName)
@@ -52,4 +58,15 @@ ExceptionalCondition(const char *conditionName,
 #endif
 
 	abort();
+}
+
+void (*ExceptionalConditionFunc)(const char*, const char*, const char*, int) pg_attribute_noreturn() = &ExceptionalConditionInternal;
+
+void
+ExceptionalCondition(const char *conditionName,
+					 const char *errorType,
+					 const char *fileName,
+					 int lineNumber)
+{
+	(*ExceptionalConditionFunc)(conditionName, errorType, fileName, lineNumber);
 }

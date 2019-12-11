@@ -399,6 +399,7 @@ public:
     ~SGTableManager();
     bool fetch(const char* table_name, const char* schema_name, int key_value);
     bool fetch(Oid table_oid, int key_value);
+    void clean();
 
 private:
 
@@ -429,6 +430,7 @@ private:
         SGTableManagerCache(MemoryContext parent);
         SGTable& find(const char* table_name, const char* schema_name = nullptr);
         SGTable& find(Oid table_oid);
+        void clean();
 
     private:
         static Oid find_table_oid(const char* table_name, const char* schema_name = nullptr);
@@ -806,6 +808,19 @@ typename SGTableManager<tables_cache_size, functions_cache_size>::SGTable& SGTab
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
+void SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::clean()
+{
+    for(auto[key, value] : oid2tables)
+    {
+        value->free();
+        this->free_item(value);
+    }
+
+    name2tables.clear();
+    oid2tables.clear();
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
 Oid SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find_table_oid(const char* table_name, const char* schema_name)
 {
     if(!table_name || !*table_name)
@@ -944,6 +959,12 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(Oid table_oi
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
+void SGTableManager<tables_cache_size, functions_cache_size>::clean()
+{
+    cache.clean();
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
 void SGTableManager<tables_cache_size, functions_cache_size>::out_slot(bool text_format, TupleTableSlot *slot)
 {
     TupleDesc tuple_descriptor = slot->tts_tupleDescriptor;
@@ -1015,42 +1036,67 @@ void run_timed(const char* message, const std::function<void()>& func)
 constexpr size_t TABLE_CACHE_SIZE = 32;
 constexpr size_t OUTPUT_FUNCTION_CACHE_SIZE = 32;
 
-void scan_table(Oid /*table_oid*/, Oid /*index_oid*/)
+static sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE>& table_manager()
+{
+    static sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE> cache;
+    return cache;
+}
+
+void fetchByKeyTableName(const std::string& table_name, const std::string& schema_name, int32_t key_value)
+{
+    table_manager().fetch(table_name.c_str(), schema_name.c_str(), key_value);
+}
+
+void fetchByKeyTableOid(int32_t table_oid, int32_t key_value)
+{
+    table_manager().fetch(table_oid, key_value);
+}
+
+void cleanCache()
+{
+    table_manager().clean();
+}
+
+void scan_table()
 {
     std::cout << "start..." << std::endl;
 
-    sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE> manager;
+//    sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE> manager;
 
-//    run_timed("cold  time is", [&manager]{ manager.fetch("map_common_graphic", "public", 26646350); });
-//    run_timed("hot   time is", [&manager]{ manager.fetch("map_common_graphic", "public", 14340398); });
-//    run_timed("hot   time is", [&manager]{ manager.fetch("map_common_graphic", "public", 6300915); });
-//    run_timed("hot   time is", [&manager]{ manager.fetch("map_common_graphic", "public", 26646350); });
+//    run_timed("cold  time is", []{ fetchByKeyTableName("map_common_graphic", "public", 26646350); });
+//    run_timed("hot   time is", []{ fetchByKeyTableName("map_common_graphic", "public", 14340398); });
+//    run_timed("hot   time is", []{ fetchByKeyTableName("map_common_graphic", "public", 6300915); });
+//    run_timed("hot   time is", []{ fetchByKeyTableName("map_common_graphic", "public", 26646350); });
 
-//    run_timed("cold  time is", [&manager]{ manager.fetch(239391, 14); });
+//    run_timed("cold  time is", []{ fetchByKeyTableOid(239391, 14); });
 
-    run_timed("cold  time is", [&manager]{ manager.fetch(198449, 14); });
-    run_timed("warm  time is", [&manager]{ manager.fetch("dbrole", nullptr, 8167); });
+    run_timed("cold  time is", []{ fetchByKeyTableOid(198449, 14); });
+    run_timed("warm  time is", []{ fetchByKeyTableName("dbrole", "", 8167); });
 
-    run_timed("cold  time is", [&manager]{ manager.fetch("dbuser", "public", 14); });
-    run_timed("hot   time is", [&manager]{ manager.fetch("dbuser", "public", 14); });
-    run_timed("warm  time is", [&manager]{ manager.fetch("dbrole", "public", 8167); });
-    run_timed("hot   time is", [&manager]{ manager.fetch("dbuser", "public", 15); });
-    run_timed("warmh time is", [&manager]{ manager.fetch("dbuser", "public", 16); });
-    run_timed("warm  time is", [&manager]{ manager.fetch("build_doc", "public", 3235); });
-    run_timed("warm  time is", [&manager]{ manager.fetch("build_contract_use", "public", 438); });
-    run_timed("warmh time is", [&manager]{ manager.fetch("dbuser", "public", 16); });
-    run_timed("warmh time is", [&manager]{ manager.fetch("dbrole", "public", 116); });
+    cleanCache();
 
-    manager.fetch("dbuser", "public", 14);
-    manager.fetch("dbrole", "public", 8167);
-//    manager.fetch("dbuser", "public", 15);
-    manager.fetch("build_doc", "public", 3235);
-    manager.fetch("build_contract_use", "public", 438);
-    manager.fetch("dbuser", "public", 16);
-    manager.fetch("dbrole", "public", 116);
+    run_timed("cold  time is", []{ fetchByKeyTableName("dbuser", "public", 14); });
+    run_timed("hot   time is", []{ fetchByKeyTableName("dbuser", "public", 14); });
+    run_timed("warm  time is", []{ fetchByKeyTableName("dbrole", "public", 8167); });
+    run_timed("hot   time is", []{ fetchByKeyTableName("dbuser", "public", 15); });
+    run_timed("warmh time is", []{ fetchByKeyTableName("dbuser", "public", 16); });
+    run_timed("warm  time is", []{ fetchByKeyTableName("build_doc", "public", 3235); });
+    run_timed("warm  time is", []{ fetchByKeyTableName("build_contract_use", "public", 438); });
+    run_timed("warmh time is", []{ fetchByKeyTableName("dbuser", "public", 16); });
+    run_timed("warmh time is", []{ fetchByKeyTableName("dbrole", "public", 116); });
 
-//    manager.fetch("map_common_graphic", "public", 26646350);
-    manager.fetch("map_common_graphic", "public", 7334554);
+    fetchByKeyTableName("dbuser", "public", 14);
+    fetchByKeyTableName("dbrole", "public", 8167);
+//    fetchByKeyTableName("dbuser", "public", 15);
+    fetchByKeyTableName("build_doc", "public", 3235);
+    fetchByKeyTableName("build_contract_use", "public", 438);
+    fetchByKeyTableName("dbuser", "public", 16);
+    fetchByKeyTableName("dbrole", "public", 116);
+
+//    fetchByKeyTableName("map_common_graphic", "public", 26646350);
+    fetchByKeyTableName("map_common_graphic", "public", 7334554);
+
+    cleanCache();
 
     std::cout << "done..." << std::endl;
 }

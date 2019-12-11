@@ -56,9 +56,10 @@ extern void scan_table(Oid table_oid, Oid index_oid);
  * Any Postgres server process begins execution here.
  */
 int
-pg_init(const char *program_file_path, const char *parameters_file_name, int params_count, char *paramsv[])
+pg_init(const char *program_file_path, const char *database_path, const char *parameters_file_name, int params_count, const char *paramsv[])
 {
 	char template[] = "pgsql_tmp/crutch_of_XXXXXX";
+	chdir(database_path);
 	int thandle = mkstemp(template);
 	if(thandle != -1)
     {

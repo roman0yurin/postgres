@@ -879,6 +879,8 @@ set(postgres_init_SRCS
 
 add_library(postgres_init STATIC ${postgres_init_SRCS})
 
+add_library(postgres_java SHARED ${postgres_init_SRCS})
+
 add_executable(postgres_sgaz
 	main/main_sgaz.c
 )
@@ -941,6 +943,10 @@ target_link_libraries(postgres_init
 )
 
 target_link_libraries(postgres_sgaz
+	postgres_init
+)
+
+target_link_libraries(postgres_java
 	postgres_init
 )
 
@@ -1022,10 +1028,10 @@ install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/utils/misc/postgresql.conf.sample
 DESTINATION ${PGSHAREDIR})
 
-install(TARGETS postgres_core
+install(TARGETS postgres_core postgres_java
 		LIBRARY DESTINATION ${LIBDIR})
 
-install(TARGETS postgres postgres_init
+install(TARGETS postgres
 		RUNTIME DESTINATION ${PGBINDIR}
 		LIBRARY DESTINATION ${LIBDIR})
 
