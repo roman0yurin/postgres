@@ -44,7 +44,7 @@ const char *progname;
 static void startup_hacks(const char *progname);
 static void init_locale(const char *categoryname, int category, const char *locale);
 
-extern bool patch_backend_parameters(const char *filename, int tmp_file_handle);
+extern bool patch_backend_parameters(const char *filename);
 extern void setup_memory_socket();
 extern int put_for_recv(const void *ptr, size_t len);
 extern int get_from_send(void *ptr, size_t len);
@@ -58,13 +58,9 @@ extern void scan_table(Oid table_oid, Oid index_oid);
 int
 pg_init(const char *program_file_path, const char *database_path, const char *parameters_file_name, int params_count, const char *paramsv[])
 {
-	char template[] = "pgsql_tmp/crutch_of_XXXXXX";
 	chdir(database_path);
-	int thandle = mkstemp(template);
-	if(thandle != -1)
     {
-        unlink(template);
-        if(!patch_backend_parameters(parameters_file_name, thandle))
+        if(!patch_backend_parameters(parameters_file_name))
             elog(FATAL, "patch_backend_parameters() failed: %m");
 
         setup_memory_socket();
@@ -96,10 +92,6 @@ pg_init(const char *program_file_path, const char *database_path, const char *pa
         put_for_recv(finish_negotiate_message, size);
 
         SetupMarkPostmasterChildInternal();
-    }
-    else
-    {
-        elog(FATAL, "mkstemp() failed: %m");
     }
 
 	progname = get_progname(program_file_path);

@@ -732,6 +732,7 @@ set(backend_port_SRCS
 )
 
 file(GLOB_RECURSE storage_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/storage/*.c)
+list(APPEND storage_SRCS ${gen_lwlocknames_output})
 
 if(NOT MSVC)
 	set_source_files_properties(storage/page/checksum.c
@@ -903,6 +904,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 	target_compile_definitions(postgres_core PRIVATE -DEXEC_BACKEND)
 	target_compile_definitions(postgres PRIVATE -DEXEC_BACKEND)
 	target_compile_definitions(postgres_init PRIVATE -DEXEC_BACKEND)
+	target_compile_definitions(postgres_java PRIVATE -DEXEC_BACKEND)
 endif()
 
 if(OPENSSL_FOUND)

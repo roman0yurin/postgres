@@ -66,7 +66,7 @@ char *c60_save_backend_parameters_to_file(char *parameters_file_name, char *prog
 #endif
 }
 
-bool patch_backend_parameters(const char *filename, int tmp_file_handle)
+bool patch_backend_parameters(const char *filename)
 {
 #ifdef EXEC_BACKEND
     bool result = true;
@@ -76,8 +76,8 @@ bool patch_backend_parameters(const char *filename, int tmp_file_handle)
         BackendParameters params;
         if((result = fread(&params, sizeof(params), 1, fd) == 1))
         {
-            params.postmaster_alive_fds[POSTMASTER_FD_OWN] = tmp_file_handle;
-            result = !fseek(fd, 0, SEEK_SET) && fwrite(&params, sizeof(params), 1, fd) == 1;
+            result = pipe(params.postmaster_alive_fds) == 0;
+            result &= !fseek(fd, 0, SEEK_SET) && fwrite(&params, sizeof(params), 1, fd) == 1;
         }
 
         fclose(fd);
