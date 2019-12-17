@@ -21,6 +21,7 @@ extern "C" {
 #include "catalog/pg_namespace.h"
 
 extern TupleTableSlot *IndexNext(IndexScanState *node);
+extern int pg_init(const char *program_file_path, const char *database_path, const char *parameters_file_name, int params_count, const char *paramsv[]);
 
 }
 
@@ -29,8 +30,6 @@ extern TupleTableSlot *IndexNext(IndexScanState *node);
 #include <map>
 #include <functional>
 #include <time.h>
-
-constexpr bool use_text_format = true;
 
 namespace sgaz
 {
@@ -386,8 +385,91 @@ public:
         return value? *value : put(key, func(key));
     }
 
+    inline V& get_or_create(const K& key, V(*func)(K key))
+    {
+        V* value = find(key);
+        return value? *value : __map.emplace(std::move(key), (*func)(key)).first->second;
+    }
+
 private:
     std::map<K, V, Compare, SGMapStackAllocator<PairType, cache_size>> __map;
+};
+
+class SGTable
+{
+public:
+    SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid);
+    ~SGTable();
+
+    Oid table_oid() { return RelationGetRelid(table); }
+    Oid index_oid() { return RelationGetRelid(index); }
+    char const* table_name() { return RelationGetRelationName(table); }
+    Oid namespace_oid() { return RelationGetNamespace(table); }
+
+    bool fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func);
+private:
+    EState *estate;
+    ExprContext *econtext;
+    Relation table, index;
+    FmgrInfo sk_func;
+    IndexScan  *index_scan;
+    IndexScanState *index_state;
+};
+
+class SGMemoryContext
+{
+public:
+    SGMemoryContext();
+    SGMemoryContext(MemoryContext parent);
+    ~SGMemoryContext();
+
+    MemoryContext context() const { return m_context; }
+
+private:
+    static MemoryContext create_own_memory_context(MemoryContext parent);
+    MemoryContext m_context;
+};
+
+class SGTransaction
+{
+public:
+    SGTransaction();
+    ~SGTransaction();
+
+private:
+    bool is_already_started;
+};
+
+class DataTypeDesc
+{
+public:
+    DataTypeDesc(Oid type_oid);
+    inline char *OutputFunctionCall(Datum val) { return ::OutputFunctionCall(&text_out_func, val); }
+    inline bytea *SendFunctionCall(Datum val) { return ::SendFunctionCall(&binary_out_func, val); }
+    inline Oid BaseAttTypeId() { return base_atttype_id; }
+    inline int32 BaseAttMod() { return base_attt_mod; }
+    static inline void write_int8_to_vector(std::vector<char>& storage, uint8 i) { storage.push_back(static_cast<char>(i)); }
+    static void write_int16_to_vector(std::vector<char>& storage, uint16 i) {
+        uint16 ni = pg_hton16(i); storage.insert(storage.end(), (char *) &ni, ((char *) &ni) + sizeof(ni));
+    }
+    static void write_int32_to_vector(std::vector<char>& storage, uint32 i) {
+        uint32 ni = pg_hton32(i); storage.insert(storage.end(), (char *) &ni, ((char *) &ni) + sizeof(ni));
+    }
+    static void write_int64_to_vector(std::vector<char>& storage, uint64 i) {
+        uint64 ni = pg_hton64(i); storage.insert(storage.end(), (char *) &ni, ((char *) &ni) + sizeof(ni));
+    }
+    static inline void write_zeroes_to_vector(std::vector<char>& storage, size_t count) {
+        storage.insert(storage.end(), count, '\x00');
+    }
+    static void write_string_to_vector(std::vector<char>& storage, const char *buffer);
+    static void write_buffer_to_vector(std::vector<char>& storage, const void *buffer, size_t size) {
+        storage.insert(storage.end(), reinterpret_cast<const char*>(buffer), reinterpret_cast<const char*>(buffer) + size);
+    }
+
+private:
+    FmgrInfo text_out_func, binary_out_func;
+    Oid base_atttype_id;
+    int32 base_attt_mod;
 };
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -397,32 +479,18 @@ public:
     SGTableManager();
     SGTableManager(MemoryContext m_context);
     ~SGTableManager();
-    bool fetch(const char* table_name, const char* schema_name, int key_value);
-    bool fetch(Oid table_oid, int key_value);
+    bool print(const char* table_name, const char* schema_name, int key_value, bool use_binary_format);
+    bool print(Oid table_oid, int key_value, bool use_binary_format);
+    bool fetch(const char* table_name, const char* schema_name, int32_t key_value, bool use_binary_format, std::vector<char>& buffer);
+    bool fetch(Oid table_oid, int32_t key_value, bool use_binary_format, std::vector<char>& buffer);
+    bool meta(const char* table_name, const char* schema_name, std::vector<char>& buffer);
+    bool meta(Oid table_oid, std::vector<char>& buffer);
+
     void clean();
+    bool pop(const char* table_name, const char* schema_name);
+    bool pop(Oid table_oid);
 
 private:
-
-    class SGTable
-    {
-    public:
-        SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid);
-        ~SGTable();
-
-        Oid table_oid() { return RelationGetRelid(table); }
-        Oid index_oid() { return RelationGetRelid(index); }
-        char const* table_name() { return RelationGetRelationName(table); }
-        Oid namespace_oid() { return RelationGetNamespace(table); }
-
-        bool fetch(int key_value, const std::function<void(bool, TupleTableSlot*)>* output_func);
-    private:
-        EState *estate;
-        ExprContext *econtext;
-        Relation table, index;
-        FmgrInfo sk_func;
-        IndexScan  *index_scan;
-        IndexScanState *index_state;
-    };
 
     class SGTableManagerCache : public SGStackCacher<SGTable, tables_cache_size, true>
     {
@@ -430,12 +498,15 @@ private:
         SGTableManagerCache(MemoryContext parent);
         SGTable& find(const char* table_name, const char* schema_name = nullptr);
         SGTable& find(Oid table_oid);
-        void clean();
 
-    private:
+        void clean();
+        bool pop(const char* table_name, const char* schema_name);
+        bool pop(Oid table_oid);
+
         static Oid find_table_oid(const char* table_name, const char* schema_name = nullptr);
         static Oid find_table_pk_oid(Oid table_oid, int2vector& pk_columns);
 
+    private:
         using SGTableLinked = typename SGStackCacher<SGTable, tables_cache_size, true>::StackItem;
 
         using SGNamePairType = typename std::pair<const SGFullTableName, SGTableLinked*>;
@@ -456,51 +527,19 @@ private:
         SGFullTableNameStorage table_names[tables_cache_size];
     };
 
-    class SGMemoryContext
-    {
-    public:
-        SGMemoryContext();
-        SGMemoryContext(MemoryContext parent);
-        ~SGMemoryContext();
-
-        MemoryContext context() const { return m_context; }
-
-    private:
-        static MemoryContext create_own_memory_context(MemoryContext parent);
-        MemoryContext m_context;
-    };
-
-    class SGTransaction
-    {
-    public:
-        SGTransaction();
-        ~SGTransaction();
-
-    private:
-        bool is_already_started;
-    };
-
-    class SGTypeOutput
-    {
-    public:
-        SGTypeOutput();
-
-    private:
-
-    };
-
 private:
-    void out_slot(bool text_format, TupleTableSlot *slot);
+    inline static DataTypeDesc get_out_func(Oid type_id) { return DataTypeDesc(type_id); }
+    void print_slot(bool binary_format, TupleTableSlot *slot);
+    void fetch_slot(bool binary_format, TupleTableSlot *slot, std::vector<char>& buffer);
 
     SGTransaction transaction;
     SGMemoryContext context;
     SGTableManagerCache cache;
 //    std::map<Oid, std::pair<FmgrInfo, FmgrInfo>, std::less<Oid>, PGAllocator<std::pair<Oid, std::pair<FmgrInfo, FmgrInfo>>>> type_out_funcs;
-    SGLRUMap<Oid, std::pair<FmgrInfo, FmgrInfo>, functions_cache_size> type_out_funcs;
+    SGLRUMap<Oid, DataTypeDesc, functions_cache_size> type_out_funcs;
 };
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGTable::SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid)
+SGTable::SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid)
 {
     SGMemoryContextSwitcher mc(m_context);
     estate = CreateExecutorState();
@@ -509,8 +548,7 @@ SGTableManager<tables_cache_size, functions_cache_size>::SGTable::SGTable(Memory
     table = table_open(table_oid, AccessShareLock);
     index = index_open(index_oid, AccessShareLock);
 
-    RegProcedure cmp_proc = get_opfamily_proc(index->rd_opfamily[0], index->rd_opcintype[0], INT4OID, BTEqualStrategyNumber);
-    fmgr_info(cmp_proc, &sk_func);
+    fmgr_info(F_INT4EQ, &sk_func); // идентификатор функции должен соответствовать типу колокни PK
 
     estate->es_direction = ForwardScanDirection;
 
@@ -547,8 +585,7 @@ SGTableManager<tables_cache_size, functions_cache_size>::SGTable::SGTable(Memory
     index_state->iss_RuntimeKeysReady = false;
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGTable::~SGTable()
+SGTable::~SGTable()
 {
     index_close(index, AccessShareLock);
     table_close(table, AccessShareLock);
@@ -557,8 +594,7 @@ SGTableManager<tables_cache_size, functions_cache_size>::SGTable::~SGTable()
     FreeExecutorState(estate);
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-bool SGTableManager<tables_cache_size, functions_cache_size>::SGTable::fetch(int key_value, const std::function<void(bool, TupleTableSlot*)>* output_func)
+bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func)
 {
     Snapshot snapshot = RegisterSnapshot(GetTransactionSnapshot());
     estate->es_snapshot = snapshot;
@@ -586,7 +622,7 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::SGTable::fetch(int
     if(result)
     {
         slot_getsomeattrs_int(slot, slot->tts_tupleDescriptor->natts);
-        if(output_func) (*output_func)(use_text_format, slot);
+        if(output_func) (*output_func)(use_binary_format, slot);
     }
     else if(output_func)
         std::cout << "tuple with key: " << key_value << " not found" << std::endl;
@@ -610,7 +646,7 @@ SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::SG
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-typename SGTableManager<tables_cache_size, functions_cache_size>::SGTable& SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find(const char* table_name, const char* schema_name)
+SGTable& SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find(const char* table_name, const char* schema_name)
 {
     auto names_it = name2tables.find(SGFullTableName(table_name, schema_name));
     if(names_it != name2tables.end())
@@ -712,7 +748,7 @@ typename SGTableManager<tables_cache_size, functions_cache_size>::SGTable& SGTab
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-typename SGTableManager<tables_cache_size, functions_cache_size>::SGTable& SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find(Oid table_oid)
+SGTable& SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find(Oid table_oid)
 {
     auto oids_it = oid2tables.find(table_oid);
     if(oids_it != oid2tables.end())
@@ -821,6 +857,55 @@ void SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCach
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::pop(const char* table_name, const char* schema_name)
+{
+    auto names_it = name2tables.find(SGFullTableName(table_name, schema_name));
+    if(names_it != name2tables.end())
+    {
+        // нашли в кэше по имени - выталкиваем из кэша
+        SGTableLinked* holder = names_it->second;
+
+        auto oid_it = oid2tables.find(holder->item().table_oid());
+        holder->free();
+        this->free_item(holder);
+
+        name2tables.erase(names_it);
+        oid2tables.erase(oid_it);
+
+        return true;
+    }
+    else
+    {
+        SGMemoryContextSwitcher mc(m_context);
+        Oid table_oid = find_table_oid(table_name, schema_name);
+        return OidIsValid(table_oid)? pop(table_oid) : false;
+    }
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::pop(Oid table_oid)
+{
+    auto oid_it = oid2tables.find(table_oid);
+    if(oid_it != oid2tables.end())
+    {
+        // нашли в кэше по oid - выталкиваем из кэша
+        SGTableLinked* holder = oid_it->second;
+
+        SGFullTableNameStorage* storage_table_name = &table_names[holder->index];
+        auto names_it = name2tables.find(SGFullTableName(storage_table_name->table_name, storage_table_name->schema_name));
+        holder->free();
+        this->free_item(holder);
+
+        name2tables.erase(names_it);
+        oid2tables.erase(oid_it);
+
+        return true;
+    }
+
+    return false;
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
 Oid SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find_table_oid(const char* table_name, const char* schema_name)
 {
     if(!table_name || !*table_name)
@@ -879,42 +964,58 @@ Oid SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache
     return pkey_oid;
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGMemoryContext::SGMemoryContext() : m_context(create_own_memory_context(nullptr))
+SGMemoryContext::SGMemoryContext() : m_context(create_own_memory_context(nullptr))
 {
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGMemoryContext::SGMemoryContext(MemoryContext parent) : m_context(create_own_memory_context(parent))
+SGMemoryContext::SGMemoryContext(MemoryContext parent) : m_context(create_own_memory_context(parent))
 {
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGMemoryContext::~SGMemoryContext()
+SGMemoryContext::~SGMemoryContext()
 {
     MemoryContextDelete(m_context);
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-MemoryContext SGTableManager<tables_cache_size, functions_cache_size>::SGMemoryContext::create_own_memory_context(MemoryContext parent)
+MemoryContext SGMemoryContext::create_own_memory_context(MemoryContext parent)
 {
     SGMemoryContextSwitcher mc(parent);
     return AllocSetContextCreate(CurrentMemoryContext, "SGTableManager", ALLOCSET_DEFAULT_SIZES);
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGTransaction::SGTransaction()
+SGTransaction::SGTransaction()
 {
     is_already_started = IsTransactionState();
     if(!is_already_started)
         StartTransactionCommand();
 }
 
-template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGTransaction::~SGTransaction()
+SGTransaction::~SGTransaction()
 {
     if(!is_already_started)
         AbortCurrentTransaction();
+}
+
+DataTypeDesc::DataTypeDesc(Oid type_oid)
+{
+    Oid typoutput;
+    bool typisvarlena;
+    getTypeOutputInfo(type_oid, &typoutput, &typisvarlena);
+    fmgr_info(typoutput, &text_out_func);
+
+    getTypeBinaryOutputInfo(type_oid, &typoutput, &typisvarlena);
+    fmgr_info(typoutput, &binary_out_func);
+
+    base_attt_mod = -1;
+    base_atttype_id = getBaseTypeAndTypmod(type_oid, &base_attt_mod);
+}
+
+void DataTypeDesc::write_string_to_vector(std::vector<char>& storage, const char *buffer)
+{
+    size_t size = buffer? strlen(buffer) : 0;
+    uint32 ni = pg_hton32(size);
+    storage.insert(storage.end(), (char *) &ni, ((char *) &ni) + sizeof(uint32));
+    if(size) storage.insert(storage.end(), buffer, buffer + size);
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -937,25 +1038,89 @@ SGTableManager<tables_cache_size, functions_cache_size>::~SGTableManager()
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(const char* table_name, const char* schema_name, int key_value)
+bool SGTableManager<tables_cache_size, functions_cache_size>::print(const char* table_name, const char* schema_name, int key_value, bool use_binary_format)
 {
     SGTable& sg_table = cache.find(table_name, schema_name);
-    std::function<void(bool, TupleTableSlot*)> output_func = [this](bool text_format, TupleTableSlot *slot){
-        this->out_slot(text_format, slot);
+    std::function<void(bool, TupleTableSlot*)> output_func = [this](bool binary_format, TupleTableSlot *slot){
+        this->print_slot(binary_format, slot);
     };
 
-    return sg_table.fetch(key_value, &output_func);
+    return sg_table.fetch(key_value, use_binary_format, &output_func);
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(Oid table_oid, int key_value)
+bool SGTableManager<tables_cache_size, functions_cache_size>::print(Oid table_oid, int key_value, bool use_binary_format)
 {
     SGTable& sg_table = cache.find(table_oid);
-    std::function<void(bool, TupleTableSlot*)> output_func = [this](bool text_format, TupleTableSlot *slot){
-        this->out_slot(text_format, slot);
+    std::function<void(bool, TupleTableSlot*)> output_func = [this](bool binary_format, TupleTableSlot *slot){
+        this->print_slot(binary_format, slot);
     };
 
-    return sg_table.fetch(key_value, &output_func);
+    return sg_table.fetch(key_value, use_binary_format, &output_func);
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(const char* table_name, const char* schema_name, int32_t key_value, bool use_binary_format, std::vector<char>& buffer)
+{
+    SGTable& sg_table = cache.find(table_name, schema_name);
+    std::function<void(bool, TupleTableSlot*)> output_func = [this, &buffer](bool binary_format, TupleTableSlot *slot){
+        this->fetch_slot(binary_format, slot, buffer);
+    };
+
+    return sg_table.fetch(key_value, use_binary_format, &output_func);
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(Oid table_oid, int32_t key_value, bool use_binary_format, std::vector<char>& buffer)
+{
+    SGTable& sg_table = cache.find(table_oid);
+    std::function<void(bool, TupleTableSlot*)> output_func = [this, &buffer](bool binary_format, TupleTableSlot *slot){
+        this->fetch_slot(binary_format, slot, buffer);
+    };
+
+    return sg_table.fetch(key_value, use_binary_format, &output_func);
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::meta(const char* table_name, const char* schema_name, std::vector<char>& buffer)
+{
+    Oid table_oid = SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::find_table_oid(table_name, schema_name);
+    return OidIsValid(table_oid)? meta(table_oid, buffer) : false;
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::meta(Oid table_oid, std::vector<char>& buffer)
+{
+    SGMemoryContextSwitcher mc(context.context());
+    Relation relation = try_relation_open(table_oid, AccessShareLock);
+    if(relation)
+    {
+        bool result = relation->rd_rel->relkind == RELKIND_RELATION;
+        if (result)
+        {
+            DataTypeDesc::write_int32_to_vector(buffer, table_oid);
+
+            TupleDesc attrs = relation->rd_att;
+            DataTypeDesc::write_int16_to_vector(buffer, attrs->natts);
+            for (int i = 0 ; i < attrs->natts ; i++)
+            {
+                FormData_pg_attribute *attr = &attrs->attrs[i];
+
+                DataTypeDesc::write_string_to_vector(buffer, attr->attname.data);
+                DataTypeDesc::write_int32_to_vector(buffer, attr->attrelid);
+                DataTypeDesc::write_int16_to_vector(buffer, attr->attnum);
+                DataTypeDesc::write_int32_to_vector(buffer, attr->atttypid);
+                DataTypeDesc::write_int16_to_vector(buffer, attr->attlen);
+                DataTypeDesc::write_int32_to_vector(buffer, attr->attstattarget);
+                DataTypeDesc::write_int16_to_vector(buffer, 1); // use binary_format
+            }
+        }
+
+        relation_close(relation, AccessShareLock);
+        return result;
+    }
+
+    return false;
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -965,7 +1130,19 @@ void SGTableManager<tables_cache_size, functions_cache_size>::clean()
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-void SGTableManager<tables_cache_size, functions_cache_size>::out_slot(bool text_format, TupleTableSlot *slot)
+bool SGTableManager<tables_cache_size, functions_cache_size>::pop(const char* table_name, const char* schema_name)
+{
+    return cache.pop(table_name, schema_name);
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+bool SGTableManager<tables_cache_size, functions_cache_size>::pop(Oid table_oid)
+{
+    return cache.pop(table_oid);
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+void SGTableManager<tables_cache_size, functions_cache_size>::print_slot(bool binary_format, TupleTableSlot *slot)
 {
     TupleDesc tuple_descriptor = slot->tts_tupleDescriptor;
     int natts = tuple_descriptor->natts;
@@ -976,52 +1153,66 @@ void SGTableManager<tables_cache_size, functions_cache_size>::out_slot(bool text
     {
         FormData_pg_attribute *attr = &tuple_descriptor->attrs[i];
 
-        std::pair<FmgrInfo, FmgrInfo>& pair_out_func = type_out_funcs.get_or_create(
-            attr->atttypid, [](const Oid& key)
-            {
-                std::pair<FmgrInfo, FmgrInfo> result;
-                Oid typoutput;
-                bool typisvarlena;
-                getTypeOutputInfo(key, &typoutput, &typisvarlena);
-                fmgr_info(typoutput, &result.first);
-
-                getTypeBinaryOutputInfo(key, &typoutput, &typisvarlena);
-                fmgr_info(typoutput, &result.second);
-
-                return result;
-            }
-        );
-
-        if(text_format)
+        DataTypeDesc& pair_out_func = type_out_funcs.get_or_create(attr->atttypid, &get_out_func);
+        if (tts_isnull[i])
+            std::cout << attr->attname.data << "-> is null" << std::endl;
+        else
         {
-            if (tts_isnull[i])
-                std::cout << attr->attname.data << "-> is null" << std::endl;
+            if (binary_format)
+            {
+                /* Binary output */
+                bytea *outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
+                std::cout << attr->attname.data << " -> len[" << VARSIZE(outputbytes) - VARHDRSZ <<
+                          "/" << VARSIZE(outputbytes) - VARHDRSZ << ']' << std::endl;
+            }
             else
             {
                 /* Text output */
-                char *outputstr = OutputFunctionCall(&pair_out_func.first, tts_values[i]);
+                char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
                 std::cout << attr->attname.data << "-> " << outputstr << std::endl;
             }
         }
+    }
+}
+
+template<size_t tables_cache_size, size_t functions_cache_size>
+void SGTableManager<tables_cache_size, functions_cache_size>::fetch_slot(
+    bool binary_format, TupleTableSlot *slot, std::vector<char>& buffer)
+{
+    TupleDesc tuple_descriptor = slot->tts_tupleDescriptor;
+    int natts = tuple_descriptor->natts;
+    bool* tts_isnull = slot->tts_isnull;
+    Datum* tts_values = slot->tts_values;
+    static const size_t null_value = -1;
+
+    DataTypeDesc::write_int16_to_vector(buffer, natts);
+    for (int i = 0 ; i < natts ; i++)
+    {
+        FormData_pg_attribute *attr = &tuple_descriptor->attrs[i];
+        DataTypeDesc& pair_out_func = type_out_funcs.get_or_create(attr->atttypid, &get_out_func);
+
+        if (tts_isnull[i])
+            DataTypeDesc::write_buffer_to_vector(buffer, &null_value, 4);
         else
         {
-            if (tts_isnull[i])
-                std::cout << attr->attname.data << "-> is null" << std::endl;
-            else
+            if(binary_format)
             {
                 /* Binary output */
-                bytea* outputbytes = SendFunctionCall(&pair_out_func.second, tts_values[i]);
-                std::cout << attr->attname.data << " -> len[" << sizeof(int32) <<
-                    "/" << VARSIZE(outputbytes) - VARHDRSZ << ']' << std::endl;
+                bytea* outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
+                DataTypeDesc::write_int32_to_vector(buffer, VARSIZE(outputbytes) - VARHDRSZ);
+                DataTypeDesc::write_buffer_to_vector(buffer, VARDATA(outputbytes), VARSIZE(outputbytes) - VARHDRSZ);
+            }
+            else
+            {
+                /* Text output */
+                char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
+                DataTypeDesc::write_string_to_vector(buffer, outputstr);
             }
         }
-
     }
 }
 
 }
-
-extern "C" {
 
 void run_timed(const char* message, const std::function<void()>& func)
 {
@@ -1042,14 +1233,33 @@ static sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE>& table
     return cache;
 }
 
-void fetchByKeyTableName(const std::string& table_name, const std::string& schema_name, int32_t key_value)
+void printByKeyTableName(const std::string& table_name, const std::string& schema_name, int32_t key_value, bool use_binary_format = false)
 {
-    table_manager().fetch(table_name.c_str(), schema_name.c_str(), key_value);
+    table_manager().print(table_name.c_str(), schema_name.c_str(), key_value, use_binary_format);
 }
 
-void fetchByKeyTableOid(int32_t table_oid, int32_t key_value)
+void printByKeyTableOid(int32_t table_oid, int32_t key_value, bool use_binary_format = false)
 {
-    table_manager().fetch(table_oid, key_value);
+    table_manager().print(table_oid, key_value, use_binary_format);
+}
+
+void fetchByKeyTableName(const std::string& table_name, const std::string& schema_name, int32_t key_value, bool use_binary_format, std::vector<char>& buffer)
+{
+    table_manager().fetch(table_name.c_str(), schema_name.c_str(), key_value, use_binary_format, buffer);
+}
+
+void fetchByKeyTableOid(int32_t table_oid, int32_t key_value, bool use_binary_format, std::vector<char>& buffer)
+{
+    table_manager().fetch(table_oid, key_value, use_binary_format, buffer);
+}
+
+void connect(const std::string& program_file_path, const std::string& database_path, const std::string& parameters_file_name, const std::vector<std::string>& params)
+{
+    std::vector<const char *> paramsv(params.size());
+    for(size_t i = 0 ; i < params.size() ; i++)
+        paramsv[i] = params[i].c_str();
+
+    ::pg_init(program_file_path.c_str(), database_path.c_str(), parameters_file_name.c_str(), params.size(), paramsv.data());
 }
 
 void cleanCache()
@@ -1057,44 +1267,90 @@ void cleanCache()
     table_manager().clean();
 }
 
+bool metaByKeyTableName(const std::string& table_name, const std::string& schema_name, std::vector<char>& buffer)
+{
+    return table_manager().meta(table_name.c_str(), schema_name.c_str(), buffer);
+}
+
+bool metaByKeyTableOid(int32_t table_oid, std::vector<char>& buffer)
+{
+    return table_manager().meta(table_oid, buffer);
+}
+
+extern "C" {
+
 void scan_table()
 {
     std::cout << "start..." << std::endl;
 
 //    sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE> manager;
 
-//    run_timed("cold  time is", []{ fetchByKeyTableName("map_common_graphic", "public", 26646350); });
-//    run_timed("hot   time is", []{ fetchByKeyTableName("map_common_graphic", "public", 14340398); });
-//    run_timed("hot   time is", []{ fetchByKeyTableName("map_common_graphic", "public", 6300915); });
-//    run_timed("hot   time is", []{ fetchByKeyTableName("map_common_graphic", "public", 26646350); });
+//    run_timed("cold  time is", []{ printByKeyTableName("map_common_graphic", "public", 26646350); });
+//    run_timed("hot   time is", []{ printByKeyTableName("map_common_graphic", "public", 14340398); });
+//    run_timed("hot   time is", []{ printByKeyTableName("map_common_graphic", "public", 6300915); });
+//    run_timed("hot   time is", []{ printByKeyTableName("map_common_graphic", "public", 26646350); });
 
-//    run_timed("cold  time is", []{ fetchByKeyTableOid(239391, 14); });
+//    run_timed("cold  time is", []{ printByKeyTableOid(239391, 14); });
 
-    run_timed("cold  time is", []{ fetchByKeyTableOid(198449, 14); });
-    run_timed("warm  time is", []{ fetchByKeyTableName("dbrole", "", 8167); });
+//    run_timed("hot   time is", []{ printByKeyTableName("dbuser", "public", 13); });
+//    run_timed("hot   time is", []{ printByKeyTableName("dbuser", "public", 15); });
+    run_timed("cold  time is", []{ printByKeyTableOid(198449, 14); });
+    run_timed("warm  time is", []{ printByKeyTableName("dbrole", "", 8167); });
 
-    cleanCache();
+    run_timed("cold  time is", []{ printByKeyTableName("dbuser", "public", 14); });
+    run_timed("hot   time is", []{ printByKeyTableName("dbuser", "public", 14); });
+    run_timed("warm  time is", []{ printByKeyTableName("dbrole", "public", 8167); });
+    run_timed("hot   time is", []{ printByKeyTableName("dbuser", "public", 15); });
+    run_timed("warmh time is", []{ printByKeyTableName("dbuser", "public", 16); });
+    run_timed("warm  time is", []{ printByKeyTableName("build_doc", "public", 3235); });
+    run_timed("warm  time is", []{ printByKeyTableName("build_contract_use", "public", 438); });
+    run_timed("warmh time is", []{ printByKeyTableName("dbuser", "public", 16); });
+    run_timed("warmh time is", []{ printByKeyTableName("dbrole", "public", 116); });
 
-    run_timed("cold  time is", []{ fetchByKeyTableName("dbuser", "public", 14); });
-    run_timed("hot   time is", []{ fetchByKeyTableName("dbuser", "public", 14); });
-    run_timed("warm  time is", []{ fetchByKeyTableName("dbrole", "public", 8167); });
-    run_timed("hot   time is", []{ fetchByKeyTableName("dbuser", "public", 15); });
-    run_timed("warmh time is", []{ fetchByKeyTableName("dbuser", "public", 16); });
-    run_timed("warm  time is", []{ fetchByKeyTableName("build_doc", "public", 3235); });
-    run_timed("warm  time is", []{ fetchByKeyTableName("build_contract_use", "public", 438); });
-    run_timed("warmh time is", []{ fetchByKeyTableName("dbuser", "public", 16); });
-    run_timed("warmh time is", []{ fetchByKeyTableName("dbrole", "public", 116); });
+    printByKeyTableName("dbuser", "public", 14);
+    printByKeyTableName("dbrole", "public", 8167);
+//    printByKeyTableName("dbuser", "public", 15);
+    printByKeyTableName("build_doc", "public", 3235);
+    printByKeyTableName("build_contract_use", "public", 438);
+    printByKeyTableName("dbuser", "public", 16);
+    printByKeyTableName("dbrole", "public", 116);
 
-    fetchByKeyTableName("dbuser", "public", 14);
-    fetchByKeyTableName("dbrole", "public", 8167);
-//    fetchByKeyTableName("dbuser", "public", 15);
-    fetchByKeyTableName("build_doc", "public", 3235);
-    fetchByKeyTableName("build_contract_use", "public", 438);
-    fetchByKeyTableName("dbuser", "public", 16);
-    fetchByKeyTableName("dbrole", "public", 116);
+//    printByKeyTableName("map_common_graphic", "public", 26646350);
+    printByKeyTableName("map_common_graphic", "public", 7334554);
 
-//    fetchByKeyTableName("map_common_graphic", "public", 26646350);
-    fetchByKeyTableName("map_common_graphic", "public", 7334554);
+    std::vector<char> data;
+    data.reserve(4096);
+    run_timed("warmh time is", [&data]{ fetchByKeyTableName("dbuser", "public", 14, true, data); });
+    std::cout << "data.size -> " << data.size() << std::endl;
+    data.clear();
+    metaByKeyTableName("dbuser", "public", data);
+    std::cout << "meta.size -> " << data.size() << std::endl;
+    data.clear();
+
+    run_timed("warmh time is", [&data]{ fetchByKeyTableName("dbuser", "public", 14, false, data); });
+    std::cout << "data.size -> " << data.size() << std::endl;
+    data.clear();
+    metaByKeyTableName("dbuser", "public", data);
+    std::cout << "meta.size -> " << data.size() << std::endl;
+    data.clear();
+
+    run_timed("warmh time is", [&data]{ fetchByKeyTableName("map_common_graphic", "public", 7334554, true, data); });
+    std::cout << "data.size -> " << data.size() << std::endl;
+    data.clear();
+    metaByKeyTableName("map_common_graphic", "public", data);
+    std::cout << "meta.size -> " << data.size() << std::endl;
+    data.clear();
+
+    run_timed("warmh time is", [&data]{ fetchByKeyTableName("map_common_graphic", "public", 7334554, false, data); });
+    std::cout << "data.size -> " << data.size() << std::endl;
+    data.clear();
+    metaByKeyTableName("map_common_graphic", "public", data);
+    std::cout << "meta.size -> " << data.size() << std::endl;
+    data.clear();
+
+    table_manager().pop(198449);
+    table_manager().pop("dbuser", "public");
+    table_manager().pop("map_common_graphic", "public");
 
     cleanCache();
 
