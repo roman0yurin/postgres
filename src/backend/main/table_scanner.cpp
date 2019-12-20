@@ -406,7 +406,7 @@ public:
     char const* table_name() { return RelationGetRelationName(table); }
     Oid namespace_oid() { return RelationGetNamespace(table); }
 
-    bool fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func);
+    bool fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func, bool print_not_found = true);
 private:
     EState *estate;
     ExprContext *econtext;
@@ -448,6 +448,7 @@ public:
     inline bytea *SendFunctionCall(Datum val) { return ::SendFunctionCall(&binary_out_func, val); }
     inline Oid BaseAttTypeId() { return base_atttype_id; }
     inline int32 BaseAttMod() { return base_attt_mod; }
+    inline bool IsTypeDefined() { return is_type_defined; }
     static inline void write_int8_to_vector(std::vector<char>& storage, uint8 i) { storage.push_back(static_cast<char>(i)); }
     static void write_int16_to_vector(std::vector<char>& storage, uint16 i) {
         uint16 ni = pg_hton16(i); storage.insert(storage.end(), (char *) &ni, ((char *) &ni) + sizeof(ni));
@@ -470,6 +471,7 @@ private:
     FmgrInfo text_out_func, binary_out_func;
     Oid base_atttype_id;
     int32 base_attt_mod;
+    bool is_type_defined;
 };
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -594,7 +596,7 @@ SGTable::~SGTable()
     FreeExecutorState(estate);
 }
 
-bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func)
+bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func, bool print_not_found)
 {
     Snapshot snapshot = RegisterSnapshot(GetTransactionSnapshot());
     estate->es_snapshot = snapshot;
@@ -624,7 +626,7 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
         slot_getsomeattrs_int(slot, slot->tts_tupleDescriptor->natts);
         if(output_func) (*output_func)(use_binary_format, slot);
     }
-    else if(output_func)
+    else if(print_not_found && output_func)
         std::cout << "tuple with key: " << key_value << " not found" << std::endl;
 
     // блокируем закрытие индекса, мы это сделаем сами
@@ -998,16 +1000,19 @@ SGTransaction::~SGTransaction()
 
 DataTypeDesc::DataTypeDesc(Oid type_oid)
 {
-    Oid typoutput;
-    bool typisvarlena;
-    getTypeOutputInfo(type_oid, &typoutput, &typisvarlena);
-    fmgr_info(typoutput, &text_out_func);
+    if((is_type_defined = get_typisdefined(type_oid)))
+    {
+        Oid typoutput;
+        bool typisvarlena;
+        getTypeOutputInfo(type_oid, &typoutput, &typisvarlena);
+        fmgr_info(typoutput, &text_out_func);
 
-    getTypeBinaryOutputInfo(type_oid, &typoutput, &typisvarlena);
-    fmgr_info(typoutput, &binary_out_func);
+        getTypeBinaryOutputInfo(type_oid, &typoutput, &typisvarlena);
+        fmgr_info(typoutput, &binary_out_func);
 
-    base_attt_mod = -1;
-    base_atttype_id = getBaseTypeAndTypmod(type_oid, &base_attt_mod);
+        base_attt_mod = -1;
+        base_atttype_id = getBaseTypeAndTypmod(type_oid, &base_attt_mod);
+    }
 }
 
 void DataTypeDesc::write_string_to_vector(std::vector<char>& storage, const char *buffer)
@@ -1045,7 +1050,7 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::print(const char* 
         this->print_slot(binary_format, slot);
     };
 
-    return sg_table.fetch(key_value, use_binary_format, &output_func);
+    return sg_table.fetch(key_value, use_binary_format, &output_func, true);
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -1056,7 +1061,7 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::print(Oid table_oi
         this->print_slot(binary_format, slot);
     };
 
-    return sg_table.fetch(key_value, use_binary_format, &output_func);
+    return sg_table.fetch(key_value, use_binary_format, &output_func, true);
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -1067,7 +1072,7 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(const char* 
         this->fetch_slot(binary_format, slot, buffer);
     };
 
-    return sg_table.fetch(key_value, use_binary_format, &output_func);
+    return sg_table.fetch(key_value, use_binary_format, &output_func, false);
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -1078,7 +1083,7 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::fetch(Oid table_oi
         this->fetch_slot(binary_format, slot, buffer);
     };
 
-    return sg_table.fetch(key_value, use_binary_format, &output_func);
+    return sg_table.fetch(key_value, use_binary_format, &output_func, false);
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
@@ -1101,18 +1106,25 @@ bool SGTableManager<tables_cache_size, functions_cache_size>::meta(Oid table_oid
             DataTypeDesc::write_int32_to_vector(buffer, table_oid);
 
             TupleDesc attrs = relation->rd_att;
-            DataTypeDesc::write_int16_to_vector(buffer, attrs->natts);
+            int natts = 0;
+            for (int i = 0 ; i < attrs->natts ; i++)
+                if(!attrs->attrs[i].attisdropped)
+                    natts++;
+
+            DataTypeDesc::write_int16_to_vector(buffer, natts);
             for (int i = 0 ; i < attrs->natts ; i++)
             {
                 FormData_pg_attribute *attr = &attrs->attrs[i];
-
-                DataTypeDesc::write_string_to_vector(buffer, attr->attname.data);
-                DataTypeDesc::write_int32_to_vector(buffer, attr->attrelid);
-                DataTypeDesc::write_int16_to_vector(buffer, attr->attnum);
-                DataTypeDesc::write_int32_to_vector(buffer, attr->atttypid);
-                DataTypeDesc::write_int16_to_vector(buffer, attr->attlen);
-                DataTypeDesc::write_int32_to_vector(buffer, attr->attstattarget);
-                DataTypeDesc::write_int16_to_vector(buffer, 1); // use binary_format
+                if(!attr->attisdropped)
+                {
+                    DataTypeDesc::write_string_to_vector(buffer, attr->attname.data);
+                    DataTypeDesc::write_int32_to_vector(buffer, attr->attrelid);
+                    DataTypeDesc::write_int16_to_vector(buffer, attr->attnum);
+                    DataTypeDesc::write_int32_to_vector(buffer, attr->atttypid);
+                    DataTypeDesc::write_int16_to_vector(buffer, attr->attlen);
+                    DataTypeDesc::write_int32_to_vector(buffer, attr->attstattarget);
+                    DataTypeDesc::write_int16_to_vector(buffer, 1); // use binary_format
+                }
             }
         }
 
@@ -1153,23 +1165,34 @@ void SGTableManager<tables_cache_size, functions_cache_size>::print_slot(bool bi
     {
         FormData_pg_attribute *attr = &tuple_descriptor->attrs[i];
 
-        DataTypeDesc& pair_out_func = type_out_funcs.get_or_create(attr->atttypid, &get_out_func);
-        if (tts_isnull[i])
-            std::cout << attr->attname.data << "-> is null" << std::endl;
-        else
+        if(!attr->attisdropped)
         {
-            if (binary_format)
+            DataTypeDesc& pair_out_func = type_out_funcs.get_or_create(attr->atttypid, &get_out_func);
+            if(!pair_out_func.IsTypeDefined())
             {
-                /* Binary output */
-                bytea *outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
-                std::cout << attr->attname.data << " -> len[" << VARSIZE(outputbytes) - VARHDRSZ <<
-                          "/" << VARSIZE(outputbytes) - VARHDRSZ << ']' << std::endl;
+                char temp[256];
+                snprintf(temp, sizeof(temp), "Attribute \"%s\" has invalid type id: %d, but not dropped", attr->attname.data, attr->atttypid);
+
+                throw std::runtime_error(temp);
             }
+
+            if (tts_isnull[i])
+                std::cout << attr->attname.data << "-> is null" << std::endl;
             else
             {
-                /* Text output */
-                char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
-                std::cout << attr->attname.data << "-> " << outputstr << std::endl;
+                if (binary_format)
+                {
+                    /* Binary output */
+                    bytea *outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
+                    std::cout << attr->attname.data << " -> len[" << VARSIZE(outputbytes) - VARHDRSZ <<
+                              "/" << VARSIZE(outputbytes) - VARHDRSZ << ']' << std::endl;
+                }
+                else
+                {
+                    /* Text output */
+                    char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
+                    std::cout << attr->attname.data << "-> " << outputstr << std::endl;
+                }
             }
         }
     }
@@ -1267,12 +1290,12 @@ void cleanCache()
     table_manager().clean();
 }
 
-bool metaByKeyTableName(const std::string& table_name, const std::string& schema_name, std::vector<char>& buffer)
+bool metaByTableName(const std::string& table_name, const std::string& schema_name, std::vector<char>& buffer)
 {
     return table_manager().meta(table_name.c_str(), schema_name.c_str(), buffer);
 }
 
-bool metaByKeyTableOid(int32_t table_oid, std::vector<char>& buffer)
+bool metaByTableOid(int32_t table_oid, std::vector<char>& buffer)
 {
     return table_manager().meta(table_oid, buffer);
 }
@@ -1282,6 +1305,9 @@ extern "C" {
 void scan_table()
 {
     std::cout << "start..." << std::endl;
+
+    std::vector<char> data;
+    data.reserve(4096);
 
 //    sgaz::SGTableManager<TABLE_CACHE_SIZE, OUTPUT_FUNCTION_CACHE_SIZE> manager;
 
@@ -1294,6 +1320,11 @@ void scan_table()
 
 //    run_timed("hot   time is", []{ printByKeyTableName("dbuser", "public", 13); });
 //    run_timed("hot   time is", []{ printByKeyTableName("dbuser", "public", 15); });
+    metaByTableOid(197282, data);
+    std::cout << "meta.size -> " << data.size() << std::endl;
+    data.clear();
+
+    run_timed("cold  time is", []{ printByKeyTableOid(197282, 14); });
     run_timed("cold  time is", []{ printByKeyTableOid(198449, 14); });
     run_timed("warm  time is", []{ printByKeyTableName("dbrole", "", 8167); });
 
@@ -1318,33 +1349,31 @@ void scan_table()
 //    printByKeyTableName("map_common_graphic", "public", 26646350);
     printByKeyTableName("map_common_graphic", "public", 7334554);
 
-    std::vector<char> data;
-    data.reserve(4096);
     run_timed("warmh time is", [&data]{ fetchByKeyTableName("dbuser", "public", 14, true, data); });
     std::cout << "data.size -> " << data.size() << std::endl;
     data.clear();
-    metaByKeyTableName("dbuser", "public", data);
+    metaByTableName("dbuser", "public", data);
     std::cout << "meta.size -> " << data.size() << std::endl;
     data.clear();
 
     run_timed("warmh time is", [&data]{ fetchByKeyTableName("dbuser", "public", 14, false, data); });
     std::cout << "data.size -> " << data.size() << std::endl;
     data.clear();
-    metaByKeyTableName("dbuser", "public", data);
+    metaByTableName("dbuser", "public", data);
     std::cout << "meta.size -> " << data.size() << std::endl;
     data.clear();
 
     run_timed("warmh time is", [&data]{ fetchByKeyTableName("map_common_graphic", "public", 7334554, true, data); });
     std::cout << "data.size -> " << data.size() << std::endl;
     data.clear();
-    metaByKeyTableName("map_common_graphic", "public", data);
+    metaByTableName("map_common_graphic", "public", data);
     std::cout << "meta.size -> " << data.size() << std::endl;
     data.clear();
 
     run_timed("warmh time is", [&data]{ fetchByKeyTableName("map_common_graphic", "public", 7334554, false, data); });
     std::cout << "data.size -> " << data.size() << std::endl;
     data.clear();
-    metaByKeyTableName("map_common_graphic", "public", data);
+    metaByTableName("map_common_graphic", "public", data);
     std::cout << "meta.size -> " << data.size() << std::endl;
     data.clear();
 
