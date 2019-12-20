@@ -1208,28 +1208,45 @@ void SGTableManager<tables_cache_size, functions_cache_size>::fetch_slot(
     Datum* tts_values = slot->tts_values;
     static const size_t null_value = -1;
 
-    DataTypeDesc::write_int16_to_vector(buffer, natts);
+    int __natts = 0;
     for (int i = 0 ; i < natts ; i++)
+        if(!tuple_descriptor->attrs[i].attisdropped)
+            __natts++;
+
+    DataTypeDesc::write_int16_to_vector(buffer, __natts);
+
+    for (int i = 0; i < natts; i++)
     {
         FormData_pg_attribute *attr = &tuple_descriptor->attrs[i];
-        DataTypeDesc& pair_out_func = type_out_funcs.get_or_create(attr->atttypid, &get_out_func);
 
-        if (tts_isnull[i])
-            DataTypeDesc::write_buffer_to_vector(buffer, &null_value, 4);
-        else
+        if(!attr->attisdropped)
         {
-            if(binary_format)
+            DataTypeDesc& pair_out_func = type_out_funcs.get_or_create(attr->atttypid, &get_out_func);
+            if(!pair_out_func.IsTypeDefined())
             {
-                /* Binary output */
-                bytea* outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
-                DataTypeDesc::write_int32_to_vector(buffer, VARSIZE(outputbytes) - VARHDRSZ);
-                DataTypeDesc::write_buffer_to_vector(buffer, VARDATA(outputbytes), VARSIZE(outputbytes) - VARHDRSZ);
+                char temp[256];
+                snprintf(temp, sizeof(temp), "Attribute \"%s\" has invalid type id: %d, but not dropped", attr->attname.data, attr->atttypid);
+
+                throw std::runtime_error(temp);
             }
+
+            if (tts_isnull[i])
+                DataTypeDesc::write_buffer_to_vector(buffer, &null_value, 4);
             else
             {
-                /* Text output */
-                char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
-                DataTypeDesc::write_string_to_vector(buffer, outputstr);
+                if(binary_format)
+                {
+                    /* Binary output */
+                    bytea* outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
+                    DataTypeDesc::write_int32_to_vector(buffer, VARSIZE(outputbytes) - VARHDRSZ);
+                    DataTypeDesc::write_buffer_to_vector(buffer, VARDATA(outputbytes), VARSIZE(outputbytes) - VARHDRSZ);
+                }
+                else
+                {
+                    /* Text output */
+                    char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
+                    DataTypeDesc::write_string_to_vector(buffer, outputstr);
+                }
             }
         }
     }
@@ -1325,6 +1342,14 @@ void scan_table()
     data.clear();
 
     run_timed("cold  time is", []{ printByKeyTableOid(197282, 14); });
+    run_timed("cold  time is", [&data]{ fetchByKeyTableOid(197282, 14, false, data); });
+    std::cout << "data.size -> " << data.size() << std::endl;
+    data.clear();
+
+    run_timed("cold  time is", [&data]{ fetchByKeyTableOid(197282, 14, true, data); });
+    std::cout << "data.size -> " << data.size() << std::endl;
+    data.clear();
+
     run_timed("cold  time is", []{ printByKeyTableOid(198449, 14); });
     run_timed("warm  time is", []{ printByKeyTableName("dbrole", "", 8167); });
 
