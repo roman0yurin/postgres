@@ -106,6 +106,64 @@ static IpcMemoryState PGSharedMemoryAttach(IpcMemoryId shmId,
 										   void *attachAt,
 										   PGShmemHeader **addr);
 
+#if defined(__x86_64__) && defined(__linux__) && defined (EXEC_BACKEND)
+static void* CalculateSuitableSharedMemoryAddress(Size size)
+{
+    char buffer[8192];
+    snprintf(buffer, sizeof(buffer), "/proc/%d/maps", getpid());
+    FILE* fd = fopen(buffer, "rt");
+    if(fd != NULL)
+    {
+        bool is_heap = false;
+        size_t heap_beg = 0, heap_end = 0;
+        size_t after_heap_beg = 0, after_heap_end = 0;
+
+        while(!feof(fd))
+        {
+            char* str = fgets(buffer, sizeof(buffer), fd);
+            if(str && *str)
+            {
+                if(!is_heap)
+                {
+                    char* __heap = strstr(str, "[heap]");
+                    if(__heap)
+                    {
+                        char* __end;
+                        is_heap = true;
+                        heap_beg = strtoul(str, &__end, 16);
+                        if(heap_beg != 0 && __end && *__end == '-')
+                            heap_end = strtoul(++__end, NULL, 16);
+                    }
+                }
+                else
+                {
+                    char* __end;
+                    after_heap_beg = strtoul(str, &__end, 16);
+                    if(after_heap_beg != 0 && __end && *__end == '-')
+                        after_heap_end = strtoul(++__end, NULL, 16);
+
+                    break;
+                }
+            }
+        }
+
+        fclose(fd);
+
+        const size_t reserv = 0x0000040000000000;
+
+        if(heap_beg && heap_end > heap_beg && after_heap_beg > heap_end && after_heap_end > after_heap_beg &&
+           after_heap_beg > heap_end + size + reserv)
+        {
+            const size_t allign = 0xFFFFFC0000000000;
+            size_t candidate = (after_heap_beg - size - reserv) & allign;
+            if(candidate < after_heap_beg && candidate > heap_end)
+                return (void*) candidate;
+        }
+    }
+
+    return NULL;
+}
+#endif
 
 /*
  *	InternalIpcMemoryCreate(memKey, size)
@@ -138,10 +196,14 @@ InternalIpcMemoryCreate(IpcMemoryKey memKey, Size size)
 	 */
 #ifdef EXEC_BACKEND
 	{
-		char	   *pg_shmem_addr = getenv("PG_SHMEM_ADDR");
+		char* pg_shmem_addr = getenv("PG_SHMEM_ADDR");
 
 		if (pg_shmem_addr)
 			requestedAddress = (void *) strtoul(pg_shmem_addr, NULL, 0);
+#if defined(__x86_64__) && defined(__linux__)
+		else
+            requestedAddress = CalculateSuitableSharedMemoryAddress(size);
+#endif
 	}
 #endif
 
@@ -351,6 +413,8 @@ PGSharedMemoryAttach(IpcMemoryId shmId,
 	 */
 	if (shmctl(shmId, IPC_STAT, &shmStat) < 0)
 	{
+        elog(LOG, "shmctl failed with : %m");
+
 		/*
 		 * EINVAL actually has multiple possible causes documented in the
 		 * shmctl man page, but we assume it must mean the segment no longer
@@ -402,18 +466,76 @@ PGSharedMemoryAttach(IpcMemoryId shmId,
 	hdr = (PGShmemHeader *) shmat(shmId, attachAt, PG_SHMAT_FLAGS);
 	if (hdr == (PGShmemHeader *) -1)
 	{
-		/*
-		 * Attachment failed.  The cases we're interested in are the same as
-		 * for the shmctl() call above.  In particular, note that the owning
-		 * postmaster could have terminated and removed the segment between
-		 * shmctl() and shmat().
-		 *
-		 * If attachAt isn't NULL, it's possible that EINVAL reflects a
-		 * problem with that address not a vanished segment, so it's best to
-		 * pass NULL when probing for conflicting segments.
-		 */
+#if defined(__x86_64__) && defined(__linux__) && defined (EXEC_BACKEND)
+	    // Добавляем логирования для лучшей диагностики ситуации, почему shmat не сработал
+        char buffer[8192];
+        struct ipc_perm* perm = &shmStat.shm_perm;
+        if(perm)
+            snprintf(buffer, sizeof(buffer), "shmStat.shm_perm -> (__key = %d, uid = %u, gid = %u, cuid = %u, cgid = %u, mode = %u, __pad1 = %u, __seq = %u, __pad2 = %u)\n",
+                perm->__key, perm->uid, perm->gid, perm->cuid, perm->cgid, perm->mode, perm->__pad1, perm->__seq, perm->__pad2);
+
+        size_t shift = perm? strlen(buffer) : 0;
+        snprintf(buffer + shift, sizeof(buffer) - shift, "shmStat -> (shm_segsz = %ld, shm_cpid = %d, shm_lpid = %d, shm_nattch = %lu)",
+                 shmStat.shm_segsz, shmStat.shm_cpid, shmStat.shm_lpid, shmStat.shm_nattch);
+
+        elog(LOG, "shmStat is %s", buffer);
+        elog(LOG, "shmat failed with : %m");
+#endif
+        /*
+         * Attachment failed.  The cases we're interested in are the same as
+         * for the shmctl() call above.  In particular, note that the owning
+         * postmaster could have terminated and removed the segment between
+         * shmctl() and shmat().
+         *
+         * If attachAt isn't NULL, it's possible that EINVAL reflects a
+         * problem with that address not a vanished segment, so it's best to
+         * pass NULL when probing for conflicting segments.
+         */
 		if (errno == EINVAL)
+		{
+#if defined(__x86_64__) && defined(__linux__) && defined (EXEC_BACKEND)
+		    if(attachAt)
+		    {
+		        void* __check = shmat(shmId, NULL, PG_SHMAT_FLAGS);
+		        if(__check == (void*) -1)
+                    strncpy(buffer, "fail", sizeof(buffer));
+                else
+                    snprintf(buffer, sizeof(buffer), "success (%p)", __check);
+
+                elog(LOG, "check shmat at random base(NULL) is %s", buffer);
+                if(__check != (void*) -1)
+                {
+                    shmdt(__check);
+
+                    snprintf(buffer, sizeof(buffer), "/proc/%d/maps", getpid());
+                    FILE* fd = fopen(buffer, "rt");
+                    if(fd == NULL)
+                        elog(LOG, "can't open file: %s for analyzing memory mapping", buffer);
+                    else
+                    {
+                        elog(LOG, "mmap for current process[%d] is:", getpid());
+                        while(!feof(fd))
+                        {
+                            char* str = fgets(buffer, sizeof(buffer), fd);
+                            if(str && *str)
+                            {
+                                size_t slen = strlen(str);
+                                while(isspace(str[--slen]))
+                                    str[slen] = '\x00';
+                                if(*str)
+                                    elog(LOG, "%s", str);
+                            }
+                        }
+
+                        fclose(fd);
+                    }
+                }
+
+                errno = EINVAL;
+		    }
+#endif
 			return SHMSTATE_ENOENT; /* segment disappeared */
+        }
 		if (errno == EACCES)
 			return SHMSTATE_FOREIGN;	/* must be non-Postgres */
 #ifdef HAVE_LINUX_EIDRM_BUG
@@ -817,8 +939,31 @@ PGSharedMemoryReAttach(void)
 	else
 		state = PGSharedMemoryAttach(shmid, UsedShmemSegAddr, &hdr);
 	if (state != SHMSTATE_ATTACHED)
+	{
+#if defined(__x86_64__) && defined(__linux__) && defined (EXEC_BACKEND)
+	    const char *state_desc = NULL;
+	    switch(state) {
+	        case SHMSTATE_ANALYSIS_FAILURE:
+                state_desc = "SHMSTATE_ANALYSIS_FAILURE";
+                break;
+            case SHMSTATE_ENOENT:
+                state_desc = "SHMSTATE_ENOENT";
+                break;
+            case SHMSTATE_FOREIGN:
+                state_desc = "SHMSTATE_FOREIGN";
+                break;
+            case SHMSTATE_UNATTACHED:
+                state_desc = "SHMSTATE_UNATTACHED";
+                break;
+	    }
+	    if(state_desc)
+	        elog(LOG, "PGSharedMemoryAttach return %s", state_desc);
+	    else
+            elog(LOG, "PGSharedMemoryAttach return code [%d]", state);
+#endif
 		elog(FATAL, "could not reattach to shared memory (key=%d, addr=%p): %m",
 			 (int) UsedShmemSegID, UsedShmemSegAddr);
+    }
 	if (hdr != origUsedShmemSegAddr)
 		elog(FATAL, "reattaching to shared memory returned unexpected address (got %p, expected %p)",
 			 hdr, origUsedShmemSegAddr);

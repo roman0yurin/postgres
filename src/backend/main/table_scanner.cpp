@@ -367,16 +367,7 @@ public:
 
     V& put(const K& key, const V& value)
     {
-        if(this->empty())
-        {
-            // освобождаем элемент, которым дольше всего не пользовались
-            SGStackItem<RBPairType> *tail = this->get_tail();
-            const K& tail_key = tail->item()._M_valptr()->first;
-            auto tail_key_it = __map.find(tail_key);
-            __map.erase(tail_key_it);
-        }
-
-        return __map.insert(std::pair(key, value)).first->second;
+        return (check(), __map.insert(std::pair(key, value)).first->second);
     }
 
     inline V& get_or_create(const K& key, const std::function<V(const K& key)>& func)
@@ -388,10 +379,22 @@ public:
     inline V& get_or_create(const K& key, V(*func)(K key))
     {
         V* value = find(key);
-        return value? *value : __map.emplace(std::move(key), (*func)(key)).first->second;
+        return value? *value : (check(), __map.emplace(std::move(key), (*func)(key)).first->second);
     }
 
 private:
+    void check()
+    {
+        if(this->empty())
+        {
+            // освобождаем элемент, которым дольше всего не пользовались
+            SGStackItem<RBPairType> *tail = this->get_tail();
+            const K& tail_key = tail->item()._M_valptr()->first;
+            auto tail_key_it = __map.find(tail_key);
+            __map.erase(tail_key_it);
+        }
+    }
+
     std::map<K, V, Compare, SGMapStackAllocator<PairType, cache_size>> __map;
 };
 
