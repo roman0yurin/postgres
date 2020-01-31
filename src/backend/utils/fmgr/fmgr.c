@@ -123,7 +123,7 @@ fmgr_lookupByName(const char *name)
 void
 fmgr_info(Oid functionId, FmgrInfo *finfo)
 {
-	fmgr_info_cxt_security(functionId, finfo, CurrentMemoryContext, false);
+	fmgr_info_cxt_security(functionId, finfo, GetCurrentMemoryContext(), false);
 }
 
 /*
@@ -449,7 +449,7 @@ fmgr_info_other_lang(Oid functionId, FmgrInfo *finfo, HeapTuple procedureTuple)
 	 * to get back a bare pointer to the actual C-language function.
 	 */
 	fmgr_info_cxt_security(languageStruct->lanplcallfoid, &plfinfo,
-						   CurrentMemoryContext, true);
+						   GetCurrentMemoryContext(), true);
 	finfo->fn_addr = plfinfo.fn_addr;
 
 	ReleaseSysCache(languageTuple);

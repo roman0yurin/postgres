@@ -205,17 +205,51 @@ l_callsite_alwaysinline(LLVMValueRef f)
 static inline LLVMValueRef
 l_mcxt_switch(LLVMModuleRef mod, LLVMBuilderRef b, LLVMValueRef nc)
 {
-	const char *cmc = "CurrentMemoryContext";
-	LLVMValueRef cur;
-	LLVMValueRef ret;
+    const char *getter_name = "GetCurrentMemoryContext";
+    const char *setter_name = "SetCurrentMemoryContext";
+    LLVMValueRef ret;
+    LLVMValueRef v_fn_get, v_fn_set;
+    LLVMTypeRef set_param_types[1];
+    LLVMValueRef set_params[1];
+    LLVMTypeRef set_sig, get_sig;
 
-	if (!(cur = LLVMGetNamedGlobal(mod, cmc)))
-		cur = LLVMAddGlobal(mod, l_ptr(StructMemoryContextData), cmc);
-	ret = LLVMBuildLoad(b, cur, cmc);
-	LLVMBuildStore(b, nc, cur);
+    v_fn_get = LLVMGetNamedFunction(mod, getter_name);
+    if(!v_fn_get)
+    {
+        get_sig = LLVMFunctionType(l_ptr(StructMemoryContextData), NULL, 0, false);
+        v_fn_get = LLVMAddFunction(mod, getter_name, get_sig);
+    }
 
-	return ret;
+    v_fn_set = LLVMGetNamedFunction(mod, setter_name);
+    if(!v_fn_set)
+    {
+        set_param_types[0] = l_ptr(StructMemoryContextData);
+        set_sig = LLVMFunctionType(LLVMVoidType(), set_param_types, lengthof(set_param_types), false);
+        v_fn_set = LLVMAddFunction(mod, setter_name, set_sig);
+    }
+
+    ret = LLVMBuildCall(b, v_fn_get, NULL, 0, "");
+
+    set_params[0] = nc;
+    LLVMBuildCall(b, v_fn_set, set_params, lengthof(set_params), "");
+
+    return ret;
 }
+
+//static inline LLVMValueRef
+//l_mcxt_switch(LLVMModuleRef mod, LLVMBuilderRef b, LLVMValueRef nc)
+//{
+//	const char *cmc = "CurrentMemoryContext";
+//	LLVMValueRef cur;
+//	LLVMValueRef ret;
+//
+//	if (!(cur = LLVMGetNamedGlobal(mod, cmc)))
+//		cur = LLVMAddGlobal(mod, l_ptr(StructMemoryContextData), cmc);
+//	ret = LLVMBuildLoad(b, cur, cmc);
+//	LLVMBuildStore(b, nc, cur);
+//
+//	return ret;
+//}
 
 /*
  * Return pointer to the argno'th argument nullness.

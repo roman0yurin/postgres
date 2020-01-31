@@ -1143,7 +1143,7 @@ do_start_worker(void)
 	 * Create and switch to a temporary context to avoid leaking the memory
 	 * allocated for the database list.
 	 */
-	tmpcxt = AllocSetContextCreate(CurrentMemoryContext,
+	tmpcxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 								   "Start worker tmp cxt",
 								   ALLOCSET_DEFAULT_SIZES);
 	oldcxt = MemoryContextSwitchTo(tmpcxt);
@@ -1873,7 +1873,7 @@ get_database_list(void)
 	MemoryContext resultcxt;
 
 	/* This is the context that we will allocate our output data in */
-	resultcxt = CurrentMemoryContext;
+	resultcxt = GetCurrentMemoryContext();
 
 	/*
 	 * Start a transaction so we can access pg_database, and get a snapshot.
@@ -2628,7 +2628,7 @@ perform_work_item(AutoVacuumWorkItem *workitem)
 	 * lookup in case of an error.  If any of these return NULL, then the
 	 * relation has been dropped since last we checked; skip it.
 	 */
-	Assert(CurrentMemoryContext == AutovacMemCxt);
+	Assert((GetCurrentMemoryContext()) == AutovacMemCxt);
 
 	cur_relname = get_rel_name(workitem->avw_relation);
 	cur_nspname = get_namespace_name(get_rel_namespace(workitem->avw_relation));

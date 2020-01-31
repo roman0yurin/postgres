@@ -1718,7 +1718,7 @@ each_worker_jsonb(FunctionCallInfo fcinfo, const char *funcname, bool as_text)
 
 	MemoryContextSwitchTo(old_cxt);
 
-	tmp_cxt = AllocSetContextCreate(CurrentMemoryContext,
+	tmp_cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 									"jsonb_each temporary cxt",
 									ALLOCSET_DEFAULT_SIZES);
 
@@ -1855,7 +1855,7 @@ each_worker(FunctionCallInfo fcinfo, bool as_text)
 	state->normalize_results = as_text;
 	state->next_scalar = false;
 	state->lex = lex;
-	state->tmp_cxt = AllocSetContextCreate(CurrentMemoryContext,
+	state->tmp_cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 										   "json_each temporary cxt",
 										   ALLOCSET_DEFAULT_SIZES);
 
@@ -2034,7 +2034,7 @@ elements_worker_jsonb(FunctionCallInfo fcinfo, const char *funcname,
 
 	MemoryContextSwitchTo(old_cxt);
 
-	tmp_cxt = AllocSetContextCreate(CurrentMemoryContext,
+	tmp_cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 									"jsonb_array_elements temporary cxt",
 									ALLOCSET_DEFAULT_SIZES);
 
@@ -2172,7 +2172,7 @@ elements_worker(FunctionCallInfo fcinfo, const char *funcname, bool as_text)
 	state->normalize_results = as_text;
 	state->next_scalar = false;
 	state->lex = lex;
-	state->tmp_cxt = AllocSetContextCreate(CurrentMemoryContext,
+	state->tmp_cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 										   "json_array_elements temporary cxt",
 										   ALLOCSET_DEFAULT_SIZES);
 
@@ -2644,7 +2644,7 @@ populate_array(ArrayIOData *aio,
 
 	ctx.aio = aio;
 	ctx.mcxt = mcxt;
-	ctx.acxt = CurrentMemoryContext;
+	ctx.acxt = GetCurrentMemoryContext();
 	ctx.astate = initArrayResult(aio->element_type, ctx.acxt, true);
 	ctx.colname = colname;
 	ctx.ndims = 0;				/* unknown yet */
@@ -3386,7 +3386,7 @@ get_json_object_as_hash(char *json, int len, const char *funcname)
 	memset(&ctl, 0, sizeof(ctl));
 	ctl.keysize = NAMEDATALEN;
 	ctl.entrysize = sizeof(JsonHashEntry);
-	ctl.hcxt = CurrentMemoryContext;
+	ctl.hcxt = GetCurrentMemoryContext();
 	tab = hash_create("json object hashtable",
 					  100,
 					  &ctl,
@@ -3778,7 +3778,7 @@ populate_recordset_object_start(void *state)
 	memset(&ctl, 0, sizeof(ctl));
 	ctl.keysize = NAMEDATALEN;
 	ctl.entrysize = sizeof(JsonHashEntry);
-	ctl.hcxt = CurrentMemoryContext;
+	ctl.hcxt = GetCurrentMemoryContext();
 	_state->json_hash = hash_create("json object hashtable",
 									100,
 									&ctl,

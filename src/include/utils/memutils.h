@@ -66,6 +66,8 @@ extern PGDLLIMPORT MemoryContext PortalContext;
 /* Backwards compatibility macro */
 #define MemoryContextResetAndDeleteChildren(ctx) MemoryContextReset(ctx)
 
+/* Experimental switch on multithread using postgress process */
+extern bool SetUseParallelAccess(bool enable);
 
 /*
  * Memory-context-type-independent functions in mcxt.c

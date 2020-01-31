@@ -1046,7 +1046,7 @@ RelationBuildDesc(Oid targetRelId, bool insertIt)
 	MemoryContext tmpcxt;
 	MemoryContext oldcxt;
 
-	tmpcxt = AllocSetContextCreate(CurrentMemoryContext,
+	tmpcxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 								   "RelationBuildDesc workspace",
 								   ALLOCSET_DEFAULT_SIZES);
 	oldcxt = MemoryContextSwitchTo(tmpcxt);

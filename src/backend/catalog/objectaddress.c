@@ -5301,7 +5301,7 @@ strlist_to_textarray(List *list)
 	int			lb[1];
 
 	/* Work in a temp context; easier than individually pfree'ing the Datums */
-	memcxt = AllocSetContextCreate(CurrentMemoryContext,
+	memcxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 								   "strlist to array",
 								   ALLOCSET_DEFAULT_SIZES);
 	oldcxt = MemoryContextSwitchTo(memcxt);

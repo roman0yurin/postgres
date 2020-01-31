@@ -878,7 +878,7 @@ plpgsql_compile_inline(char *proc_source)
 	 * All the rest of the compile-time storage (e.g. parse tree) is kept in
 	 * its own memory context, so it can be reclaimed easily.
 	 */
-	func_cxt = AllocSetContextCreate(CurrentMemoryContext,
+	func_cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 									 "PL/pgSQL inline code context",
 									 ALLOCSET_DEFAULT_SIZES);
 	plpgsql_compile_tmp_cxt = MemoryContextSwitchTo(func_cxt);

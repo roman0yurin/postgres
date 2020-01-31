@@ -150,7 +150,7 @@ ensure_transaction(void)
 	{
 		SetCurrentStatementStartTimestamp();
 
-		if (CurrentMemoryContext != ApplyMessageContext)
+		if (GetCurrentMemoryContext() != ApplyMessageContext)
 			MemoryContextSwitchTo(ApplyMessageContext);
 
 		return false;

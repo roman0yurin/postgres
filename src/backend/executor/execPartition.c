@@ -223,7 +223,7 @@ ExecSetupPartitionTupleRouting(EState *estate, ModifyTableState *mtstate,
 	 */
 	proute = (PartitionTupleRouting *) palloc0(sizeof(PartitionTupleRouting));
 	proute->partition_root = rel;
-	proute->memcxt = CurrentMemoryContext;
+	proute->memcxt = GetCurrentMemoryContext();
 	/* Rest of members initialized by zeroing */
 
 	/*
@@ -462,7 +462,7 @@ ExecHashSubPlanResultRelsByOid(ModifyTableState *mtstate,
 	memset(&ctl, 0, sizeof(ctl));
 	ctl.keysize = sizeof(Oid);
 	ctl.entrysize = sizeof(SubplanResultRelHashElem);
-	ctl.hcxt = CurrentMemoryContext;
+	ctl.hcxt = GetCurrentMemoryContext();
 
 	htab = hash_create("PartitionTupleRouting table", mtstate->mt_nplans,
 					   &ctl, HASH_ELEM | HASH_BLOBS | HASH_CONTEXT);
@@ -1595,7 +1595,7 @@ ExecCreatePartitionPruneState(PlanState *planstate,
 	 * our control.
 	 */
 	prunestate->prune_context =
-		AllocSetContextCreate(CurrentMemoryContext,
+		AllocSetContextCreate((GetCurrentMemoryContext()),
 							  "Partition Prune",
 							  ALLOCSET_DEFAULT_SIZES);
 
@@ -1766,7 +1766,7 @@ ExecInitPruningContext(PartitionPruneContext *context,
 	context->stepcmpfuncs = (FmgrInfo *)
 		palloc0(sizeof(FmgrInfo) * n_steps * partnatts);
 
-	context->ppccontext = CurrentMemoryContext;
+	context->ppccontext = GetCurrentMemoryContext();
 	context->planstate = planstate;
 
 	/* Initialize expression state for each expression we need */

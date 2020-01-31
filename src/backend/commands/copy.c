@@ -1479,7 +1479,7 @@ BeginCopy(ParseState *pstate,
 	 * We allocate everything used by a cstate in a new memory context. This
 	 * avoids memory leaks during repeated use of COPY in a query.
 	 */
-	cstate->copycontext = AllocSetContextCreate(CurrentMemoryContext,
+	cstate->copycontext = AllocSetContextCreate((GetCurrentMemoryContext()),
 												"COPY",
 												ALLOCSET_DEFAULT_SIZES);
 
@@ -2058,7 +2058,7 @@ CopyTo(CopyState cstate)
 	 * datatype output routines, and should be faster than retail pfree's
 	 * anyway.  (We don't need a whole econtext as CopyFrom does.)
 	 */
-	cstate->rowcontext = AllocSetContextCreate(CurrentMemoryContext,
+	cstate->rowcontext = AllocSetContextCreate((GetCurrentMemoryContext()),
 											   "COPY TO",
 											   ALLOCSET_DEFAULT_SIZES);
 
@@ -2665,7 +2665,7 @@ CopyFrom(CopyState cstate)
 	ModifyTableState *mtstate;
 	ExprContext *econtext;
 	TupleTableSlot *singleslot = NULL;
-	MemoryContext oldcontext = CurrentMemoryContext;
+	MemoryContext oldcontext = GetCurrentMemoryContext();
 
 	PartitionTupleRouting *proute = NULL;
 	ErrorContextCallback errcallback;
@@ -3861,7 +3861,7 @@ NextCopyFrom(CopyState cstate, ExprContext *econtext,
 		 * per-tuple memory context in it.
 		 */
 		Assert(econtext != NULL);
-		Assert(CurrentMemoryContext == econtext->ecxt_per_tuple_memory);
+		Assert((GetCurrentMemoryContext()) == econtext->ecxt_per_tuple_memory);
 
 		values[defmap[i]] = ExecEvalExpr(defexprs[i], econtext,
 										 &nulls[defmap[i]]);

@@ -2806,7 +2806,7 @@ ExecInitCoerceToDomain(ExprEvalStep *scratch, CoerceToDomain *ctest,
 		palloc(sizeof(DomainConstraintRef));
 	InitDomainConstraintRef(ctest->resulttype,
 							constraint_ref,
-							CurrentMemoryContext,
+							GetCurrentMemoryContext(),
 							false);
 
 	/*

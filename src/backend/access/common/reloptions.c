@@ -845,7 +845,7 @@ transformRelOptions(Datum oldOptions, List *defList, const char *namspace,
 				/* No match, so keep old option */
 				astate = accumArrayResult(astate, oldoptions[i],
 										  false, TEXTOID,
-										  CurrentMemoryContext);
+										  GetCurrentMemoryContext());
 			}
 		}
 	}
@@ -949,12 +949,12 @@ transformRelOptions(Datum oldOptions, List *defList, const char *namspace,
 
 			astate = accumArrayResult(astate, PointerGetDatum(t),
 									  false, TEXTOID,
-									  CurrentMemoryContext);
+									  GetCurrentMemoryContext());
 		}
 	}
 
 	if (astate)
-		result = makeArrayResult(astate, CurrentMemoryContext);
+		result = makeArrayResult(astate, GetCurrentMemoryContext());
 	else
 		result = (Datum) 0;
 

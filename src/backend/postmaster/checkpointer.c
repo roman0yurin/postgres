@@ -1200,7 +1200,7 @@ CompactCheckpointerRequestQueue(void)
 	MemSet(&ctl, 0, sizeof(ctl));
 	ctl.keysize = sizeof(CheckpointerRequest);
 	ctl.entrysize = sizeof(struct CheckpointerSlotMapping);
-	ctl.hcxt = CurrentMemoryContext;
+	ctl.hcxt = GetCurrentMemoryContext();
 
 	htab = hash_create("CompactCheckpointerRequestQueue",
 					   CheckpointerShmem->num_requests,

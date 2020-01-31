@@ -305,7 +305,7 @@ MarkPostmasterChildInactiveInternal(void)
 	PMSignalState->PMChildFlags[slot] = PM_CHILD_ASSIGNED;
 }
 
-extern void (*MarkPostmasterChildInactiveFunc)(void) = MarkPostmasterChildInactiveInternal;
+void (*MarkPostmasterChildInactiveFunc)(void) = MarkPostmasterChildInactiveInternal;
 
 void MarkPostmasterChildInactive(void)
 {

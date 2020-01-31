@@ -739,7 +739,7 @@ PortalRun(Portal portal, long count, bool isTopLevel, bool run_once,
 	saveActivePortal = ActivePortal;
 	saveResourceOwner = CurrentResourceOwner;
 	savePortalContext = PortalContext;
-	saveMemoryContext = CurrentMemoryContext;
+	saveMemoryContext = GetCurrentMemoryContext();
 	PG_TRY();
 	{
 		ActivePortal = portal;
@@ -1340,7 +1340,7 @@ PortalRunMulti(Portal portal,
 		/*
 		 * Clear subsidiary contexts to recover temporary memory.
 		 */
-		Assert(portal->portalContext == CurrentMemoryContext);
+		Assert(portal->portalContext == (GetCurrentMemoryContext()));
 
 		MemoryContextDeleteChildren(portal->portalContext);
 	}

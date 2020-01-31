@@ -636,7 +636,7 @@ advance_transition_function(AggState *aggstate,
 			if (DatumIsReadWriteExpandedObject(newVal,
 											   false,
 											   pertrans->transtypeLen) &&
-				MemoryContextGetParent(DatumGetEOHP(newVal)->eoh_context) == CurrentMemoryContext)
+				MemoryContextGetParent(DatumGetEOHP(newVal)->eoh_context) == GetCurrentMemoryContext())
 				 /* do nothing */ ;
 			else
 				newVal = datumCopy(newVal,
@@ -977,7 +977,7 @@ finalize_aggregate(AggState *aggstate,
 	 * If result is pass-by-ref, make sure it is in the right context.
 	 */
 	if (!peragg->resulttypeByVal && !*resultIsNull &&
-		!MemoryContextContains(CurrentMemoryContext,
+		!MemoryContextContains(GetCurrentMemoryContext(),
 							   DatumGetPointer(*resultVal)))
 		*resultVal = datumCopy(*resultVal,
 							   peragg->resulttypeByVal,
@@ -1038,7 +1038,7 @@ finalize_partialaggregate(AggState *aggstate,
 
 	/* If result is pass-by-ref, make sure it is in the right context. */
 	if (!peragg->resulttypeByVal && !*resultIsNull &&
-		!MemoryContextContains(CurrentMemoryContext,
+		!MemoryContextContains(GetCurrentMemoryContext(),
 							   DatumGetPointer(*resultVal)))
 		*resultVal = datumCopy(*resultVal,
 							   peragg->resulttypeByVal,

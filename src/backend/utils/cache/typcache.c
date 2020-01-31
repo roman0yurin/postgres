@@ -979,7 +979,7 @@ load_domaintype_info(TypeCacheEntry *typentry)
 			{
 				MemoryContext cxt;
 
-				cxt = AllocSetContextCreate(CurrentMemoryContext,
+				cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 											"Domain constraints",
 											ALLOCSET_SMALL_SIZES);
 				dcc = (DomainConstraintCache *)
@@ -1071,7 +1071,7 @@ load_domaintype_info(TypeCacheEntry *typentry)
 		{
 			MemoryContext cxt;
 
-			cxt = AllocSetContextCreate(CurrentMemoryContext,
+			cxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 										"Domain constraints",
 										ALLOCSET_SMALL_SIZES);
 			dcc = (DomainConstraintCache *)

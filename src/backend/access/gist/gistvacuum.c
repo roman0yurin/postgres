@@ -69,7 +69,7 @@ create_GistBulkDeleteResult(void)
 
 	gist_stats = (GistBulkDeleteResult *) palloc0(sizeof(GistBulkDeleteResult));
 	gist_stats->page_set_context =
-		GenerationContextCreate(CurrentMemoryContext,
+		GenerationContextCreate(GetCurrentMemoryContext(),
 								"GiST VACUUM page set context",
 								16 * 1024);
 

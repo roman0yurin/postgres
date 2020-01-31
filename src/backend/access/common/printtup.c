@@ -145,7 +145,7 @@ printtup_startup(DestReceiver *self, int operation, TupleDesc typeinfo)
 	 * datatype output routines, and should be faster than retail pfree's
 	 * anyway.
 	 */
-	myState->tmpcontext = AllocSetContextCreate(CurrentMemoryContext,
+	myState->tmpcontext = AllocSetContextCreate((GetCurrentMemoryContext()),
 												"printtup",
 												ALLOCSET_DEFAULT_SIZES);
 

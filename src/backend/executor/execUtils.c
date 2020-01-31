@@ -94,7 +94,7 @@ CreateExecutorState(void)
 	/*
 	 * Create the per-query context for this Executor run.
 	 */
-	qcontext = AllocSetContextCreate(CurrentMemoryContext,
+	qcontext = AllocSetContextCreate((GetCurrentMemoryContext()),
 									 "ExecutorState",
 									 ALLOCSET_DEFAULT_SIZES);
 
@@ -326,13 +326,13 @@ CreateStandaloneExprContext(void)
 	econtext->ecxt_innertuple = NULL;
 	econtext->ecxt_outertuple = NULL;
 
-	econtext->ecxt_per_query_memory = CurrentMemoryContext;
+	econtext->ecxt_per_query_memory = GetCurrentMemoryContext();
 
 	/*
 	 * Create working memory for expression evaluation in this context.
 	 */
 	econtext->ecxt_per_tuple_memory =
-		AllocSetContextCreate(CurrentMemoryContext,
+		AllocSetContextCreate((GetCurrentMemoryContext()),
 							  "ExprContext",
 							  ALLOCSET_DEFAULT_SIZES);
 

@@ -117,7 +117,7 @@ ExecMakeTableFunctionResult(SetExprState *setexpr,
 	MemoryContext oldcontext;
 	bool		first_time = true;
 
-	callerContext = CurrentMemoryContext;
+	callerContext = GetCurrentMemoryContext();
 
 	funcrettype = exprType((Node *) setexpr->expr);
 

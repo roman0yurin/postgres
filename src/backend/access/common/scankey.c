@@ -113,5 +113,5 @@ ScanKeyEntryInitializeWithInfo(ScanKey entry,
 	entry->sk_subtype = subtype;
 	entry->sk_collation = collation;
 	entry->sk_argument = argument;
-	fmgr_info_copy(&entry->sk_func, finfo, CurrentMemoryContext);
+	fmgr_info_copy(&entry->sk_func, finfo, GetCurrentMemoryContext());
 }

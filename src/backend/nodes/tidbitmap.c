@@ -269,7 +269,7 @@ tbm_create(long maxbytes, dsa_area *dsa)
 	/* Create the TIDBitmap struct and zero all its fields */
 	tbm = makeNode(TIDBitmap);
 
-	tbm->mcxt = CurrentMemoryContext;
+	tbm->mcxt = GetCurrentMemoryContext();
 	tbm->status = TBM_EMPTY;
 
 	tbm->maxentries = (int) tbm_calculate_entries(maxbytes);

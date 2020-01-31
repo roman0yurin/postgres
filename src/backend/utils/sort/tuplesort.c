@@ -694,7 +694,7 @@ tuplesort_begin_common(int workMem, SortCoordinate coordinate,
 	 * Create a working memory context for this sort operation. All data
 	 * needed by the sort will live inside this context.
 	 */
-	sortcontext = AllocSetContextCreate(CurrentMemoryContext,
+	sortcontext = AllocSetContextCreate((GetCurrentMemoryContext()),
 										"TupleSort main",
 										ALLOCSET_DEFAULT_SIZES);
 
@@ -852,7 +852,7 @@ tuplesort_begin_heap(TupleDesc tupDesc,
 		AssertArg(attNums[i] != 0);
 		AssertArg(sortOperators[i] != 0);
 
-		sortKey->ssup_cxt = CurrentMemoryContext;
+		sortKey->ssup_cxt = GetCurrentMemoryContext();
 		sortKey->ssup_collation = sortCollations[i];
 		sortKey->ssup_nulls_first = nullsFirstFlags[i];
 		sortKey->ssup_attno = attNums[i];
@@ -948,7 +948,7 @@ tuplesort_begin_cluster(TupleDesc tupDesc,
 		ScanKey		scanKey = indexScanKey->scankeys + i;
 		int16		strategy;
 
-		sortKey->ssup_cxt = CurrentMemoryContext;
+		sortKey->ssup_cxt = GetCurrentMemoryContext();
 		sortKey->ssup_collation = scanKey->sk_collation;
 		sortKey->ssup_nulls_first =
 			(scanKey->sk_flags & SK_BT_NULLS_FIRST) != 0;
@@ -1026,7 +1026,7 @@ tuplesort_begin_index_btree(Relation heapRel,
 		ScanKey		scanKey = indexScanKey->scankeys + i;
 		int16		strategy;
 
-		sortKey->ssup_cxt = CurrentMemoryContext;
+		sortKey->ssup_cxt = GetCurrentMemoryContext();
 		sortKey->ssup_collation = scanKey->sk_collation;
 		sortKey->ssup_nulls_first =
 			(scanKey->sk_flags & SK_BT_NULLS_FIRST) != 0;
@@ -1140,7 +1140,7 @@ tuplesort_begin_datum(Oid datumType, Oid sortOperator, Oid sortCollation,
 	/* Prepare SortSupport data */
 	state->sortKeys = (SortSupport) palloc0(sizeof(SortSupportData));
 
-	state->sortKeys->ssup_cxt = CurrentMemoryContext;
+	state->sortKeys->ssup_cxt = GetCurrentMemoryContext();
 	state->sortKeys->ssup_collation = sortCollation;
 	state->sortKeys->ssup_nulls_first = nullsFirstFlag;
 

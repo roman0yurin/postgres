@@ -31,11 +31,13 @@
  *	  GLOBAL MEMORY															 *
  *****************************************************************************/
 
+static bool UseParallelAccess = false;
 /*
  * CurrentMemoryContext
  *		Default memory context for allocations.
  */
-MemoryContext CurrentMemoryContext = NULL;
+MemoryContext GlobalCurrentMemoryContext = NULL;
+__thread MemoryContext ThreadCurrentMemoryContext = NULL;
 
 /*
  * Standard top-level contexts. For a description of the purpose of each
@@ -71,6 +73,25 @@ static void MemoryContextStatsPrint(MemoryContext context, void *passthru,
  *	  EXPORTED ROUTINES														 *
  *****************************************************************************/
 
+bool SetUseParallelAccess(bool enable)
+{
+    bool old = UseParallelAccess;
+    UseParallelAccess = enable;
+    return old;
+}
+
+MemoryContext GetCurrentMemoryContext()
+{
+    return UseParallelAccess? ThreadCurrentMemoryContext : GlobalCurrentMemoryContext;
+}
+
+void SetCurrentMemoryContext(MemoryContext context)
+{
+    if (UseParallelAccess)
+        ThreadCurrentMemoryContext = context;
+    else
+        GlobalCurrentMemoryContext = context;
+}
 
 /*
  * MemoryContextInit
@@ -104,7 +125,7 @@ MemoryContextInit(void)
 	 * Not having any other place to point CurrentMemoryContext, make it point
 	 * to TopMemoryContext.  Caller should change this soon!
 	 */
-	CurrentMemoryContext = TopMemoryContext;
+	SetCurrentMemoryContext(TopMemoryContext);
 
 	/*
 	 * Initialize ErrorContext as an AllocSetContext with slow growth rate ---
@@ -214,7 +235,7 @@ MemoryContextDelete(MemoryContext context)
 	/* We had better not be deleting TopMemoryContext ... */
 	Assert(context != TopMemoryContext);
 	/* And not CurrentMemoryContext, either */
-	Assert(context != CurrentMemoryContext);
+	Assert(context != (GetCurrentMemoryContext()));
 
 	/* save a function call in common case where there are no children */
 	if (context->firstchild != NULL)
@@ -925,7 +946,7 @@ palloc(Size size)
 {
 	/* duplicates MemoryContextAlloc to avoid increased overhead */
 	void	   *ret;
-	MemoryContext context = CurrentMemoryContext;
+	MemoryContext context = GetCurrentMemoryContext();
 
 	AssertArg(MemoryContextIsValid(context));
 	AssertNotInCriticalSection(context);
@@ -956,7 +977,7 @@ palloc0(Size size)
 {
 	/* duplicates MemoryContextAllocZero to avoid increased overhead */
 	void	   *ret;
-	MemoryContext context = CurrentMemoryContext;
+	MemoryContext context = GetCurrentMemoryContext();
 
 	AssertArg(MemoryContextIsValid(context));
 	AssertNotInCriticalSection(context);
@@ -989,7 +1010,7 @@ palloc_extended(Size size, int flags)
 {
 	/* duplicates MemoryContextAllocExtended to avoid increased overhead */
 	void	   *ret;
-	MemoryContext context = CurrentMemoryContext;
+	MemoryContext context = GetCurrentMemoryContext();
 
 	AssertArg(MemoryContextIsValid(context));
 	AssertNotInCriticalSection(context);
@@ -1160,7 +1181,7 @@ MemoryContextStrdup(MemoryContext context, const char *string)
 char *
 pstrdup(const char *in)
 {
-	return MemoryContextStrdup(CurrentMemoryContext, in);
+	return MemoryContextStrdup(GetCurrentMemoryContext(), in);
 }
 
 /*

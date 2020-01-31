@@ -373,7 +373,7 @@ pg_do_encoding_conversion(unsigned char *src, int len,
 						   len)));
 
 	result = (unsigned char *)
-		MemoryContextAllocHuge(CurrentMemoryContext,
+		MemoryContextAllocHuge(GetCurrentMemoryContext(),
 							   (Size) len * MAX_CONVERSION_GROWTH + 1);
 
 	OidFunctionCall5(proc,
@@ -729,7 +729,7 @@ perform_default_encoding_conversion(const char *src, int len,
 						   len)));
 
 	result = (char *)
-		MemoryContextAllocHuge(CurrentMemoryContext,
+		MemoryContextAllocHuge(GetCurrentMemoryContext(),
 							   (Size) len * MAX_CONVERSION_GROWTH + 1);
 
 	FunctionCall5(flinfo,

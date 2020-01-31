@@ -776,7 +776,7 @@ makeIndexInfo(int numattrs, int numkeyattrs, Oid amoid, List *expressions,
 	/* set up for possible use by index AM */
 	n->ii_Am = amoid;
 	n->ii_AmCache = NULL;
-	n->ii_Context = CurrentMemoryContext;
+	n->ii_Context = GetCurrentMemoryContext();
 
 	return n;
 }

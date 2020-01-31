@@ -192,7 +192,7 @@ void
 RelationBuildRowSecurity(Relation relation)
 {
 	MemoryContext rscxt;
-	MemoryContext oldcxt = CurrentMemoryContext;
+	MemoryContext oldcxt = GetCurrentMemoryContext();
 	RowSecurityDesc *volatile rsdesc = NULL;
 
 	/*

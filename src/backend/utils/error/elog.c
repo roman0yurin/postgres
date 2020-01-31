@@ -1492,7 +1492,7 @@ CopyErrorData(void)
 	 */
 	CHECK_STACK_DEPTH();
 
-	Assert(CurrentMemoryContext != ErrorContext);
+	Assert((GetCurrentMemoryContext()) != ErrorContext);
 
 	/* Copy the struct itself */
 	newedata = (ErrorData *) palloc(sizeof(ErrorData));
@@ -1523,7 +1523,7 @@ CopyErrorData(void)
 		newedata->internalquery = pstrdup(newedata->internalquery);
 
 	/* Use the calling context for string allocation */
-	newedata->assoc_context = CurrentMemoryContext;
+	newedata->assoc_context = GetCurrentMemoryContext();
 
 	return newedata;
 }
@@ -1806,7 +1806,7 @@ GetErrorContextStack(void)
 	 * Set up assoc_context to be the caller's context, so any allocations
 	 * done (which will include edata->context) will use their context.
 	 */
-	edata->assoc_context = CurrentMemoryContext;
+	edata->assoc_context = GetCurrentMemoryContext();
 
 	/*
 	 * Call any context callback functions to collect the context information
@@ -2107,7 +2107,7 @@ write_eventlog(int level, const char *line, int len)
 	 * to error messages thrown deep inside pgwin32_message_to_UTF16().
 	 */
 	if (!in_error_recursion_trouble() &&
-		CurrentMemoryContext != NULL &&
+		GetCurrentMemoryContext() != NULL &&
 		GetMessageEncoding() != GetACPEncoding())
 	{
 		utf16 = pgwin32_message_to_UTF16(line, len, NULL);
@@ -2166,7 +2166,7 @@ write_console(const char *line, int len)
 	 */
 	if (!in_error_recursion_trouble() &&
 		!redirection_done &&
-		CurrentMemoryContext != NULL)
+		GetCurrentMemoryContext() != NULL)
 	{
 		WCHAR	   *utf16;
 		int			utf16len;

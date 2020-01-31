@@ -47,7 +47,7 @@ private:
 
 SGMemoryContextSwitcher::SGMemoryContextSwitcher(MemoryContext new_context)
 {
-    if(new_context == CurrentMemoryContext)
+    if(new_context == GetCurrentMemoryContext())
         must_revert = false;
     else if((must_revert = (new_context != nullptr)))
         old_context = MemoryContextSwitchTo(new_context);
@@ -86,7 +86,7 @@ template<class T>
 struct PGAllocator : public SGCommonAllocator<T>
 {
 #if !defined _MSC_VER
-    PGAllocator() : m_context(CurrentMemoryContext) {}
+    PGAllocator() : m_context(GetCurrentMemoryContext()) {}
 #endif
 
     explicit PGAllocator(MemoryContext m_context) : m_context(m_context) {}
@@ -985,7 +985,7 @@ SGMemoryContext::~SGMemoryContext()
 MemoryContext SGMemoryContext::create_own_memory_context(MemoryContext parent)
 {
     SGMemoryContextSwitcher mc(parent);
-    return AllocSetContextCreate(CurrentMemoryContext, "SGTableManager", ALLOCSET_DEFAULT_SIZES);
+    return AllocSetContextCreate((GetCurrentMemoryContext()), "SGTableManager", ALLOCSET_DEFAULT_SIZES);
 }
 
 SGTransaction::SGTransaction()

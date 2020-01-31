@@ -56,7 +56,8 @@ typedef struct MemoryContextCallback
  * Avoid accessing it directly!  Instead, use MemoryContextSwitchTo()
  * to change the setting.
  */
-extern PGDLLIMPORT MemoryContext CurrentMemoryContext;
+extern PGDLLIMPORT MemoryContext GetCurrentMemoryContext();
+extern PGDLLIMPORT void SetCurrentMemoryContext(MemoryContext context);
 
 /*
  * Flags for MemoryContextAllocExtended.
@@ -90,8 +91,8 @@ extern void pfree(void *pointer);
  */
 #define palloc0fast(sz) \
 	( MemSetTest(0, sz) ? \
-		MemoryContextAllocZeroAligned(CurrentMemoryContext, sz) : \
-		MemoryContextAllocZero(CurrentMemoryContext, sz) )
+		MemoryContextAllocZeroAligned(GetCurrentMemoryContext(), sz) : \
+		MemoryContextAllocZero(GetCurrentMemoryContext(), sz) )
 
 /* Higher-limit allocators. */
 extern void *MemoryContextAllocHuge(MemoryContext context, Size size);
@@ -108,9 +109,9 @@ extern void *repalloc_huge(void *pointer, Size size);
 static inline MemoryContext
 MemoryContextSwitchTo(MemoryContext context)
 {
-	MemoryContext old = CurrentMemoryContext;
+	MemoryContext old = GetCurrentMemoryContext();
 
-	CurrentMemoryContext = context;
+	SetCurrentMemoryContext(context);
 	return old;
 }
 #endif							/* FRONTEND */

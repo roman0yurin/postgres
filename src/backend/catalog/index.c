@@ -2335,7 +2335,7 @@ BuildIndexInfo(Relation index)
 	/* set up for possible use by index AM */
 	ii->ii_Am = index->rd_rel->relam;
 	ii->ii_AmCache = NULL;
-	ii->ii_Context = CurrentMemoryContext;
+	ii->ii_Context = GetCurrentMemoryContext();
 
 	return ii;
 }

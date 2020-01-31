@@ -1239,9 +1239,9 @@ ParallelWorkerMain(Datum main_arg)
 	memcpy(&ParallelWorkerNumber, MyBgworkerEntry->bgw_extra, sizeof(int));
 
 	/* Set up a memory context to work in, just for cleanliness. */
-	CurrentMemoryContext = AllocSetContextCreate(TopMemoryContext,
+	SetCurrentMemoryContext(AllocSetContextCreate(TopMemoryContext,
 												 "Parallel worker",
-												 ALLOCSET_DEFAULT_SIZES);
+												 ALLOCSET_DEFAULT_SIZES));
 
 	/*
 	 * Attach to the dynamic shared memory segment for the parallel query, and

@@ -1214,7 +1214,7 @@ pgstat_collect_oids(Oid catalogid, AttrNumber anum_oid)
 	memset(&hash_ctl, 0, sizeof(hash_ctl));
 	hash_ctl.keysize = sizeof(Oid);
 	hash_ctl.entrysize = sizeof(Oid);
-	hash_ctl.hcxt = CurrentMemoryContext;
+	hash_ctl.hcxt = GetCurrentMemoryContext();
 	htab = hash_create("Temporary table of OIDs",
 					   PGSTAT_TAB_HASH_SIZE,
 					   &hash_ctl,

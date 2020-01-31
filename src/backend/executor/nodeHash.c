@@ -522,7 +522,7 @@ ExecHashTableCreate(HashState *state, List *hashOperators, List *hashCollations,
 	 * Create temporary memory contexts in which to keep the hashtable working
 	 * storage.  See notes in executor/hashjoin.h.
 	 */
-	hashtable->hashCxt = AllocSetContextCreate(CurrentMemoryContext,
+	hashtable->hashCxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 											   "HashTableContext",
 											   ALLOCSET_DEFAULT_SIZES);
 

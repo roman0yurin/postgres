@@ -211,7 +211,7 @@ SPI_finish(void)
 void
 SPI_start_transaction(void)
 {
-	MemoryContext oldcontext = CurrentMemoryContext;
+	MemoryContext oldcontext = GetCurrentMemoryContext();
 
 	StartTransactionCommand();
 	MemoryContextSwitchTo(oldcontext);
@@ -220,7 +220,7 @@ SPI_start_transaction(void)
 static void
 _SPI_commit(bool chain)
 {
-	MemoryContext oldcontext = CurrentMemoryContext;
+	MemoryContext oldcontext = GetCurrentMemoryContext();
 
 	if (_SPI_current->atomic)
 		ereport(ERROR,
@@ -289,7 +289,7 @@ SPI_commit_and_chain(void)
 static void
 _SPI_rollback(bool chain)
 {
-	MemoryContext oldcontext = CurrentMemoryContext;
+	MemoryContext oldcontext = GetCurrentMemoryContext();
 
 	if (_SPI_current->atomic)
 		ereport(ERROR,
@@ -1854,7 +1854,7 @@ spi_dest_startup(DestReceiver *self, int operation, TupleDesc typeinfo)
 
 	oldcxt = _SPI_procmem();	/* switch to procedure memory context */
 
-	tuptabcxt = AllocSetContextCreate(CurrentMemoryContext,
+	tuptabcxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 									  "SPI TupTable",
 									  ALLOCSET_DEFAULT_SIZES);
 	MemoryContextSwitchTo(tuptabcxt);
@@ -2792,7 +2792,7 @@ _SPI_save_plan(SPIPlanPtr plan)
 	 * very large, so use smaller-than-default alloc parameters.  It's a
 	 * transient context until we finish copying everything.
 	 */
-	plancxt = AllocSetContextCreate(CurrentMemoryContext,
+	plancxt = AllocSetContextCreate((GetCurrentMemoryContext()),
 									"SPI Plan",
 									ALLOCSET_SMALL_SIZES);
 	oldcxt = MemoryContextSwitchTo(plancxt);
