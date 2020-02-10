@@ -359,30 +359,26 @@ public:
     using RBPairType = typename std::_Rb_tree_node<PairType>;
 
     SGLRUMap() : __map(SGMapStackAllocator<PairType, cache_size>(*this)) {}
+
+    inline V& get_or_create(const K& key, const std::function<V(const K& key)>& func)
+    {
+        V* value = find(key);
+        return value? *value : (check(), __map.emplace(key, func(key)).first->second);
+    }
+
+    inline V& get_or_create(const K& key, V(*func)(K key))
+    {
+        V* value = find(key);
+        return value? *value : (check(), __map.emplace(key, (*func)(key)).first->second);
+    }
+
+private:
     inline V* find(const K& key)
     {
         auto it = __map.find(key);
         return it == __map.end()? nullptr : &it->second;
     }
 
-    V& put(const K& key, const V& value)
-    {
-        return (check(), __map.insert(std::pair(key, value)).first->second);
-    }
-
-    inline V& get_or_create(const K& key, const std::function<V(const K& key)>& func)
-    {
-        V* value = find(key);
-        return value? *value : put(key, func(key));
-    }
-
-    inline V& get_or_create(const K& key, V(*func)(K key))
-    {
-        V* value = find(key);
-        return value? *value : (check(), __map.emplace(std::move(key), (*func)(key)).first->second);
-    }
-
-private:
     void check()
     {
         if(this->empty())
@@ -447,8 +443,18 @@ class DataTypeDesc
 {
 public:
     DataTypeDesc(Oid type_oid);
-    inline char *OutputFunctionCall(Datum val) { return ::OutputFunctionCall(&text_out_func, val); }
-    inline bytea *SendFunctionCall(Datum val) { return ::SendFunctionCall(&binary_out_func, val); }
+    inline char *OutputFunctionCall(Datum val, MemoryContext ctx)
+    {
+        FmgrInfo func;
+        fmgr_info_copy(&func, &text_out_func, ctx);
+        return ::OutputFunctionCall(&func, val);
+    }
+    inline bytea *SendFunctionCall(Datum val, MemoryContext ctx)
+    {
+        FmgrInfo func;
+        fmgr_info_copy(&func, &binary_out_func, ctx);
+        return ::SendFunctionCall(&func, val);
+    }
     inline Oid BaseAttTypeId() { return base_atttype_id; }
     inline int32 BaseAttMod() { return base_attt_mod; }
     inline bool IsTypeDefined() { return is_type_defined; }
@@ -553,7 +559,7 @@ SGTable::SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid)
     table = table_open(table_oid, AccessShareLock);
     index = index_open(index_oid, AccessShareLock);
 
-    fmgr_info(F_INT4EQ, &sk_func); // идентификатор функции должен соответствовать типу колокни PK
+    fmgr_info_cxt(F_INT4EQ, &sk_func, m_context); // идентификатор функции должен соответствовать типу колонки PK
 
     estate->es_direction = ForwardScanDirection;
 
@@ -608,9 +614,6 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
     index_state->iss_ScanDesc = NULL;
     index_state->iss_ReachedEnd = false;
 
-    SGMemoryContextSwitcher mc(estate->es_query_cxt);
-    ExecInitScanTupleSlot(estate, &index_state->ss, RelationGetDescr(table), table_slot_callbacks(table));
-
     ScanKeyData key;
     key.sk_flags = 0;
     key.sk_attno = 1;
@@ -621,6 +624,9 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
     key.sk_func = sk_func;
 
     index_state->iss_ScanKeys = &key;
+
+    SGMemoryContextSwitcher mc(estate->es_query_cxt);
+    ExecInitScanTupleSlot(estate, &index_state->ss, RelationGetDescr(table), table_slot_callbacks(table));
 
     TupleTableSlot *slot = IndexNext(index_state);
     bool result = !index_state->iss_ReachedEnd;
@@ -853,6 +859,7 @@ void SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCach
 {
     for(auto[key, value] : oid2tables)
     {
+        (void) key;
         value->free();
         this->free_item(value);
     }
@@ -1186,14 +1193,14 @@ void SGTableManager<tables_cache_size, functions_cache_size>::print_slot(bool bi
                 if (binary_format)
                 {
                     /* Binary output */
-                    bytea *outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
+                    bytea *outputbytes = pair_out_func.SendFunctionCall(tts_values[i], slot->tts_mcxt);
                     std::cout << attr->attname.data << " -> len[" << VARSIZE(outputbytes) - VARHDRSZ <<
                               "/" << VARSIZE(outputbytes) - VARHDRSZ << ']' << std::endl;
                 }
                 else
                 {
                     /* Text output */
-                    char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
+                    char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i], slot->tts_mcxt);
                     std::cout << attr->attname.data << "-> " << outputstr << std::endl;
                 }
             }
@@ -1240,14 +1247,14 @@ void SGTableManager<tables_cache_size, functions_cache_size>::fetch_slot(
                 if(binary_format)
                 {
                     /* Binary output */
-                    bytea* outputbytes = pair_out_func.SendFunctionCall(tts_values[i]);
+                    bytea* outputbytes = pair_out_func.SendFunctionCall(tts_values[i], slot->tts_mcxt);
                     DataTypeDesc::write_int32_to_vector(buffer, VARSIZE(outputbytes) - VARHDRSZ);
                     DataTypeDesc::write_buffer_to_vector(buffer, VARDATA(outputbytes), VARSIZE(outputbytes) - VARHDRSZ);
                 }
                 else
                 {
                     /* Text output */
-                    char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i]);
+                    char *outputstr = pair_out_func.OutputFunctionCall(tts_values[i], slot->tts_mcxt);
                     DataTypeDesc::write_string_to_vector(buffer, outputstr);
                 }
             }
@@ -1345,6 +1352,8 @@ void scan_table()
     data.clear();
 
     run_timed("cold  time is", []{ printByKeyTableOid(197282, 14); });
+    table_manager().pop(197282);
+
     run_timed("cold  time is", [&data]{ fetchByKeyTableOid(197282, 14, false, data); });
     std::cout << "data.size -> " << data.size() << std::endl;
     data.clear();
