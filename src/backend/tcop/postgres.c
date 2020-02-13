@@ -79,6 +79,7 @@
 #include "utils/timestamp.h"
 #include "mb/pg_wchar.h"
 
+extern int wrap_getbyte(int (*getbyte_func)());
 
 /* ----------------
  *		global variables
@@ -338,7 +339,7 @@ SocketBackend(StringInfo inBuf)
 	 */
 	HOLD_CANCEL_INTERRUPTS();
 	pq_startmsgread();
-	qtype = pq_getbyte();
+	qtype = wrap_getbyte(pq_getbyte);
 
 	if (qtype == EOF)			/* frontend disconnected */
 	{

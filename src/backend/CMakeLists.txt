@@ -837,11 +837,19 @@ set(postgres_core_SRCS
 	${statistics_SRCS}
 	${JIT_SRC}
 	${PART_SRC}
+	main/server_pipe.cpp
+	main/table_scanner.cpp
 )
 
 set(postgres_SRCS
 	${postgres_core_SRCS}
 	main/main.c
+#	main/table_scanner.cpp
+)
+
+set(inproc_client_SRC
+	main/exchange_buffer.cpp
+	main/client_pipe.cpp
 )
 
 if(OPENSSL_FOUND)
@@ -870,17 +878,21 @@ add_library(postgres_core SHARED ${postgres_core_SRCS})
 
 add_executable(postgres
 	main/main.c
+#	main/table_scanner.cpp
 )
 
 set(postgres_init_SRCS
 	main/pg_loader.c
+	main/pg_init.cpp
 	main/memory_socket.cpp
-	main/table_scanner.cpp
+#	main/table_scanner.cpp
 )
 
 add_library(postgres_init STATIC ${postgres_init_SRCS})
 
 add_library(postgres_java SHARED ${postgres_init_SRCS})
+
+add_library(pipe_client SHARED ${inproc_client_SRC})
 
 add_executable(postgres_sgaz
 	main/main_sgaz.c
@@ -891,6 +903,7 @@ set(postgres_common_libraries
 	pq
 	pgcommon_srv
 	pgport_srv
+	pipe_client
 	${READLINE_LIBRARY}
 	${CMAKE_THREAD_LIBS_INIT}
 	${DL_LIBRARIES}
@@ -1030,7 +1043,7 @@ install(FILES
 	${CMAKE_CURRENT_BINARY_DIR}/utils/misc/postgresql.conf.sample
 DESTINATION ${PGSHAREDIR})
 
-install(TARGETS postgres_core postgres_java
+install(TARGETS postgres_core postgres_java pipe_client
 		LIBRARY DESTINATION ${LIBDIR})
 
 install(TARGETS postgres
