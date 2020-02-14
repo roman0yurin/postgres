@@ -837,6 +837,13 @@ set(postgres_SRCS
 	${JIT_SRC}
 	${PART_SRC}
 	main/main.c
+	main/server_pipe.cpp
+	main/table_scanner.cpp
+)
+
+set(pipe_client_SRC
+	main/exchange_buffer.cpp
+	main/client_pipe.cpp
 )
 
 if(OPENSSL_FOUND)
@@ -865,10 +872,15 @@ add_executable(postgres
 	${postgres_SRCS}
 )
 
+add_library(pipe_client SHARED ${pipe_client_SRC})
+
+add_library(pipe_registrar SHARED main/server_pipe_registrar.cpp)
+
 target_link_libraries(postgres
 	pq
 	pgcommon_srv
 	pgport_srv
+	pipe_client
 	${READLINE_LIBRARY}
 	${CMAKE_THREAD_LIBS_INIT}
 	${DL_LIBRARIES}
@@ -970,6 +982,11 @@ install(TARGETS postgres pqwalreceiver
 
 install(TARGETS postgres pgoutput
 		RUNTIME DESTINATION ${PGBINDIR}
+		LIBRARY DESTINATION ${LIBDIR})
+
+target_link_libraries(pipe_registrar pq postgres)
+
+install(TARGETS pipe_client pipe_registrar
 		LIBRARY DESTINATION ${LIBDIR})
 
 install(FILES
