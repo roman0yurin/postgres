@@ -662,6 +662,7 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
     // блокируем закрытие индекса, мы это сделаем сами
     index_state->iss_RelationDesc = NULL;
     ExecEndIndexScan(index_state);
+    ExecResetTupleTable(estate->es_tupleTable, false);
     UnregisterSnapshot(snapshot);
 
     index_close(index, AccessShareLock);
@@ -787,7 +788,10 @@ SGTable& SGTableManager<tables_cache_size, functions_cache_size>::SGTableManager
             Datum datum;
             HeapTuple tup = SearchSysCache1(NAMESPACEOID, ObjectIdGetDatum(namespace_oid));
             if(tup && (datum = SysCacheGetAttr(NAMESPACEOID, tup, Anum_pg_namespace_nspname, &is_null)), !is_null)
+            {
                 storage_table_name->setup(table_name, DatumGetCString(datum));
+                ReleaseSysCache(tup);
+            }
             else
                 storage_table_name->setup(table_name, nullptr);
         }
@@ -887,7 +891,10 @@ SGTable& SGTableManager<tables_cache_size, functions_cache_size>::SGTableManager
             Datum datum;
             HeapTuple tup = SearchSysCache1(NAMESPACEOID, ObjectIdGetDatum(namespace_oid));
             if(tup && (datum = SysCacheGetAttr(NAMESPACEOID, tup, Anum_pg_namespace_nspname, &is_null)), !is_null)
+            {
                 storage_table_name->setup(table_name, DatumGetCString(datum));
+                ReleaseSysCache(tup);
+            }
             else
                 storage_table_name->setup(table_name, nullptr);
         }
