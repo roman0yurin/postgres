@@ -6546,6 +6546,3 @@ InitPostmasterDeathWatchHandle(void)
 								 GetLastError())));
 #endif							/* WIN32 */
 }
-
-//По возможности выносим все изменения в отдельный файл для упрощения процесса последующего merge
-#include "postmasterC60.c.in"
