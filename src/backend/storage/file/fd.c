@@ -2923,11 +2923,9 @@ RemovePgTempFiles(void)
 
 	/*
 	 * In EXEC_BACKEND case there is a pgsql_tmp directory at the top level of
-	 * DataDir as well.
+	 * DataDir as well. Also we need clean this dir from temporary live lock files when use inprocess pipe
 	 */
-#ifdef EXEC_BACKEND
 	RemovePgTempFilesInDir(PG_TEMP_FILES_DIR, true, false);
-#endif
 }
 
 /*
