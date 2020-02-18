@@ -323,8 +323,6 @@ public:
 
     template<typename U>
     using CACHE_TYPE = typename std::conditional<template_struct<U>::is_pair, std::_Rb_tree_node<U>, U>::type;
-//    template<typename U>
-//    using CACHE_TYPE = typename std::conditional<template_struct<U>::is_rb_tree_node, U, std::_Rb_tree_node<U>>::type;
 
     explicit SGMapStackAllocator(SGStackCacher<CACHE_TYPE<T>, cache_size>& cache) : cache(cache) { }
 
@@ -402,8 +400,6 @@ public:
     Oid get_table_oid() { return table_oid; }
     bool fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func, bool print_not_found = true);
 private:
-    EState *estate;
-    ExprContext *econtext;
     Oid table_oid, index_oid;
     FmgrInfo sk_func;
     IndexScan  *index_scan;
@@ -531,11 +527,9 @@ private:
 
         using SGNamePairType = typename std::pair<const SGFullTableName, SGTableLinked*>;
         using RBNamePairType = typename std::_Rb_tree_node<SGNamePairType>;
-//        using SGNamePairTypeAllocator = PGAllocator<SGNamePairType>;
         using SGNamePairTypeAllocator = SGMapStackAllocator<SGNamePairType, tables_cache_size>;
         using SGOidPairType = typename std::pair<const Oid, SGTableLinked*>;
         using RBOidPairType = typename std::_Rb_tree_node<SGOidPairType>;
-//        using SGOidPairTypeAllocator = SGStackAllocator<SGOidPairType, tables_cache_size>;
         using SGOidPairTypeAllocator = SGMapStackAllocator<SGOidPairType, tables_cache_size>;
 
         MemoryContext m_context;
@@ -554,19 +548,13 @@ private:
 
     SGMemoryContext context;
     SGTableManagerCache cache;
-//    std::map<Oid, std::pair<FmgrInfo, FmgrInfo>, std::less<Oid>, PGAllocator<std::pair<Oid, std::pair<FmgrInfo, FmgrInfo>>>> type_out_funcs;
     SGLRUMap<Oid, DataTypeDesc, functions_cache_size> type_out_funcs;
 };
 
 SGTable::SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid) : table_oid(table_oid), index_oid(index_oid)
 {
     SGMemoryContextSwitcher mc(m_context);
-    estate = CreateExecutorState();
-    econtext = CreateExprContext(estate);
-
     fmgr_info_cxt(F_INT4EQ, &sk_func, m_context); // идентификатор функции должен соответствовать типу колонки PK
-
-    estate->es_direction = ForwardScanDirection;
 
     index_scan = makeNode(IndexScan);
     index_scan->scan.scanrelid = 1;
@@ -582,8 +570,6 @@ SGTable::SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid) : table_
 
     index_state->iss_ScanDesc = NULL;
     index_state->ss.ps.plan = (Plan *) index_scan;
-    index_state->ss.ps.state = estate;
-    index_state->ss.ps.ps_ExprContext = econtext;
     index_state->iss_ReachedEnd = false;
     index_state->iss_NumScanKeys = 1;
     index_state->iss_OrderByKeys = NULL;
@@ -601,8 +587,8 @@ SGTable::SGTable(MemoryContext m_context, Oid table_oid, Oid index_oid) : table_
 
 SGTable::~SGTable()
 {
-    FreeExprContext(econtext, false);
-    FreeExecutorState(estate);
+    pfree(index_state);
+    pfree(index_scan);
 }
 
 bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<void(bool, TupleTableSlot*)>* output_func, bool print_not_found)
@@ -610,8 +596,16 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
     Relation table = table_open(table_oid, AccessShareLock);
     Relation index = index_open(index_oid, AccessShareLock);
 
+    EState *estate = CreateExecutorState();
+    ExprContext *econtext = CreateExprContext(estate);
+
+    estate->es_direction = ForwardScanDirection;
+
     Snapshot snapshot = RegisterSnapshot(GetTransactionSnapshot());
     estate->es_snapshot = snapshot;
+
+    index_state->ss.ps.state = estate;
+    index_state->ss.ps.ps_ExprContext = econtext;
 
     index_state->ss.ss_currentRelation = table;
     index_state->iss_RelationDesc = index;
@@ -651,14 +645,15 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
     index_close(index, AccessShareLock);
     table_close(table, AccessShareLock);
 
+    FreeExprContext(econtext, false);
+    FreeExecutorState(estate);
+
     return result;
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
 SGTableManager<tables_cache_size, functions_cache_size>::SGTableManagerCache::SGTableManagerCache(MemoryContext parent) : SGStackCacher<SGTable, tables_cache_size, true>(),
     m_context(parent), name_tables_cache{}, oid_tables_cache{},
-//    name2tables(PGAllocator<std::pair<const SGFullTableName, SGTableLinked*>>(parent)),
-//    oid2tables(PGAllocator<std::pair<const Oid, SGTableLinked*>>(parent))
     name2tables(SGMapStackAllocator<SGNamePairType, tables_cache_size>(name_tables_cache)),
     oid2tables(SGMapStackAllocator<SGOidPairType, tables_cache_size>(oid_tables_cache))
 {
@@ -1041,10 +1036,8 @@ SGTransaction::SGTransaction()
 
 SGTransaction::~SGTransaction()
 {
-    if(!is_already_started) {
+    if(!is_already_started)
         AbortCurrentTransaction();
-//        CommitTransactionCommand();
-    }
 }
 
 DataTypeDesc::DataTypeDesc(Oid type_oid)
@@ -1073,15 +1066,13 @@ void DataTypeDesc::write_string_to_pipe(const std::function<void(const void*, si
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGTableManager() : /*transaction(), */context(), cache(context.context()),
-//    type_out_funcs(PGAllocator<typename decltype(type_out_funcs)::value_type>(context.context()))
+SGTableManager<tables_cache_size, functions_cache_size>::SGTableManager() : context(), cache(context.context()),
     type_out_funcs{}
 {
 }
 
 template<size_t tables_cache_size, size_t functions_cache_size>
-SGTableManager<tables_cache_size, functions_cache_size>::SGTableManager(MemoryContext m_context) : /*transaction(), */context(m_context), cache(m_context),
-//    type_out_funcs(PGAllocator<typename decltype(type_out_funcs)::value_type>(m_context))
+SGTableManager<tables_cache_size, functions_cache_size>::SGTableManager(MemoryContext m_context) : context(m_context), cache(m_context),
     type_out_funcs{}
 {
 }

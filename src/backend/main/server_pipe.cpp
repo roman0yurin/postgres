@@ -4,6 +4,7 @@ extern "C" {
 #include "miscadmin.h"
 #include "fmgr.h"
 #include "funcapi.h"
+#include "access/xact.h"
 #include "access/htup.h"
 #include "storage/fd.h"
 
@@ -168,8 +169,21 @@ public:
             // пришло задание по "трубе" - значит лочим семафор и работаем "по задаче"
             if(client_terminated)
                 break;
-            else
-                branch_semaphore.wait();
+
+            branch_semaphore.wait();
+            if(branch_mode == 0)
+            {
+                // до этой команды был запрос по TCP/IP
+                if(IsTransactionState())
+                    // нам повезло и транзакция уже открыта - просто фиксируем этот факт и ничего не делаем
+                    branch_mode = 2;
+                else
+                {
+                    // нам НЕ повезло и транзакция не открыта - ее нужно открыть, а перед выполнением "обычной" команды закрыть
+                    StartTransactionCommand();
+                    branch_mode = 1;
+                }
+            }
 
             (*processor)(request.data(), request.size(), writer);
 
@@ -189,10 +203,11 @@ public:
 #endif
     }
 
-    ParallelRunner(Processor processor, boost::interprocess::interprocess_semaphore& branch_semaphore, const char* lock_path) :
+    ParallelRunner(Processor processor, boost::interprocess::interprocess_semaphore& branch_semaphore, int& branch_mode, const char* lock_path) :
         processor(processor), client_terminated(false), shm_key(calc_key()),
         shm(boost::interprocess::create_only, shm_key, sizeof(Exchanger), unrestricted()),
-        region(shm, boost::interprocess::read_write), exchanger(*get_exchanger(region)), branch_semaphore(branch_semaphore)
+        region(shm, boost::interprocess::read_write), exchanger(*get_exchanger(region)),
+        branch_semaphore(branch_semaphore), branch_mode(branch_mode)
     {
         if(!lock_path || !(*lock_path))
             throw std::runtime_error("client terminate listener file can't be null or empty");
@@ -272,6 +287,7 @@ private:
     boost::interprocess::mapped_region region;
     Exchanger& exchanger;
     boost::interprocess::interprocess_semaphore& branch_semaphore;
+    int &branch_mode;
 };
 
 template<typename R, typename... Args>
@@ -279,7 +295,7 @@ class Server
 {
 public:
 
-    Server(R (*fn)(Args...)) : fn(fn), init_pid(getpid())
+    Server(R (*fn)(Args...)) : fn(fn), init_pid(getpid()), branch_mode(0)
     {
         if(!fn)
             throw std::runtime_error("Server must be initialization with wrapped function");
@@ -292,6 +308,7 @@ public:
             try
             {
                 branch_semaphore.emplace(0);
+                branch_mode = 0;
                 // создаем временный залоченный файл для клиента. если он сможет файл заблокировать - значит сервер сдох
                 boost::interprocess::file_lock __live_lock(get_locked_temp(live_lock_name));
                 if(!__live_lock.try_lock())
@@ -300,7 +317,7 @@ public:
                     return -1;
                 }
 
-                ParallelRunner* instance = new ParallelRunner(processor, *branch_semaphore, lock_path);
+                ParallelRunner* instance = new ParallelRunner(processor, *branch_semaphore, branch_mode, lock_path);
                 key_t result = instance->key();
 
                 struct instance_run_checker
@@ -399,6 +416,14 @@ public:
                 // даже если "основная" функция что-то вернет - она не сможет вернуть значение до тех пор, пока
                 // параллельный не разрешит это сделать
                 branch_semaphore->wait();
+
+                if(branch_mode == 1)
+                {
+                    // транзация была открыта в рамках работы pipe.
+                    //  чтобы не ломать логику работы TCP/IP соединения - транзакцию следует закрыть
+                    AbortCurrentTransaction();
+                }
+                branch_mode = 0;
             }
             else
             {
@@ -407,6 +432,15 @@ public:
                 // даже если "основная" функция что-то вернет - она не сможет вернуть значение до тех пор, пока
                 // параллельный не разрешит это сделать
                 branch_semaphore->wait();
+
+                if(branch_mode == 1)
+                {
+                    // транзация была открыта в рамках работы pipe.
+                    //  чтобы не ломать логику работы TCP/IP соединения - транзакцию следует закрыть
+                    AbortCurrentTransaction();
+                }
+                branch_mode = 0;
+
                 return result;
             }
         }
@@ -420,6 +454,11 @@ private:
     __pid_t init_pid;
     std::optional<std::future<void>> pipe_thread;
     std::optional<boost::interprocess::interprocess_semaphore> branch_semaphore;
+    // в какой ветке исполнения находимся:
+    // 0 - в TCP/IP
+    // 1 - в трубе со своей транзакцией
+    // 2 - в трубе с "унаследованной транзакцией
+    int branch_mode;
 };
 
 Server<int>& wrapper(int (*getbyte_func)())
