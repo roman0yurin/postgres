@@ -623,29 +623,32 @@ bool SGTable::fetch(int key_value, bool use_binary_format, const std::function<v
 
     index_state->iss_ScanKeys = &key;
 
-    SGMemoryContextSwitcher mc(estate->es_query_cxt);
-    ExecInitScanTupleSlot(estate, &index_state->ss, RelationGetDescr(table), table_slot_callbacks(table));
-
-    TupleTableSlot *slot = IndexNext(index_state);
-    bool result = !index_state->iss_ReachedEnd;
-    if(result)
+    bool result;
     {
-        slot_getsomeattrs_int(slot, slot->tts_tupleDescriptor->natts);
-        if(output_func) (*output_func)(use_binary_format, slot);
+        SGMemoryContextSwitcher mc(estate->es_query_cxt);
+        ExecInitScanTupleSlot(estate, &index_state->ss, RelationGetDescr(table), table_slot_callbacks(table));
+
+        TupleTableSlot *slot = IndexNext(index_state);
+        bool result = !index_state->iss_ReachedEnd;
+        if (result)
+        {
+            slot_getsomeattrs_int(slot, slot->tts_tupleDescriptor->natts);
+            if (output_func) (*output_func)(use_binary_format, slot);
+        }
+        else if (print_not_found && output_func)
+            std::cout << "tuple with key: " << key_value << " not found" << std::endl;
+
+        // блокируем закрытие индекса, мы это сделаем сами
+        index_state->iss_RelationDesc = NULL;
+        ExecEndIndexScan(index_state);
+        ExecResetTupleTable(estate->es_tupleTable, false);
+        UnregisterSnapshot(snapshot);
+
+        index_close(index, AccessShareLock);
+        table_close(table, AccessShareLock);
+
+        FreeExprContext(econtext, false);
     }
-    else if(print_not_found && output_func)
-        std::cout << "tuple with key: " << key_value << " not found" << std::endl;
-
-    // блокируем закрытие индекса, мы это сделаем сами
-    index_state->iss_RelationDesc = NULL;
-    ExecEndIndexScan(index_state);
-    ExecResetTupleTable(estate->es_tupleTable, false);
-    UnregisterSnapshot(snapshot);
-
-    index_close(index, AccessShareLock);
-    table_close(table, AccessShareLock);
-
-    FreeExprContext(econtext, false);
     FreeExecutorState(estate);
 
     return result;
