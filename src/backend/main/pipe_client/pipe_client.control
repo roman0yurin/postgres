@@ -1,0 +1,5 @@
+# refint extension
+comment = 'functions for direct pipe connect to database'
+default_version = '1.0'
+module_pathname = '$libdir/pipe_registrar'
+relocatable = true

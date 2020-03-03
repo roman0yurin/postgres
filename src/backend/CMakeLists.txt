@@ -873,8 +873,16 @@ add_executable(postgres
 )
 
 add_library(pipe_client SHARED ${pipe_client_SRC})
+set_target_properties(pipe_client PROPERTIES PREFIX "")
 
 add_library(pipe_registrar SHARED main/server_pipe_registrar.cpp)
+set_target_properties(pipe_registrar PROPERTIES PREFIX "")
+
+set(PIPE_EXTENSION_FILES
+	main/pipe_client/pipe_client--1.0.sql
+	main/pipe_client/pipe_client--unpackaged--1.0.sql
+	main/pipe_client/pipe_client.control
+)
 
 target_link_libraries(postgres
 	pq
@@ -1000,6 +1008,13 @@ install(FILES
 	libpq/pg_ident.conf.sample
 	${CMAKE_CURRENT_BINARY_DIR}/utils/misc/postgresql.conf.sample
 DESTINATION ${PGSHAREDIR})
+
+get_property(PGSQL_SHAREDIR GLOBAL PROPERTY POSTGRES_SHARE_DIR)
+
+if(NOT SKIP_INSTALL_LIBRARIES AND NOT SKIP_INSTALL_ALL)
+	install(FILES ${PIPE_EXTENSION_FILES} DESTINATION "${PGSQL_SHAREDIR}/extension/")
+endif()
+
 set(PG_IO_CONCURRENCY 4)
 if(WIN32)
 	set(PG_IO_CONCURRENCY 0)
