@@ -39,7 +39,11 @@ namespace
 #if !defined(DEBUG_SERVER)
 const char* get_data_path()
 {
+#if defined(__linux) || defined(__linux__) || defined(linux)
+    return "/tmp";
+#else
     return DataDir;
+#endif
 }
 #endif
 
@@ -62,6 +66,22 @@ boost::interprocess::file_lock get_locked_temp(std::string& live_lock_name)
     {
         temp_path[len] = '/';
         memcpy(temp_path + len + 1, PG_TEMP_FILES_DIR, pgt_len);
+#if defined(__linux) || defined(__linux__) || defined(linux)
+        struct stat st;
+        temp_path[len + pgt_len + 1] = '\x00';
+        if (stat(temp_path, &st) == -1)
+        {
+            if (errno == ENOENT)
+            {
+                if (mkdir(temp_path, S_IRWXU | S_IRWXG | S_IRWXO) != 0)
+                    throw std::runtime_error(std::string("can't create temporary directory: ") + temp_path);
+            }
+            else
+                throw std::runtime_error(std::string("can't check directory presence: ") + temp_path);
+        }
+        else if(!(st.st_mode & S_IFDIR))
+            throw std::runtime_error(std::string("can't use check directory presence: ") + temp_path);
+#endif
         temp_path[len + pgt_len + 1] = '/';
         memcpy(temp_path + len + pgt_len + 2, PG_TEMP_FILE_PREFIX, pgt_preff_len);
         memcpy(temp_path + len + pgt_len + pgt_preff_len + 2, lock_suffix, sizeof(lock_suffix));

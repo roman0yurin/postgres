@@ -2921,11 +2921,53 @@ RemovePgTempFiles(void)
 
 	FreeDir(spc_dir);
 
-	/*
-	 * In EXEC_BACKEND case there is a pgsql_tmp directory at the top level of
-	 * DataDir as well. Also we need clean this dir from temporary live lock files when use inprocess pipe
-	 */
-	RemovePgTempFilesInDir(PG_TEMP_FILES_DIR, true, false);
+    /*
+     * In EXEC_BACKEND case there is a pgsql_tmp directory at the top level of
+     * DataDir as well.
+     */
+#ifdef EXEC_BACKEND
+    RemovePgTempFilesInDir(PG_TEMP_FILES_DIR, true, false);
+#endif
+
+#if defined(__linux) || defined(__linux__) || defined(linux)
+    /* We need clean /tmp/<PG_TEMP_FILES_DIR> dir from temporary live lock files when use inprocess pipe */
+    const char* tmp_dir = "/tmp/" PG_TEMP_FILES_DIR;
+    struct stat st;
+    if (stat(tmp_dir, &st) == 0 && (st.st_mode & S_IFDIR) != 0)
+    {
+        DIR *dir;
+        struct dirent *ent;
+        if ((dir = opendir(tmp_dir)) != NULL)
+        {
+            const char* template_tmp_file = PG_TEMP_FILE_PREFIX ".";
+            size_t template_tmp_file_len = strlen(template_tmp_file), tmp_dir_len = strlen(tmp_dir);
+            while ((ent = readdir(dir)) != NULL)
+            {
+                size_t flen = ent->d_name? strlen(ent->d_name) : 0;
+                if (flen > 0 && flen > template_tmp_file_len && memcmp(ent->d_name, template_tmp_file, template_tmp_file_len) == 0)
+                {
+                    char rm_path[MAXPGPATH];
+                    if (tmp_dir_len + 1 + flen < MAXPGPATH)
+                    {
+                        memcpy(rm_path, tmp_dir, tmp_dir_len);
+                        rm_path[tmp_dir_len] = '/';
+                        memcpy(rm_path + tmp_dir_len + 1, ent->d_name, flen + 1);
+                        if (remove(rm_path) != 0 )
+                            elog(WARNING, "error removing temp file: %s", rm_path);
+                    }
+                    else
+                        elog(WARNING, "can't calculate full path for file: \"%s\" in dir: \"%s\"", ent->d_name, tmp_dir);
+                }
+            }
+
+            closedir(dir);
+        }
+        else
+            elog(WARNING, "opendir(\"%s\") failed with %m", tmp_dir);
+    }
+    else if (errno != ENOENT)
+        elog(WARNING, "error stat(\"%s\"): %m", tmp_dir);
+#endif
 }
 
 /*
