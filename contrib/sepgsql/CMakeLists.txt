@@ -13,6 +13,11 @@ add_custom_command(
 	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_library(${extension_name} ${PLUGIN_TYPE}
 	hooks.c
 	selinux.c

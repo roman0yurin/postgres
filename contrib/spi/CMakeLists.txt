@@ -8,6 +8,11 @@ set(modules_list
 	refint
 )
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 foreach(loop_var IN ITEMS ${modules_list})
 	add_library(${loop_var} ${PLUGIN_TYPE} ${loop_var}.c)
 	target_compile_definitions(${loop_var} PRIVATE -DREFINT_VERBOSE)

@@ -7,6 +7,11 @@ flex_target(CUBE_SCANNER cubescan.l  ${CMAKE_CURRENT_SOURCE_DIR}/cubescan.c)
 add_flex_bison_dependency(CUBE_SCANNER CUBE_PARSER)
 set_source_files_properties(${BISON_CUBE_PARSER_OUTPUTS} PROPERTIES OBJECT_DEPENDS ${FLEX_CUBE_SCANNER_OUTPUTS})
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_library(${extension_name} ${PLUGIN_TYPE}
 	${extension_name}.c
 	${BISON_CUBE_PARSER_OUTPUTS}

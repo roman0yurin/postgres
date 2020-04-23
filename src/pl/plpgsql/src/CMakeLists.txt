@@ -19,6 +19,11 @@ set(plpgsql_SRCS
 	${BISON_PLPGSQL_PARSER_OUTPUT_SOURCE}
 )
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_library(plpgsql ${PLUGIN_TYPE} ${plpgsql_SRCS})
 target_link_libraries(plpgsql postgres)
 if (MSVC)

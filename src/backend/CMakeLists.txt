@@ -868,6 +868,10 @@ if(MINGW OR CYGWIN)
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--stack,${WIN32_STACK_RLIMIT} -Wl,--export-all-symbols")
 endif()
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_executable(postgres
 	${postgres_SRCS}
 )

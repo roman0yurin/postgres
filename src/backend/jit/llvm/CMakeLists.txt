@@ -2,7 +2,11 @@
 cmake_minimum_required(VERSION 3.5)
 project(llvmjit C CXX)
 
-find_package(LLVM REQUIRED CONFIG)
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	find_package(LLVM 5.0 REQUIRED)
+else()
+	find_package(LLVM REQUIRED CONFIG)
+endif()
 
 add_definitions(${LLVM_DEFINITIONS})
 include_directories(BEFORE ${LLVM_INCLUDE_DIRS})

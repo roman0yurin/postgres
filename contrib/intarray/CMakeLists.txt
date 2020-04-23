@@ -3,6 +3,11 @@ include_directories("${PROJECT_SOURCE_DIR}/src/include")
 set(extension_name intarray)
 set(extension_lib_name _int)
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_library(${extension_lib_name} ${PLUGIN_TYPE}
 	_int_bool.c
 	_int_gist.c

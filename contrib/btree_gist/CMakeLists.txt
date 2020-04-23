@@ -2,6 +2,11 @@ include_directories("${PROJECT_SOURCE_DIR}/src/include")
 
 set(extension_name btree_gist)
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_library(${extension_name} ${PLUGIN_TYPE}
 	${extension_name}.c
 	btree_utils_num.c

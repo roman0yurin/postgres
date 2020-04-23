@@ -2,6 +2,11 @@ include_directories("${PROJECT_SOURCE_DIR}/src/include")
 
 set(extension_name hstore)
 
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	get_property(LLVM_LIBRARY_DIRS GLOBAL PROPERTY LLVM_LIBRARY_DIRS)
+	link_directories(${LLVM_LIBRARY_DIRS})
+endif()
+
 add_library(${extension_name} ${PLUGIN_TYPE}
 	hstore_io.c
 	hstore_op.c
