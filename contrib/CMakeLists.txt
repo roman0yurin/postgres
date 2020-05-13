@@ -1,4 +1,4 @@
-set(contrib_libs postgres)
+set(contrib_libs "")
 
 #TODO: need test under mingw or cygwin
 if(WIN32)
@@ -11,8 +11,8 @@ endif()
 if(MSVC OR MINGW)
 	set(contrib_libs
 		pgport
+		pgcommon
 		postgres
-		pgcommon_srv
 	)
 endif()
 

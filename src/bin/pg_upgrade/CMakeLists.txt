@@ -25,8 +25,8 @@ add_executable(pg_upgrade
 target_link_libraries(pg_upgrade
 	pgfeutils
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_upgrade bin)

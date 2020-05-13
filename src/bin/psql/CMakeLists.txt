@@ -45,8 +45,8 @@ add_executable(psql
 target_link_libraries(psql
 	pgfeutils
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 	${READLINE_LIBRARY}
 	${CMAKE_THREAD_LIBS_INIT}
 )

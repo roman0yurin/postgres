@@ -14,8 +14,8 @@ add_executable(pg_ecpg_regress
 
 target_link_libraries(pg_ecpg_regress
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 target_compile_definitions(pg_ecpg_regress PRIVATE
@@ -139,6 +139,7 @@ macro(ECPG_CHECK TARGET_LIST FOLDER PREPROC_OPTS)
 			pq
 			pgcommon_shlib
 			pgport_shlib
+			${CMAKE_THREAD_LIBS_INIT}
 			${LIB_M}
 		)
 		set_target_properties(ecpg_regress_${FOLDER}_${test}

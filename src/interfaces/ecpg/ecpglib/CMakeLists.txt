@@ -63,8 +63,25 @@ add_library(ecpg SHARED ${ecpg_SRC})
 if (MSVC)
 	gen_def(ecpg)
 endif()
+
+target_link_libraries(ecpg
+	PRIVATE pgtypes
+	PRIVATE pgcommon_shlib
+	PRIVATE pgport_shlib
+	PRIVATE pq
+	PRIVATE	${LIB_M}
+)
+
+add_custom_command(TARGET ecpg
+	PRE_LINK
+	COMMAND echo '{ global:' > exports.list
+	COMMAND gawk '/^[^\#]/ {printf \"%s\;\\n\",$$1}' ${CMAKE_CURRENT_SOURCE_DIR}/exports.txt >> exports.list
+	COMMAND echo ' local: *\; }\;' >> exports.list
+)
+
 target_compile_definitions(ecpg PRIVATE -DFRONTEND)
-set_target_properties(ecpg PROPERTIES VERSION "6.8")
+set_target_properties(ecpg PROPERTIES VERSION "6.12" SOVERSION "6")
+set (CMAKE_SHARED_LINKER_FLAGS ${CMAKE_SHARED_LINKER_FLAGS} "-Wl,--version-script=exports.list")
 
 install(TARGETS ecpg
 		RUNTIME DESTINATION ${PGBINDIR}

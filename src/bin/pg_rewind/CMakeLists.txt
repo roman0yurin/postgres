@@ -19,8 +19,8 @@ add_executable(pg_rewind
 
 target_link_libraries(pg_rewind
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 target_compile_definitions(pg_rewind PRIVATE -DFRONTEND)

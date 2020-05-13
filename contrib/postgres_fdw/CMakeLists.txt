@@ -21,7 +21,7 @@ add_library(${extension_name} ${PLUGIN_TYPE}
 	connection.c
 	shippable.c
 )
-target_link_libraries(${extension_name} ${contrib_libs} pq)
+target_link_libraries(${extension_name} ${contrib_libs})
 if(MSVC)
 	gen_def(${extension_name})
 endif()

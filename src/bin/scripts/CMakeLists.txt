@@ -5,20 +5,11 @@ include_directories(BEFORE
 	"${PROJECT_SOURCE_DIR}/src/bin/psql"
 )
 
-add_library(common_dump STATIC
-	common.c
-	${PROJECT_SOURCE_DIR}/src/bin/pg_dump/dumputils.c
-)
-
-add_library(common_print STATIC
-	common.c
-)
-
 set(common_libs
 	pgfeutils
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 	${LIB_M}
 )
 
@@ -46,11 +37,10 @@ set(dump_modules_list
 foreach(loop_var IN ITEMS ${dump_modules_list})
 	add_executable(${loop_var}
 		${loop_var}.c
-		${dump_parser_src}
+		common.c
 	)
 
 	target_link_libraries(${loop_var}
-		common_dump
 		${common_libs}
 	)
 

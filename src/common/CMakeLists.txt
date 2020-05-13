@@ -46,11 +46,11 @@ set(pgcommon_SRCS
 	username.c
 	wait_error.c
 )
-list(APPEND pgcommon_srv_SRCS ${gen_lwlocknames_output})
+list(APPEND pgcommon_SRCS ${gen_lwlocknames_output})
 if(OPENSSL_FOUND AND NOT WIN32)
-	list(APPEND pgcommon_srv_SRCS sha2_openssl.c)
+	list(APPEND pgcommon_SRCS sha2_openssl.c)
 else()
-	list(APPEND pgcommon_srv_SRCS sha2.c)
+	list(APPEND pgcommon_SRCS sha2.c)
 endif()
 
 set(pgfrontend_SRCS
@@ -78,8 +78,8 @@ add_dependencies(pgcommon gen_errorcodes)
 target_compile_definitions(pgcommon PRIVATE -DFRONTEND)
 target_compile_definitions(pgcommon_shlib PRIVATE -DFRONTEND)
 
-# because port used in shared libraries
-set_property(TARGET pgcommon_shlib PROPERTY POSITION_INDEPENDENT_CODE TRUE)
+# because pgcommon_shlib used in shared libraries
+set_property(TARGET pgcommon_shlib PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 install(TARGETS pgcommon
 		ARCHIVE DESTINATION ${LIBDIR})

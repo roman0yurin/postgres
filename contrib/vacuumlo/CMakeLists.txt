@@ -6,7 +6,7 @@ include_directories(
 set(extension_name vacuumlo)
 
 add_executable(${extension_name} ${extension_name}.c)
-target_link_libraries(${extension_name} pq pgcommon_shlib pgport_shlib)
+target_link_libraries(${extension_name} pq pgcommon pgport)
 set_target_properties(${extension_name} PROPERTIES PREFIX "")
 add_dependencies(${extension_name} postgres)
 if(NOT PGXS)

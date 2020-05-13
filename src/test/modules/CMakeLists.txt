@@ -1,4 +1,4 @@
-set(modules_libs postgres)
+set(modules_libs "")
 
 #TODO: need test under mingw or cygwin
 if(WIN32)

@@ -103,7 +103,7 @@ set(snowball_SRCS
 )
 
 add_library(dict_snowball ${PLUGIN_TYPE} ${snowball_SRCS})
-target_link_libraries(dict_snowball postgres)
+add_dependencies(dict_snowball postgres)
 if (MSVC)
 	gen_def(dict_snowball)
 	target_link_libraries(dict_snowball pgcommon pgport)

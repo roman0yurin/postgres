@@ -25,7 +25,6 @@ if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
 endif()
 
 add_library(plpgsql ${PLUGIN_TYPE} ${plpgsql_SRCS})
-target_link_libraries(plpgsql postgres)
 if (MSVC)
 	gen_def(plpgsql)
 	target_link_libraries(plpgsql pgport pgcommon)

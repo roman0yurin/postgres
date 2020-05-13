@@ -8,18 +8,10 @@ if(ZLIB_FOUND)
 	include_directories(BEFORE ${ZLIB_INCLUDE_DIRS})
 endif()
 
-
-add_library(common_basebackup STATIC
+set(common_basebackup_SRC
 	receivelog.c
 	streamutil.c
 	walmethods.c
-)
-
-target_link_libraries(common_basebackup
-	pgfeutils
-	pq
-	pgcommon_shlib
-	pgport_shlib
 )
 
 set(basebackup_list 
@@ -29,10 +21,13 @@ set(basebackup_list
 )
 
 foreach(loop_var IN ITEMS ${basebackup_list})
-	add_executable(${loop_var} ${loop_var}.c)
+	add_executable(${loop_var} ${loop_var}.c ${common_basebackup_SRC})
 
 	target_link_libraries(${loop_var}
-		common_basebackup
+		pgfeutils
+		pq
+		pgcommon
+		pgport
 		${M_LIB}
 	)
 	CMAKE_SET_TARGET_FOLDER(${loop_var} bin)

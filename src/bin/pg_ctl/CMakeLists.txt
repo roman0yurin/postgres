@@ -9,9 +9,8 @@ add_executable(pg_ctl
 )
 
 target_link_libraries(pg_ctl
-	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_ctl bin)

@@ -32,8 +32,8 @@ target_link_libraries(pg_dump
 	libdump
 	pgfeutils
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_dump bin)
@@ -50,8 +50,8 @@ target_link_libraries(pg_restore
 	libdump
 	pgfeutils
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_restore bin)
@@ -69,8 +69,8 @@ target_link_libraries(pg_dumpall
 	libdump
 	pgfeutils
 	pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 CMAKE_SET_TARGET_FOLDER(pg_dumpall bin)

@@ -889,9 +889,8 @@ set(PIPE_EXTENSION_FILES
 )
 
 target_link_libraries(postgres
-	pq
-	pgcommon_srv
 	pgport_srv
+	pgcommon_srv
 	pipe_client
 	${READLINE_LIBRARY}
 	${CMAKE_THREAD_LIBS_INIT}
@@ -986,7 +985,6 @@ if(MINGW)
 endif()
 
 target_link_libraries(pqwalreceiver pq)
-target_link_libraries(pgoutput pq)
 
 install(TARGETS postgres pqwalreceiver
 		RUNTIME DESTINATION ${PGBINDIR}
@@ -995,8 +993,6 @@ install(TARGETS postgres pqwalreceiver
 install(TARGETS postgres pgoutput
 		RUNTIME DESTINATION ${PGBINDIR}
 		LIBRARY DESTINATION ${LIBDIR})
-
-target_link_libraries(pipe_registrar pq postgres)
 
 install(TARGETS pipe_client pipe_registrar
 		LIBRARY DESTINATION ${LIBDIR})

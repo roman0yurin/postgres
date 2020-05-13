@@ -46,9 +46,8 @@ add_executable(ecpg_preproc
 )
 
 target_link_libraries(ecpg_preproc
-	#pq
-	pgcommon_shlib
-	pgport_shlib
+	pgcommon
+	pgport
 )
 
 target_compile_definitions(ecpg_preproc PRIVATE
