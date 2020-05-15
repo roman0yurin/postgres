@@ -12,16 +12,21 @@ add_definitions(${LLVM_DEFINITIONS})
 include_directories(BEFORE ${LLVM_INCLUDE_DIRS})
 
 #Переключаемся на CLANG в этом пакете
-SET (CMAKE_C_COMPILER             "/usr/bin/clang")
+if(${CMAKE_HOST_SYSTEM_VERSION} MATCHES "^([^\\.]+\\.)+el7\\.x86_64$")
+	SET (CMAKE_C_COMPILER             "/opt/rh/llvm-toolset-7/root/usr/bin/clang")
+	SET (CMAKE_CXX_COMPILER           "/opt/rh/llvm-toolset-7/root/usr/bin/clang++")
+else()
+	SET (CMAKE_C_COMPILER             "/usr/bin/clang")
+	SET (CMAKE_CXX_COMPILER           "/usr/bin/clang++")
+endif()
+
+SET (CMAKE_AR                     "/usr/bin/llvm-ar")
+SET (CMAKE_LINKER                 "/usr/bin/llvm-ld")
+SET (CMAKE_NM                     "/usr/bin/llvm-nm")
+SET (CMAKE_OBJDUMP                "/usr/bin/llvm-objdump")
+SET (CMAKE_RANLIB                 "/usr/bin/llvm-ranlib")
+
 SET (CMAKE_C_FLAGS                "${CMAKE_C_FLAGS} -Wno-ignored-attributes -std=c99")
-
-SET (CMAKE_CXX_COMPILER             "/usr/bin/clang++")
-
-SET (CMAKE_AR      "/usr/bin/llvm-ar")
-SET (CMAKE_LINKER  "/usr/bin/llvm-ld")
-SET (CMAKE_NM      "/usr/bin/llvm-nm")
-SET (CMAKE_OBJDUMP "/usr/bin/llvm-objdump")
-SET (CMAKE_RANLIB  "/usr/bin/llvm-ranlib")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${LLVM_CXXFLAGS} -Wall -Wextra -Wno-unused-parameter -Wno-ignored-attributes -Wno-c99-extensions")
