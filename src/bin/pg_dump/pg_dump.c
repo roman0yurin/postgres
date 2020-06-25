@@ -391,7 +391,7 @@ main(int argc, char **argv)
 		{"no-sync", no_argument, NULL, 7},
 		{"on-conflict-do-nothing", no_argument, &dopt.do_nothing, 1},
 		{"rows-per-insert", required_argument, NULL, 10},
-        {"tables_oid", no_argument, &dopt.tables_oid, 1},
+        {"oids", no_argument, &dopt.tables_oid, 1},
 
 		{NULL, 0, NULL, 0}
 	};
