@@ -3,10 +3,14 @@
 #if defined(DEBUG_SERVER) || defined(DEBUG_CLIENT)
 #include <iostream>
 #endif
-
+#include "cmake.h"
 #include <string>
 #include <thread>
-#include <optional>
+#ifndef IS_ASTRA
+    #include <optional>
+#else
+    #include <experimental/optional>
+#endif
 #include <future>
 #include <chrono>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
@@ -17,6 +21,7 @@
 #include <boost/interprocess/xsi_shared_memory.hpp>
 #include "exchange_buffer.hpp"
 #include "client_pipe.hpp"
+
 
 namespace
 {
@@ -79,6 +84,7 @@ public:
             shell.set_value(true);
     }
 
+#ifndef IS_ASTRA
     bool connect(const char* server_lock_filename, key_t shm_key_id, std::string& error)
     {
         SemaphoreGuard __guard(guard);
@@ -156,6 +162,11 @@ public:
             return -1;
         }
     }
+#else
+    bool connect(const char* server_lock_filename, key_t shm_key_id, std::string& error){
+        //throw "NOT SUPPORTED IN ASTRA -> bool connect(const char* server_lock_filename, key_t shm_key_id, std::string& error)";
+    }
+#endif
 
     bool invoke(const void* request, size_t size, std::vector<char>& response)
     {
